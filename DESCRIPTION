@@ -8,9 +8,9 @@ Authors@R:
            email = "harryfisher21@gmail.com")
 Description: Collection of functions to easily obtain cyrptocurrency price data from derivatives exchange BitMEX.
 License: MIT + file LICENSE
-URL: {{ URL }}
-BugReports: {{ BugReports }}
-Imports: 
+URL: https://github.com/hfshr/bitmexr
+BugReports: https://github.com/hfshr/bitmexr/issues
+Imports:  
     curl,
     httr,
     purrr,
