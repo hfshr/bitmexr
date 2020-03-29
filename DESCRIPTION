@@ -1,0 +1,22 @@
+Package: bitmexr
+Title: Simple API wrapper for BitMEX
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Harry",
+           family = "Fisher",
+           role = c("cre", "aut"),
+           email = "harryfisher21@gmail.com")
+Description: Collection of functions to easily obtain cyrptocurrency price data from derivatives exchange BitMEX.
+License: MIT + file LICENSE
+URL: {{ URL }}
+BugReports: {{ BugReports }}
+Imports: 
+    curl,
+    httr,
+    purrr,
+    attempt,
+    magrittr,
+    dplyr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
