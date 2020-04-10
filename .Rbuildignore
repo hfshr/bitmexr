@@ -12,3 +12,4 @@ dev.R
 ^\.travis\.yml$
 ^doc$
 ^Meta$
+^cran-comments\.md$

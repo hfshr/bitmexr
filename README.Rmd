@@ -80,7 +80,7 @@ This software is in no way affiliated, endorsed, or approved by the
 
 # Contribution
 
-If you spot any issues, or would like additional features added, pleases feel free raise and issue or submit a pull request.
+If you spot any issues, or would like additional features added, please feel free to raise an issue, or submit a pull request.
 
 # Code of Conduct
 

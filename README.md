@@ -50,28 +50,30 @@ library(dplyr)
 trades(symbol = "XBTUSD") %>% 
   select(timestamp, symbol, side, size, price) %>% 
   head()
+  
 #>                  timestamp symbol side size  price
-#> 1 2020-04-10T16:17:51.601Z XBTUSD Sell 1000 6812.0
-#> 2 2020-04-10T16:17:51.283Z XBTUSD  Buy   14 6812.5
-#> 3 2020-04-10T16:17:51.142Z XBTUSD  Buy  100 6812.5
-#> 4 2020-04-10T16:17:51.113Z XBTUSD  Buy 1143 6812.5
-#> 5 2020-04-10T16:17:51.113Z XBTUSD  Buy   20 6812.5
-#> 6 2020-04-10T16:17:51.113Z XBTUSD  Buy  350 6812.5
+#> 1 2020-04-10T18:08:20.993Z XBTUSD  Buy 5317 6868.5
+#> 2 2020-04-10T18:08:20.993Z XBTUSD  Buy   33 6868.5
+#> 3 2020-04-10T18:08:20.993Z XBTUSD  Buy  152 6868.5
+#> 4 2020-04-10T18:08:20.993Z XBTUSD  Buy   24 6868.5
+#> 5 2020-04-10T18:08:20.993Z XBTUSD  Buy   23 6868.5
+#> 6 2020-04-10T18:08:20.993Z XBTUSD  Buy   22 6868.5
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and
 January 2020.
 
 ``` r
-
 map_bucket_trades(start_date = "2019-01-01", 
                   end_date = "2020-01-01", 
                   binSize = "1h",
                   symbol = "XBTUSD") %>% 
   select(1:6) %>% 
   head()
+  
 #> 9 API requests generated.
 #> Current limit = 30 requests per minute
+
 #>                  timestamp symbol   open   high    low  close
 #> 1 2019-01-01T00:00:00.000Z XBTUSD 3686.5 3695.5 3682.5 3693.0
 #> 2 2019-01-01T01:00:00.000Z XBTUSD 3693.0 3705.0 3684.5 3694.0
@@ -100,8 +102,8 @@ affiliates.
 
 # Contribution
 
-If you spot any issues, or would like additional features added, pleases
-feel free raise and issue or submit a pull request.
+If you spot any issues, or would like additional features added, please
+feel free to raise an issue, or submit a pull request.
 
 # Code of Conduct
 

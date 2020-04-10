@@ -3,7 +3,7 @@
 #' The map variant of \code{\link{trades}} uses a repeat loop to continually request trade data between two time points.
 #' The function will stop when the 'start_date' is greater than 'end_date'.
 #' Given the large number of trades executed per day,
-#' a warning message with a choice to continue, is presented when inputting a date range spanning more than one day.
+#' a warning message with a choice to continue is presented when inputting a date range spanning more than one day.
 #'
 #' Warning! Due to the extremely large number of trades executed on the exchange,
 #' using this function over an extended of time frame will result in an extremely long running process.
