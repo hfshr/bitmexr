@@ -51,12 +51,12 @@ trades(symbol = "XBTUSD") %>%
   select(timestamp, symbol, side, size, price) %>% 
   head()
 #>                  timestamp symbol side size  price
-#> 1 2020-04-10T14:52:27.131Z XBTUSD Sell   11 6845.5
-#> 2 2020-04-10T14:52:27.131Z XBTUSD Sell   20 6845.5
-#> 3 2020-04-10T14:52:26.868Z XBTUSD Sell  500 6846.0
-#> 4 2020-04-10T14:52:26.868Z XBTUSD Sell  209 6846.0
-#> 5 2020-04-10T14:52:26.868Z XBTUSD Sell   18 6846.0
-#> 6 2020-04-10T14:52:26.868Z XBTUSD Sell   22 6846.0
+#> 1 2020-04-10T16:17:51.601Z XBTUSD Sell 1000 6812.0
+#> 2 2020-04-10T16:17:51.283Z XBTUSD  Buy   14 6812.5
+#> 3 2020-04-10T16:17:51.142Z XBTUSD  Buy  100 6812.5
+#> 4 2020-04-10T16:17:51.113Z XBTUSD  Buy 1143 6812.5
+#> 5 2020-04-10T16:17:51.113Z XBTUSD  Buy   20 6812.5
+#> 6 2020-04-10T16:17:51.113Z XBTUSD  Buy  350 6812.5
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and

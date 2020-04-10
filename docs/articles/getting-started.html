@@ -95,7 +95,6 @@
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bitmexr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">purrr</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyquant</span>)</pre></body></html></div>
 <p>The following examples demonstrate how <code>bitmexr</code> can be used to obtain trade data from BitMEX, and used with other packages such as <code>tidyqaunt</code> to explore and visualise the data.</p>
 <div id="core-functions" class="section level1">
@@ -111,7 +110,9 @@
 <p><code>bucket_trades</code> collects trade data which has been summarised into the follow time frames: 1-minute, 5-minute, 1-hour and 1-day. Given the large volume of trades performed daily on the exchange, this function is preferred over <code><a href="../reference/trades.html">trades()</a></code> if you want to obtain data spanning many days.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Daily OHLC data from 2017-01-01 to 2020-01-01</span>
 
-<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1d"</span>, <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2018-01-01"</span>, <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>)</pre></body></html></div>
+<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1d"</span>,
+                             <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2018-01-01"</span>,
+                             <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>)</pre></body></html></div>
 <p>For more fine grained data, you may want to specify a smaller time frame.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1-minute buckets from 2020-01-01 until 2020-01-10</span>
 
@@ -138,9 +139,7 @@
 <span class="co">#&gt; [1] "2020-01-05"</span></pre></body></html></div>
 <p>A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete.</p>
 <p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"># All trades for a 10-minute period 
-
-map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00") %&gt;% 
+<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00") %&gt;% 
   select(1:5) %&gt;% 
   head()
 #&gt;  Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:10:00 
@@ -176,7 +175,7 @@ map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00")
   <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/geom_ma.html">geom_ma</a></span>(<span class="kw">ma_fun</span> <span class="kw">=</span> <span class="no">SMA</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">200</span>) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span>(<span class="kw">date_breaks</span> <span class="kw">=</span> <span class="st">"12 hour"</span>, <span class="kw">date_labels</span> <span class="kw">=</span> <span class="st">"%H:%M"</span>) +
   <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/theme_tq.html">theme_tq</a></span>()</pre></body></html></div>
-<p><img src="getting-started_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<p><img src="getting-started_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 <p>See the <code>tidyquant</code> vignette for more details <a href="https://CRAN.R-project.org/package=tidyquant" class="uri">https://CRAN.R-project.org/package=tidyquant</a></p>
 </div>
   </div>

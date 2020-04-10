@@ -10,3 +10,5 @@ dev.R
 .travis.yml
 ^README\.Rmd$
 ^\.travis\.yml$
+^doc$
+^Meta$
