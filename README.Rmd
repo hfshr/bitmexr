@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,13 +11,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# bitmexr: Get Trade Data From Cryptocurrency Exchange BitMEX
+# bitmexr: R Client for the BitMEX Exchange
 
 [![Travis build status](https://travis-ci.org/hfshr/bitmexr.svg?branch=master)](https://travis-ci.org/hfshr/bitmexr)
 
 # Overview
 
-The goal of `bitmexr` is to provide an easy simple API wrapper for cryptocurrency derivatives exchange [BitMEX](https://www.bitmex.com/). Specifically, it can help R users access price/trade data across the many products available on the exchange, which can then be used for further analysis. For more information about the API check https://www.bitmex.com/app/apiOverview.
+The goal of `bitmexr` is to provide an API wrapper for cryptocurrency derivatives exchange [BitMEX](https://www.bitmex.com/). Specifically, it can help R users access price/trade data across the many products available on the exchange, which can then be used for further analysis. For more information about the API, check https://www.bitmex.com/app/apiOverview.
 
 # Installation
 

@@ -25,6 +25,19 @@ map_bucket_trades(
 }
 \value{
 `map_bucket_trades` returns a data.frame containing bucketed trade data for the specified time frame.
+ \item{timestamp}{Date and time of trade}
+ \item{symbol}{Instrument ticker}
+ \item{open}{Opening price for the bucket}
+ \item{high}{Highest price in the bucket}
+ \item{low}{Lowest price in the bucket}
+ \item{close}{Closing price of the bucket}
+ \item{trades}{Number of trades executed within the bucket}
+ \item{volume}{Volume in USD}
+ \item{vwap}{Volume weighted average price}
+ \item{lastSize}{Size of the last trade executed}
+ \item{turnover}{How many sathoshi were exchanged}
+ \item{homeNotional}{BTC value of the bucket}
+ \item{foreignNotional}{USD value of the bucket}
 }
 \description{
 \code{map_bucket_trades} uses purrr::map_dfr under the hood to execute multiple API calls.
@@ -39,16 +52,17 @@ The length of time between each start time in each API call is determined by the
 For example, "1d" is chosen as the binSize the length of time between start dates will be 1000 days.
 If "1h" is chosen, it will be 1000 hours etc.
 
-The function will print the number of API calls being sent and provides a progress bar in the consol
+The function will print the number of API calls being sent and provides a progress bar in the console
 
 Public API requests are limited to 30 per minute. Consequently, the function uses purrr::slowly to ensure this
 limit is never reached while sending multiple API requests.
 }
 \examples{
-
+\dontrun{
 # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 
-map_bucket_trades(start_date = "2020-01-01", end_date = "2020-02-01")
+map_bucket_trades(start_date = "2020-01-01", end_date = "2020-02-01", binSize = "1h")
+}
 
 }
 \references{

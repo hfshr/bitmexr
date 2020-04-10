@@ -19,7 +19,7 @@
 #' @importFrom lubridate as_datetime now is.timepoint
 #' @importFrom attempt stop_if_not
 #' @importFrom curl has_internet
-#' @importFrom utils flush.console
+#' @importFrom utils flush.console menu
 #'
 #'
 #' @docType package

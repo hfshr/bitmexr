@@ -18,7 +18,7 @@ trades(
 \arguments{
 \item{symbol}{Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly}
 
-\item{filter}{Generic table filter. Send JSON key/value pairs, such as "{'key':'value'}".}
+\item{filter}{Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".}
 
 \item{columns}{Array of column names to fetch. If omitted, will return all columns.}
 
@@ -33,31 +33,33 @@ trades(
 \item{endTime}{Ending date filter for results.}
 }
 \value{
-`trades` returns a data.frame containing information for executed trades for the given arguments.
+\code{trades()} returns a data.frame containing information for executed trades for the given arguments.
+ \item{timestamp}{Date and time of trade}
+ \item{symbol}{Instrument ticker}
+ \item{side}{Whether the trade was buy or sell}
+ \item{size}{Size of the trade}
+ \item{price}{Price the trade was executed at}
+ \item{tickDirection}{Indicates if the trade price was higher, lower or the same as the previous trade price}
+ \item{trdMatchID}{Unique trade ID}
+ \item{grossValue}{How many sathoshi were exchanged. 1 satosi = 0.00000001 BTC}
+ \item{homeNotional}{BTC value of the trade}
+ \item{foreignNotional}{USD value of the trade}
 }
 \description{
-`trades` returns information regarding individual trades that have taken place on the
- exchange for the given symbol / time frame.
-}
-\details{
-By default, `trades` will return the most recent trade data first.
-This option can be change by setting `reverse` to "false"
+\code{trades()} retrieves information regarding individual trades that have taken place on the
+exchange for the given symbol / time frame.
 }
 \examples{
-
+\dontrun{
 # Return 1000 most recent trades for symbol "XBTUSD".
-
 trades(symbol = "XBTUSD")
 
-# Use for very specific values.
-# Return all trade data executed at 12:15.
-
+# Use filter for very specific values: Return trade data executed at 12:15.
 trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15'}")
 
 # Also possible to combine more than one filter.
-
 trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15', 'size':10000}")
-
+}
 
 }
 \references{

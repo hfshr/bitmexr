@@ -7,9 +7,9 @@ Authors@R:
            family = "Fisher",
            role = c("cre", "aut"),
            email = "harryfisher21@gmail.com")
-Description: Tools to obtain price/trade data from the BitMEX cryptocurrency derivatives exchange https://www.bitmex.com/.
+Description: Tools to obtain price/trade data from the BitMEX cryptocurrency derivatives exchange <https://www.bitmex.com/>.
 License: MIT + file LICENSE
-URL: https://github.com/hfshr/bitmexr
+URL: https://github.com/hfshr/bitmexr, https://hfshr.github.io/bitmexr
 BugReports: https://github.com/hfshr/bitmexr/issues
 Imports: 
     curl,

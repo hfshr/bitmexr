@@ -138,23 +138,30 @@
 <span class="co">#&gt; [1] "2020-01-05"</span></pre></body></html></div>
 <p>A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete.</p>
 <p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(start_date = "2016-01-01 00:00:00", end_date = "2016-01-05 00:00:00") %&gt;% 
+<div class="sourceCode" id="cb6"><html><body><pre class="r"># All trades for a 10-minute period 
+
+map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00") %&gt;% 
   select(1:5) %&gt;% 
   head()
-#&gt;  Getting trade data between 2016/01/01 00:00:00 and 2016/01/05 00:00:00 
+#&gt;  Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:10:00 
 #&gt; 
- Current progress:  2016/01/02 03:36:05
- Current progress:  2016/01/03 11:45:32
- Current progress:  2016/01/04 14:56:04
- Current progress:  2016/01/05 16:02:38
+ Current progress:  2019/05/03 12:01:11
+ Current progress:  2019/05/03 12:01:44
+ Current progress:  2019/05/03 12:03:15
+ Current progress:  2019/05/03 12:05:08
+ Current progress:  2019/05/03 12:05:53
+ Current progress:  2019/05/03 12:08:13
+ Current progress:  2019/05/03 12:09:53
+ Current progress:  2019/05/03 12:13:36
 #&gt;                  timestamp symbol side size  price
-#&gt; 1 2016-01-01T00:06:27.332Z XBTUSD  Buy  100 430.50
-#&gt; 2 2016-01-01T00:09:03.887Z XBTUSD Sell  100 430.88
-#&gt; 3 2016-01-01T00:09:03.887Z XBTUSD Sell  292 430.87
-#&gt; 4 2016-01-01T00:29:16.273Z XBTUSD  Buy  608 430.86
-#&gt; 5 2016-01-01T00:33:38.645Z XBTUSD Sell  292 431.00
-#&gt; 6 2016-01-01T01:43:31.486Z XBTUSD  Buy  100 430.41</pre></body></html></div>
+#&gt; 1 2019-05-03T12:00:09.576Z XBTUSD Sell   18 5700.0
+#&gt; 2 2019-05-03T12:00:13.595Z XBTUSD Sell 1000 5700.0
+#&gt; 3 2019-05-03T12:00:13.689Z XBTUSD Sell 5500 5700.0
+#&gt; 4 2019-05-03T12:00:13.718Z XBTUSD  Buy  100 5700.5
+#&gt; 5 2019-05-03T12:00:13.800Z XBTUSD Sell  900 5700.0
+#&gt; 6 2019-05-03T12:00:13.992Z XBTUSD Sell 2000 5700.0</pre></body></html></div>
 <p>The function stops when the start_date is greater than the end_date. This results in a slightly greater sample than intended, but ensures the full time frame is captures by the function call.</p>
+<p><strong>Note:</strong> A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> is a much better option for time intervals spanning multiple days.</p>
 </div>
 <div id="use-with-other-packages" class="section level1">
 <h1 class="hasAnchor">
@@ -170,7 +177,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span>(<span class="kw">date_breaks</span> <span class="kw">=</span> <span class="st">"12 hour"</span>, <span class="kw">date_labels</span> <span class="kw">=</span> <span class="st">"%H:%M"</span>) +
   <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/theme_tq.html">theme_tq</a></span>()</pre></body></html></div>
 <p><img src="getting-started_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
-<p>See the <code>tidyquant</code> vignette for more details <a href="https://cran.r-project.org/web/packages/tidyquant/vignettes/TQ04-charting-with-tidyquant.html#overview" class="uri">https://cran.r-project.org/web/packages/tidyquant/vignettes/TQ04-charting-with-tidyquant.html#overview</a></p>
+<p>See the <code>tidyquant</code> vignette for more details <a href="https://CRAN.R-project.org/package=tidyquant" class="uri">https://CRAN.R-project.org/package=tidyquant</a></p>
 </div>
   </div>
 

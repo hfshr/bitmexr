@@ -1,1 +1,24 @@
 destination: docs
+
+reference:
+- title: bitmexr
+  contents:
+  - bitmexr
+
+- title: Individual trade data
+  desc: >
+    These function retrieve data regarding individual trades that have been
+    executed on the exchange.
+  contents:
+  - trades
+  - map_trades
+
+- title: Bucketed trade data
+  desc: >
+    It is often convient to grouped individual trades together into "buckets" for
+    a specified time interval. These functions return bucketed trade data for the follow intervals:
+    1-minute, 5-minutes, 1-hour, 1-day
+  contents:
+  - bucket_trades
+  - map_bucket_trades
+

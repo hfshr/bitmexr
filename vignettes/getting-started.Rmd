@@ -84,12 +84,17 @@ The `map_trades()` function works in a similar way, however because the number o
 Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.
 
 ```{r}
-map_trades(start_date = "2016-01-01 00:00:00", end_date = "2016-01-05 00:00:00") %>% 
+# All trades for a 10-minute period 
+
+map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00") %>% 
   select(1:5) %>% 
   head()
 ```
 
 The function stops when the start_date is greater than the end_date. This results in a slightly greater sample than intended, but ensures the full time frame is captures by the function call.
+
+**Note:** A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest.
+Using `map_bucket_trades()` is a much better option for time intervals spanning multiple days.
 
 # Use with other packages
 
@@ -110,4 +115,4 @@ bucket_data_long %>%
 
 ```
 
-See the `tidyquant` vignette for more details https://cran.r-project.org/web/packages/tidyquant/vignettes/TQ04-charting-with-tidyquant.html#overview
+See the `tidyquant` vignette for more details https://CRAN.R-project.org/package=tidyquant

@@ -1,8 +1,7 @@
 #' Bucketed trade data
 #'
-#' \code{bucket_trades} retrieves open high low close (OHLC) data for the specified symbol/timeframe.
-#'
-#' The API will only return 1000 rows per call. If the desired timeframe requires more than one API call,
+#' \code{bucket_trades()} retrieves open high low close (OHLC) data for the specified symbol/time frame.
+#' The API will only return 1000 rows per call. If the desired time frame requires more than one API call,
 #' consider using \code{\link{map_bucket_trades}}.
 #'
 #' @references \href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}{API Documentation}
@@ -13,14 +12,30 @@
 #' @param partial If true, will send in-progress (incomplete) bins for the current time period.
 #' @inheritParams trades
 #'
-#' @return `bucket_trades` returns a data.frame containing open high low close data for the specified time interval
+#' @return \code{bucket_trades()} returns a data.frame containing open high low close data
+#' for the specified time frame and symbol.
+#'  \item{timestamp}{Date and time of trade}
+#'  \item{symbol}{Instrument ticker}
+#'  \item{open}{Opening price for the bucket}
+#'  \item{high}{Highest price in the bucket}
+#'  \item{low}{Lowest price in the bucket}
+#'  \item{close}{Closing price of the bucket}
+#'  \item{trades}{Number of trades executed within the bucket}
+#'  \item{volume}{Volume in USD}
+#'  \item{vwap}{Volume weighted average price}
+#'  \item{lastSize}{Size of the last trade executed}
+#'  \item{turnover}{How many sathoshi were exchanged}
+#'  \item{homeNotional}{BTC value of the bucket}
+#'  \item{foreignNotional}{USD value of the bucket}
 #'
-#' @examples
+#'
+#' @examples \dontrun{
 #'
 #' # Return most recent data for symbol "ETHUSD" for 1 hour buckets
 #'
 #' bucket_trades(binSize = "1h", symbol = "ETHUSD")
 #'
+#' }
 #' @export
 
 bucket_trades <- function(

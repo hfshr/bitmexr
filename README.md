@@ -1,18 +1,16 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# bitmexr: Get Trade Data From Cryptocurrency Exchange BitMEX
+# bitmexr: R Client for the BitMEX Exchange
 
 [![Travis build
 status](https://travis-ci.org/hfshr/bitmexr.svg?branch=master)](https://travis-ci.org/hfshr/bitmexr)
 
 # Overview
 
-The goal of `bitmexr` is to provide an easy simple API wrapper for
-cryptocurrency derivatives exchange [BitMEX](https://www.bitmex.com/).
-Specifically, it can help R users access price/trade data across the
-many products available on the exchange, which can then be used for
-further analysis. For more information about the API check
+The goal of `bitmexr` is to provide an API wrapper for cryptocurrency
+derivatives exchange [BitMEX](https://www.bitmex.com/). Specifically, it
+can help R users access price/trade data across the many products
+available on the exchange, which can then be used for further analysis.
+For more information about the API, check
 <https://www.bitmex.com/app/apiOverview>.
 
 # Installation
@@ -52,13 +50,13 @@ library(dplyr)
 trades(symbol = "XBTUSD") %>% 
   select(timestamp, symbol, side, size, price) %>% 
   head()
-#>                  timestamp symbol side size price
-#> 1 2020-04-10T10:13:50.845Z XBTUSD Sell    1  6914
-#> 2 2020-04-10T10:13:50.779Z XBTUSD Sell 5835  6914
-#> 3 2020-04-10T10:13:50.779Z XBTUSD Sell  387  6914
-#> 4 2020-04-10T10:13:49.940Z XBTUSD Sell  250  6914
-#> 5 2020-04-10T10:13:48.393Z XBTUSD Sell 5000  6914
-#> 6 2020-04-10T10:13:47.555Z XBTUSD Sell   31  6914
+#>                  timestamp symbol side size  price
+#> 1 2020-04-10T14:52:27.131Z XBTUSD Sell   11 6845.5
+#> 2 2020-04-10T14:52:27.131Z XBTUSD Sell   20 6845.5
+#> 3 2020-04-10T14:52:26.868Z XBTUSD Sell  500 6846.0
+#> 4 2020-04-10T14:52:26.868Z XBTUSD Sell  209 6846.0
+#> 5 2020-04-10T14:52:26.868Z XBTUSD Sell   18 6846.0
+#> 6 2020-04-10T14:52:26.868Z XBTUSD Sell   22 6846.0
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and
