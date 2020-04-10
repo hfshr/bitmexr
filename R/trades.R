@@ -1,0 +1,98 @@
+#' Trade data
+#'
+#' `trades` returns information regarding individual trades that have taken place on the
+#'  exchange for the given symbol / time frame.
+#'
+#' By default, `trades` will return the most recent trade data first.
+#' This option can be change by setting `reverse` to "false"
+#'
+#'
+#' @param symbol Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly
+#' @param filter Generic table filter. Send JSON key/value pairs, such as "{'key':'value'}".
+#' @param columns Array of column names to fetch. If omitted, will return all columns.
+#' @param count Number of results to fetch. Maximum of 1000 (the default) per request.
+#' @param start Starting point for results.
+#' @param reverse If true, will sort results newest first (default = "true").
+#' @param startTime Starting date filter for results.
+#' @param endTime Ending date filter for results.
+#'
+#'
+#' @return `trades` returns a data.frame containing information for executed trades for the given arguments.
+#'
+#' @family map_trades
+#'
+#' @references \href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}{API Documentation}
+#'
+#' @examples
+#'
+#' # Return 1000 most recent trades for symbol "XBTUSD".
+#'
+#' trades(symbol = "XBTUSD")
+#'
+#' # Use for very specific values.
+#' # Return all trade data executed at 12:15.
+#'
+#' trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15'}")
+#'
+#' # Also possible to combine more than one filter.
+#'
+#' trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15', 'size':10000}")
+#'
+#'
+#' @export
+#' @rdname trades
+
+
+trades <- function(
+  symbol = "XBT",
+  filter = NULL,
+  columns = NULL,
+  count = 1000,
+  start = NULL,
+  reverse = "true",
+  startTime = NULL,
+  endTime = NULL
+) {
+
+  check_internet()
+
+  if (!is.null(startTime)) {
+    reverse <- "false"
+    stop_if(
+      date_check(startTime),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+  if (!is.null(endTime)) {
+    reverse <- "false"
+    stop_if(
+      date_check(endTime),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+
+  args <- list(
+    symbol = symbol,
+    filter = gsub("'", "\"", filter),
+    columns = columns,
+    count = count,
+    start = start,
+    reverse = reverse,
+    startTime = startTime,
+    endTime = endTime
+  )
+
+
+
+  res <- GET(trade_url, query = compact(args))
+
+  check_status(res)
+
+  result <- jsonlite::fromJSON(content(res, "text"))
+
+  return(result)
+}
