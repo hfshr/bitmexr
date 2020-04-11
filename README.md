@@ -3,6 +3,8 @@
 
 [![Travis build
 status](https://travis-ci.org/hfshr/bitmexr.svg?branch=master)](https://travis-ci.org/hfshr/bitmexr)
+[![Codecov test
+coverage](https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=master)
 
 # Overview
 
@@ -50,13 +52,13 @@ library(dplyr)
 trades(symbol = "XBTUSD") %>% 
   select(timestamp, symbol, side, size, price) %>% 
   head()
-#>             timestamp symbol side size  price
-#> 1 2020-04-11 16:17:43 XBTUSD Sell   25 6858.5
-#> 2 2020-04-11 16:17:43 XBTUSD Sell  140 6858.5
-#> 3 2020-04-11 16:17:43 XBTUSD  Buy  280 6859.0
-#> 4 2020-04-11 16:17:38 XBTUSD Sell  700 6858.5
-#> 5 2020-04-11 16:17:38 XBTUSD Sell    1 6858.5
-#> 6 2020-04-11 16:17:38 XBTUSD Sell 5000 6858.5
+#>             timestamp symbol side  size  price
+#> 1 2020-04-11 19:09:48 XBTUSD Sell     3 6836.0
+#> 2 2020-04-11 19:09:48 XBTUSD  Buy    90 6836.5
+#> 3 2020-04-11 19:09:48 XBTUSD Sell 10000 6836.0
+#> 4 2020-04-11 19:09:47 XBTUSD  Buy     3 6836.5
+#> 5 2020-04-11 19:09:46 XBTUSD Sell 10000 6836.0
+#> 6 2020-04-11 19:09:46 XBTUSD Sell    20 6836.0
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and

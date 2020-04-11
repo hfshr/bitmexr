@@ -32,5 +32,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    tidyquant
+    tidyquant,
+    covr
 VignetteBuilder: knitr

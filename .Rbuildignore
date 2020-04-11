@@ -13,3 +13,4 @@ dev.R
 ^doc$
 ^Meta$
 ^cran-comments\.md$
+^codecov\.yml$

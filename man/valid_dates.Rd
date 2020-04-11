@@ -20,6 +20,5 @@ Can pass in a symbol from \code{available_symbols()} or no symbol to return date
 valid_dates("XBTUSD")
 
 valid_dates(NULL)
-
 }
 }

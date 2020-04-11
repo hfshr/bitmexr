@@ -53,7 +53,6 @@ Obtaining the trade data for this day alone would take over an hour, and users s
 # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 
 map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:15:00", symbol = "XBTUSD")
-
 }
 
 }
