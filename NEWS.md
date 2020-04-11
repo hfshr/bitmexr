@@ -1,3 +1,7 @@
+# bitmexr 0.2.0
+
+* New helper functions and tests
+
 # bitmexr 0.1.0 
 
 * Ready to use

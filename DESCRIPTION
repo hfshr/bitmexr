@@ -1,7 +1,7 @@
 Package: bitmexr
 Type: Package
 Title: R Client for the BitMEX Exchange
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Harry",
            family = "Fisher",
