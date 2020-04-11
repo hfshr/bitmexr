@@ -135,7 +135,7 @@ exchange for the given symbol / time frame.</p>
     </div>
 
     <pre class="usage"><span class='fu'>trades</span>(
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBT"</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
@@ -150,7 +150,7 @@ exchange for the given symbol / time frame.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>symbol</th>
-      <td><p>Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly</p></td>
+      <td><p>Instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see valid symbols.</p></td>
     </tr>
     <tr>
       <th>filter</th>
@@ -206,10 +206,10 @@ exchange for the given symbol / time frame.</p>
 <span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>)
 
 <span class='co'># Use filter for very specific values: Return trade data executed at 12:15.</span>
-<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBT"</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15'}"</span>)
+<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15'}"</span>)
 
 <span class='co'># Also possible to combine more than one filter.</span>
-<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBT"</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15', 'size':10000}"</span>)
+<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15', 'size':10000}"</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

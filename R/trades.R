@@ -4,7 +4,7 @@
 #' exchange for the given symbol / time frame.
 #'
 #'
-#' @param symbol Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly
+#' @param symbol Instrument symbol. Use \code{available_symbols()} to see valid symbols.
 #' @param filter Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".
 #' @param columns Array of column names to fetch. If omitted, will return all columns.
 #' @param count Number of results to fetch. Maximum of 1000 (the default) per request.
@@ -37,16 +37,16 @@
 #' trades(symbol = "XBTUSD")
 #'
 #' # Use filter for very specific values: Return trade data executed at 12:15.
-#' trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15'}")
+#' trades(symbol = "XBTUSD", filter = "{'timestamp.minute':'12:15'}")
 #'
 #' # Also possible to combine more than one filter.
-#' trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15', 'size':10000}")
+#' trades(symbol = "XBTUSD", filter = "{'timestamp.minute':'12:15', 'size':10000}")
 #' }
 #'
 #' @export
 
 trades <- function(
-  symbol = "XBT",
+  symbol = "XBTUSD",
   filter = NULL,
   columns = NULL,
   count = 1000,
@@ -55,8 +55,20 @@ trades <- function(
   startTime = NULL,
   endTime = NULL
 ) {
-
   check_internet()
+
+  stop_if_not(
+    symbol %in% available_symbols(),
+    msg = paste(
+      "Please use one of the available symbols:",
+      paste(available_symbols(), collapse = ", ")
+    )
+  )
+
+  stop_if(
+    count > 1000,
+    msg = "Maximum reponse per request is 1000. Use map_trades for returning > 1000 rows"
+  )
 
   if (!is.null(startTime)) {
     reverse <- "false"
@@ -76,6 +88,16 @@ trades <- function(
     )
   }
 
+  if (!is.null(startTime) & !is.null(endTime)) {
+    startTime <- as_datetime(startTime)
+    endTime <- as_datetime(endTime)
+
+    stop_if(
+      startTime > endTime,
+      msg = "Make sure start date is before end date"
+    )
+  }
+
 
   args <- list(
     symbol = symbol,
@@ -88,13 +110,12 @@ trades <- function(
     endTime = endTime
   )
 
-
-
   res <- GET(trade_url, query = compact(args))
 
   check_status(res)
 
-  result <- jsonlite::fromJSON(content(res, "text"))
+  result <- jsonlite::fromJSON(content(res, "text")) %>%
+    mutate(timestamp = as_datetime(.data$timestamp))
 
   return(result)
 }

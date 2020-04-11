@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-03-13T08:53:06.851Z",
+        "symbol": "EOSM20",
+        "side": "Buy",
+        "size": 1,
+        "price": 0.0003537,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "04e2cc8e-74cf-94cd-53ca-41e2ea24a0d0",
+        "grossValue": 35370,
+        "homeNotional": 1,
+        "foreignNotional": 0.0003537
+    }
+]

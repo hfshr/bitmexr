@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2018-08-02T09:06:10.687Z",
+        "symbol": "ETHUSD",
+        "side": "Sell",
+        "size": 1,
+        "price": 400,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "f8b6e996-7500-5c68-d154-dde270a78397",
+        "grossValue": 40000,
+        "homeNotional": 0.0076359193646915085,
+        "foreignNotional": 3.0543677458766036
+    }
+]

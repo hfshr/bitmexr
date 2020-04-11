@@ -22,3 +22,11 @@ reference:
   - bucket_trades
   - map_bucket_trades
 
+- title: Helpers
+  desc: >
+    Helper functions
+  contents:
+  - available_symbols
+  - valid_dates
+
+

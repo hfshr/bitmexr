@@ -12,6 +12,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(httptest)
+start_vignette("getting-started")
 ```
 
 ```{r setup, message=FALSE}
@@ -19,6 +21,7 @@ library(bitmexr)
 library(dplyr)
 library(ggplot2)
 library(tidyquant)
+
 ```
 
 The following examples demonstrate how `bitmexr` can be used to obtain trade data from BitMEX, and used with other packages such as `tidyqaunt` to explore and visualise the data.
@@ -29,7 +32,7 @@ The core of the package are the `trades()` and `bucket_trades()` functions.
 
 `trades()` collects data regarding individual trades that have been executed on the exchange. 
 
-```{r}
+```{r message=FALSE}
 # Get 1000 most recent trades on the exchange
 
 trade_data <- trades(symbol = "XBTUSD",
@@ -41,23 +44,25 @@ trade_data <- trades(symbol = "XBTUSD",
 `bucket_trades` collects trade data which has been summarised into the follow time frames: 1-minute, 5-minute, 1-hour and 1-day. 
 Given the large volume of trades performed daily on the exchange, this function is preferred over `trades()` if you want to obtain data spanning many days.
 
-```{r ev}
+```{r message=FALSE}
 # Daily OHLC data from 2017-01-01 to 2020-01-01
 
 bucket_data <- bucket_trades(binSize = "1d", 
                              startTime = "2018-01-01", 
-                             endTime = "2020-05-01")
+                             endTime = "2020-05-01",
+                             symbol = "XBTUSD")
 
 ```
 
 For more fine grained data, you may want to specify a smaller time frame.
 
-```{r}
-# 1-minute buckets from 2020-01-01 until 2020-01-10
+```{r message=FALSE}
+# 1-minute buckets from 2020-01-01 until 2020-01-03
 
 bucket_data_long <- bucket_trades(binSize = "1m", 
                                   startTime = "2020-01-01", 
-                                  endTime = "2020-01-05")
+                                  endTime = "2020-01-03",
+                                  symbol = "XBTUSD")
 
 max(as.Date(bucket_data_long$timestamp))
 ```
@@ -70,11 +75,12 @@ To make this easy, the package provides map_* variates of the two core functions
 
 Take our desired 5-day time period again. Using `map_bucket_trades()` will create the necessary number of API requests to satisfy the time frame automatically.
 
-```{r}
+```{r message=FALSE}
 
 bucket_data_long <- map_bucket_trades(binSize = "1m", 
                                       start_date = "2020-01-01", 
-                                      end_date = "2020-01-05")
+                                      end_date = "2020-01-03",
+                                      symbol = "XBTUSD")
 
 max(as.Date(bucket_data_long$timestamp))
 ```
@@ -84,8 +90,10 @@ A progress bar is provided in the console to provide some information regarding 
 The `map_trades()` function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take.
 Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.
 
-```{r}
-map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00") %>% 
+```{r message=FALSE}
+map_trades(symbol = "XBTUSD",
+           start_date = "2019-05-03 12:00:00", 
+           end_date = "2019-05-03 12:05:00") %>% 
   select(1:5) %>% 
   head()
 
@@ -95,6 +103,21 @@ The function stops when the start_date is greater than the end_date. This result
 
 **Note:** A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest.
 Using `map_bucket_trades()` is a much better option for time intervals spanning multiple days.
+
+# Useful extras
+
+`available_symbols()` returns a character vector of the currently valid symbols available to request.
+
+```{r message=FALSE}
+paste(available_symbols(), collapse = ", ")
+```
+
+`valid_dates` returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given
+
+```{r message=FALSE}
+valid_dates("ETHUSD")
+```
+
 
 # Use with other packages
 
@@ -116,3 +139,7 @@ bucket_data_long %>%
 ```
 
 See the `tidyquant` vignette for more details https://CRAN.R-project.org/package=tidyquant
+
+```{r, include=FALSE}
+end_vignette()
+```

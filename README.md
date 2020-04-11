@@ -50,37 +50,35 @@ library(dplyr)
 trades(symbol = "XBTUSD") %>% 
   select(timestamp, symbol, side, size, price) %>% 
   head()
-  
-#>                  timestamp symbol side size  price
-#> 1 2020-04-10T18:08:20.993Z XBTUSD  Buy 5317 6868.5
-#> 2 2020-04-10T18:08:20.993Z XBTUSD  Buy   33 6868.5
-#> 3 2020-04-10T18:08:20.993Z XBTUSD  Buy  152 6868.5
-#> 4 2020-04-10T18:08:20.993Z XBTUSD  Buy   24 6868.5
-#> 5 2020-04-10T18:08:20.993Z XBTUSD  Buy   23 6868.5
-#> 6 2020-04-10T18:08:20.993Z XBTUSD  Buy   22 6868.5
+#>             timestamp symbol side size  price
+#> 1 2020-04-11 16:17:43 XBTUSD Sell   25 6858.5
+#> 2 2020-04-11 16:17:43 XBTUSD Sell  140 6858.5
+#> 3 2020-04-11 16:17:43 XBTUSD  Buy  280 6859.0
+#> 4 2020-04-11 16:17:38 XBTUSD Sell  700 6858.5
+#> 5 2020-04-11 16:17:38 XBTUSD Sell    1 6858.5
+#> 6 2020-04-11 16:17:38 XBTUSD Sell 5000 6858.5
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and
-January 2020.
+June 2019.
 
 ``` r
 map_bucket_trades(start_date = "2019-01-01", 
-                  end_date = "2020-01-01", 
+                  end_date = "2019-06-01", 
                   binSize = "1h",
                   symbol = "XBTUSD") %>% 
   select(1:6) %>% 
   head()
-  
-#> 9 API requests generated.
+#> 
+#> 4 API requests generated.
 #> Current limit = 30 requests per minute
-
-#>                  timestamp symbol   open   high    low  close
-#> 1 2019-01-01T00:00:00.000Z XBTUSD 3686.5 3695.5 3682.5 3693.0
-#> 2 2019-01-01T01:00:00.000Z XBTUSD 3693.0 3705.0 3684.5 3694.0
-#> 3 2019-01-01T02:00:00.000Z XBTUSD 3694.0 3695.0 3675.5 3681.5
-#> 4 2019-01-01T03:00:00.000Z XBTUSD 3681.5 3683.5 3665.0 3678.5
-#> 5 2019-01-01T04:00:00.000Z XBTUSD 3678.5 3687.0 3678.5 3685.0
-#> 6 2019-01-01T05:00:00.000Z XBTUSD 3685.0 3699.0 3683.0 3684.0
+#>             timestamp symbol   open   high    low  close
+#> 1 2019-01-01 00:00:00 XBTUSD 3686.5 3695.5 3682.5 3693.0
+#> 2 2019-01-01 01:00:00 XBTUSD 3693.0 3705.0 3684.5 3694.0
+#> 3 2019-01-01 02:00:00 XBTUSD 3694.0 3695.0 3675.5 3681.5
+#> 4 2019-01-01 03:00:00 XBTUSD 3681.5 3683.5 3665.0 3678.5
+#> 5 2019-01-01 04:00:00 XBTUSD 3678.5 3687.0 3678.5 3685.0
+#> 6 2019-01-01 05:00:00 XBTUSD 3685.0 3699.0 3683.0 3684.0
 ```
 
 # What the package *does not* do

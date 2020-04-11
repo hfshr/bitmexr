@@ -53,12 +53,11 @@ trades(symbol = "XBTUSD") %>%
 
 ```
 
-Get all bucketed trade data (hourly binSize) between January 2019 and January 2020. 
+Get all bucketed trade data (hourly binSize) between January 2019 and June 2019. 
 
 ```{r}
-
 map_bucket_trades(start_date = "2019-01-01", 
-                  end_date = "2020-01-01", 
+                  end_date = "2019-06-01", 
                   binSize = "1h",
                   symbol = "XBTUSD") %>% 
   select(1:6) %>% 

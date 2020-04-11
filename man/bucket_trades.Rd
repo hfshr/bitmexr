@@ -7,7 +7,7 @@
 bucket_trades(
   binSize = "1m",
   partial = "false",
-  symbol = "XBT",
+  symbol = "XBTUSD",
   filter = NULL,
   columns = NULL,
   count = 1000,
@@ -22,7 +22,7 @@ bucket_trades(
 
 \item{partial}{If true, will send in-progress (incomplete) bins for the current time period.}
 
-\item{symbol}{Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly}
+\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
 
 \item{filter}{Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".}
 

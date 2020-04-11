@@ -10,17 +10,17 @@
 #'
 #'
 #' @importFrom progress progress_bar
-#' @importFrom attempt stop_if stop_if_not
+#' @importFrom attempt stop_if stop_if_not message_if
 #' @importFrom purrr compact map_dfr pluck slowly rate_delay
 #' @importFrom httr GET content status_code headers
-#' @importFrom dplyr bind_rows tibble
+#' @importFrom dplyr bind_rows tibble select mutate
 #' @importFrom magrittr "%>%"
 #' @importFrom jsonlite fromJSON
 #' @importFrom lubridate as_datetime now is.timepoint
 #' @importFrom attempt stop_if_not
 #' @importFrom curl has_internet
 #' @importFrom utils flush.console menu
-#'
+#' @importFrom rlang .data
 #'
 #' @docType package
 #' @name bitmexr

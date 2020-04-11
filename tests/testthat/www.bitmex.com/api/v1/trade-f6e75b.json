@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-03-13T08:32:38.053Z",
+        "symbol": "TRXM20",
+        "side": "Buy",
+        "size": 1,
+        "price": 0.000002,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "ec67c206-fe0f-a21d-eb8f-424bd43fc90e",
+        "grossValue": 200,
+        "homeNotional": 1,
+        "foreignNotional": 0.000002
+    }
+]

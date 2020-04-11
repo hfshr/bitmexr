@@ -38,15 +38,26 @@
 #' # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 #'
 #' map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:15:00", symbol = "XBTUSD")
-#'
 #' }
 #'
 #' @export
 #'
-map_trades <- function(start_date = "2019-01-01 12:00:00",
-                       end_date = "2019-01-01 12:15:00",
-                       symbol = "XBT",
-                       filter = NULL) {
+map_trades <- function(
+  symbol = "XBTUSD",
+  start_date = "2019-01-01 12:00:00",
+  end_date = "2019-01-01 12:15:00",
+  filter = NULL
+) {
+  check_internet()
+
+  stop_if_not(
+    symbol %in% available_symbols(),
+    msg = paste(
+      "Please use one of the available symbols:",
+      paste(available_symbols(), collapse = ", ")
+    )
+  )
+
   stop_if(
     date_check(start_date),
     .p = isFALSE,
@@ -59,9 +70,27 @@ map_trades <- function(start_date = "2019-01-01 12:00:00",
     msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
   )
 
-  start_date <- as_datetime(start_date)
-  end_date <- as_datetime(end_date)
+  if (!is.null(start_date) & !is.null(end_date)) {
+    start_date <- as_datetime(start_date)
 
+    end_date <- as_datetime(end_date)
+
+    vd <- valid_dates(symbol)
+
+    message_if(
+      vd$timestamp > start_date,
+      msg = paste0(
+        "Earliest start date for given symbol is: ",
+        vd$timestamp,
+        ".\nContinuing with earliest start date"
+      )
+    )
+  }
+
+  stop_if(
+    start_date > end_date,
+    msg = "Make sure start date is before end date"
+  )
 
   trade_warning(start = start_date, end = end_date)
 
@@ -69,16 +98,20 @@ map_trades <- function(start_date = "2019-01-01 12:00:00",
 
   result <- tibble()
 
+  limit <- rate_limit(base_url)
+
   cat(
-    " Getting trade data between",
+    "Getting trade data between",
     format(start_date, "%Y/%m/%d %H:%M:%S"),
     "and",
     format(end_date, "%Y/%m/%d %H:%M:%S"),
-    "\n"
+    paste0("\nCurrent limit = ", limit, " requests per minute\n")
   )
 
+  limit_trades <- slowly(trades, rate_delay(2))
+
   repeat({
-    data <- trades(
+    data <- limit_trades(
       startTime = start_date,
       reverse = "false",
       symbol = symbol,
@@ -86,18 +119,19 @@ map_trades <- function(start_date = "2019-01-01 12:00:00",
       count = 1000
     )
 
-    Sys.sleep(2)
-
     if (start_date > end_date) break() # the end was reached...
 
     result <- rbind(result, data)
 
-    cat("\r", "Current progress: ", format(as_datetime(max(result$timestamp)), "%Y/%m/%d %H:%M:%OS"))
+    cat("\rCurrent progress: ", format(as_datetime(max(result$timestamp)), "%Y/%m/%d %H:%M:%OS"))
 
     flush.console()
 
     start_date <- as_datetime(max(result$timestamp))
   })
+
+  result <- result %>%
+    mutate(timestamp = as_datetime(.data$timestamp))
 
   return(result)
 }

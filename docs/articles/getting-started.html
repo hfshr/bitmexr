@@ -112,13 +112,15 @@
 
 <span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1d"</span>,
                              <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2018-01-01"</span>,
-                             <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>)</pre></body></html></div>
+                             <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>,
+                             <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>)</pre></body></html></div>
 <p>For more fine grained data, you may want to specify a smaller time frame.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1-minute buckets from 2020-01-01 until 2020-01-10</span>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1-minute buckets from 2020-01-01 until 2020-01-03</span>
 
 <span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
                                   <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
-                                  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-01-05"</span>)
+                                  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
+                                  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data_long</span>$<span class="no">timestamp</span>))
 <span class="co">#&gt; [1] "2020-01-01"</span></pre></body></html></div>
@@ -131,42 +133,51 @@
 <div class="sourceCode" id="cb5"><html><body><pre class="r">
 <span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/map_bucket_trades.html">map_bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
                                       <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
-                                      <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2020-01-05"</span>)
-<span class="co">#&gt; 6 API requests generated.</span>
-<span class="co">#&gt; Current limit = 30 requests per minute</span>
+                                      <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
+                                      <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data_long</span>$<span class="no">timestamp</span>))
-<span class="co">#&gt; [1] "2020-01-05"</span></pre></body></html></div>
+<span class="co">#&gt; [1] "2020-01-03"</span></pre></body></html></div>
 <p>A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete.</p>
 <p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:10:00") %&gt;% 
+<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(symbol = "XBTUSD",
+           start_date = "2019-05-03 12:00:00", 
+           end_date = "2019-05-03 12:05:00") %&gt;% 
   select(1:5) %&gt;% 
   head()
-#&gt;  Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:10:00 
+#&gt; Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:05:00 
+#&gt; Current limit =  requests per minute
 #&gt; 
- Current progress:  2019/05/03 12:01:11
- Current progress:  2019/05/03 12:01:44
- Current progress:  2019/05/03 12:03:15
- Current progress:  2019/05/03 12:05:08
- Current progress:  2019/05/03 12:05:53
- Current progress:  2019/05/03 12:08:13
- Current progress:  2019/05/03 12:09:53
- Current progress:  2019/05/03 12:13:36
-#&gt;                  timestamp symbol side size  price
-#&gt; 1 2019-05-03T12:00:09.576Z XBTUSD Sell   18 5700.0
-#&gt; 2 2019-05-03T12:00:13.595Z XBTUSD Sell 1000 5700.0
-#&gt; 3 2019-05-03T12:00:13.689Z XBTUSD Sell 5500 5700.0
-#&gt; 4 2019-05-03T12:00:13.718Z XBTUSD  Buy  100 5700.5
-#&gt; 5 2019-05-03T12:00:13.800Z XBTUSD Sell  900 5700.0
-#&gt; 6 2019-05-03T12:00:13.992Z XBTUSD Sell 2000 5700.0</pre></body></html></div>
+Current progress:  2019/05/03 12:01:11
+Current progress:  2019/05/03 12:01:44
+Current progress:  2019/05/03 12:03:15
+Current progress:  2019/05/03 12:05:08
+#&gt;             timestamp symbol side size  price
+#&gt; 1 2019-05-03 12:00:09 XBTUSD Sell   18 5700.0
+#&gt; 2 2019-05-03 12:00:13 XBTUSD Sell 1000 5700.0
+#&gt; 3 2019-05-03 12:00:13 XBTUSD Sell 5500 5700.0
+#&gt; 4 2019-05-03 12:00:13 XBTUSD  Buy  100 5700.5
+#&gt; 5 2019-05-03 12:00:13 XBTUSD Sell  900 5700.0
+#&gt; 6 2019-05-03 12:00:13 XBTUSD Sell 2000 5700.0</pre></body></html></div>
 <p>The function stops when the start_date is greater than the end_date. This results in a slightly greater sample than intended, but ensures the full time frame is captures by the function call.</p>
 <p><strong>Note:</strong> A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> is a much better option for time intervals spanning multiple days.</p>
+</div>
+<div id="useful-extras" class="section level1">
+<h1 class="hasAnchor">
+<a href="#useful-extras" class="anchor"></a>Useful extras</h1>
+<p><code><a href="../reference/available_symbols.html">available_symbols()</a></code> returns a character vector of the currently valid symbols available to request.</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="../reference/available_symbols.html">available_symbols</a></span>(), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">", "</span>)
+<span class="co">#&gt; [1] "XBTUSD, ETHUSD, XBTM20, XRPUSD, XBTU20, ETHM20, LTCM20, XRPM20, BCHM20, ADAM20, EOSM20, TRXM20"</span></pre></body></html></div>
+<p><code>valid_dates</code> returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given</p>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/valid_dates.html">valid_dates</a></span>(<span class="st">"ETHUSD"</span>)
+<span class="co">#&gt;   symbol           timestamp</span>
+<span class="co">#&gt; 1 ETHUSD 2018-08-02 09:06:10</span></pre></body></html></div>
 </div>
 <div id="use-with-other-packages" class="section level1">
 <h1 class="hasAnchor">
 <a href="#use-with-other-packages" class="anchor"></a>Use with other packages</h1>
 <p>Once data has been obtained, it is possible to use packages such as the excellent <code>tidyquant</code> to explore/visualise the data further.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r">
+<div class="sourceCode" id="cb9"><html><body><pre class="r">
 <span class="no">bucket_data_long</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">timestamp</span> <span class="kw">&gt;</span> <span class="st">"2020-01-01"</span> <span class="kw">&amp;</span> <span class="no">timestamp</span> <span class="kw">&lt;</span> <span class="st">"2020-01-03"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">timestamp</span> <span class="kw">=</span> <span class="fu">as_datetime</span>(<span class="no">timestamp</span>)) <span class="kw">%&gt;%</span>
@@ -175,7 +186,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/geom_ma.html">geom_ma</a></span>(<span class="kw">ma_fun</span> <span class="kw">=</span> <span class="no">SMA</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">200</span>) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span>(<span class="kw">date_breaks</span> <span class="kw">=</span> <span class="st">"12 hour"</span>, <span class="kw">date_labels</span> <span class="kw">=</span> <span class="st">"%H:%M"</span>) +
   <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/theme_tq.html">theme_tq</a></span>()</pre></body></html></div>
-<p><img src="getting-started_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+<p><img src="getting-started_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 <p>See the <code>tidyquant</code> vignette for more details <a href="https://CRAN.R-project.org/package=tidyquant" class="uri">https://CRAN.R-project.org/package=tidyquant</a></p>
 </div>
   </div>

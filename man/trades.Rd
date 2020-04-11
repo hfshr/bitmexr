@@ -5,7 +5,7 @@
 \title{Trade data}
 \usage{
 trades(
-  symbol = "XBT",
+  symbol = "XBTUSD",
   filter = NULL,
   columns = NULL,
   count = 1000,
@@ -16,7 +16,7 @@ trades(
 )
 }
 \arguments{
-\item{symbol}{Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly}
+\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
 
 \item{filter}{Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".}
 
@@ -55,10 +55,10 @@ exchange for the given symbol / time frame.
 trades(symbol = "XBTUSD")
 
 # Use filter for very specific values: Return trade data executed at 12:15.
-trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15'}")
+trades(symbol = "XBTUSD", filter = "{'timestamp.minute':'12:15'}")
 
 # Also possible to combine more than one filter.
-trades(symbol = "XBT", filter = "{'timestamp.minute':'12:15', 'size':10000}")
+trades(symbol = "XBTUSD", filter = "{'timestamp.minute':'12:15', 'size':10000}")
 }
 
 }

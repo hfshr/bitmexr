@@ -43,7 +43,7 @@
 <meta property="og:description" content="The map variant of trades uses a repeat loop to continually request trade data between two time points.
 The function will stop when the 'start_date' is greater than 'end_date'.
 Given the large number of trades executed per day,
-a warning message with a choice to continue, is presented when inputting a date range spanning more than one day." />
+a warning message with a choice to continue is presented when inputting a date range spanning more than one day." />
 
 
 
@@ -135,13 +135,13 @@ a warning message with a choice to continue, is presented when inputting a date 
     <p>The map variant of <code><a href='trades.html'>trades</a></code> uses a repeat loop to continually request trade data between two time points.
 The function will stop when the 'start_date' is greater than 'end_date'.
 Given the large number of trades executed per day,
-a warning message with a choice to continue, is presented when inputting a date range spanning more than one day.</p>
+a warning message with a choice to continue is presented when inputting a date range spanning more than one day.</p>
     </div>
 
     <pre class="usage"><span class='fu'>map_trades</span>(
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
   <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2019-01-01 12:00:00"</span>,
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2019-01-01 12:15:00"</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBT"</span>,
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
@@ -149,16 +149,16 @@ a warning message with a choice to continue, is presented when inputting a date 
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>symbol</th>
+      <td><p>Instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see valid symbols.</p></td>
+    </tr>
+    <tr>
       <th>start_date</th>
       <td><p>The start date of the desired sample</p></td>
     </tr>
     <tr>
       <th>end_date</th>
       <td><p>The end date of the desired sample</p></td>
-    </tr>
-    <tr>
-      <th>symbol</th>
-      <td><p>Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly</p></td>
     </tr>
     <tr>
       <th>filter</th>

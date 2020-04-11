@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-03-13T08:34:03.578Z",
+        "symbol": "LTCM20",
+        "side": "Sell",
+        "size": 30,
+        "price": 0.006415,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "91c53956-f693-afd8-23b7-6a8093f5b5c5",
+        "grossValue": 19245000,
+        "homeNotional": 30,
+        "foreignNotional": 0.19245
+    }
+]

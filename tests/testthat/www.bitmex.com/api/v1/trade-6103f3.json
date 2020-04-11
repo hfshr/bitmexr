@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-03-13T08:38:03.781Z",
+        "symbol": "ADAM20",
+        "side": "Buy",
+        "size": 100,
+        "price": 0.00000493,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "ecd43d6e-9a2d-380a-9b96-28eff67e2b9d",
+        "grossValue": 49300,
+        "homeNotional": 100,
+        "foreignNotional": 0.000493
+    }
+]

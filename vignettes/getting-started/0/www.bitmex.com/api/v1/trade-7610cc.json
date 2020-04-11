@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2015-09-25T12:34:25.706Z",
+        "symbol": "XBTUSD",
+        "side": "Buy",
+        "size": 1,
+        "price": 239.99,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "7ff37f6c-c4f6-4226-20f8-460ec68d4b50",
+        "grossValue": 239990,
+        "homeNotional": 0.0023999,
+        "foreignNotional": 0.575952001
+    }
+]

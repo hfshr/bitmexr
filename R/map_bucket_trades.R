@@ -40,7 +40,8 @@
 #'  \item{homeNotional}{BTC value of the bucket}
 #'  \item{foreignNotional}{USD value of the bucket}
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 #'
 #' map_bucket_trades(start_date = "2020-01-01", end_date = "2020-02-01", binSize = "1h")
@@ -51,25 +52,73 @@ map_bucket_trades <- function(
   start_date = "2015-09-25 13:00:00",
   end_date = now(tzone = "UTC"),
   binSize = "1d",
-  symbol = "XBT",
+  symbol = "XBTUSD",
   partial = "false"
 ) {
+  check_internet()
+
+  stop_if_not(
+    symbol %in% available_symbols(),
+    msg = paste(
+      "Please use one of the available symbols:",
+      paste(available_symbols(), collapse = ", ")
+    )
+  )
+
   stop_if_not(
     binSize %in% c("1m", "5m", "1h", "1d"),
     msg = "binSize must be 1m, 5m, 1h or 1d"
   )
 
   stop_if(
-    date_check(start_date),
-    .p = isFALSE,
-    msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    is.null(start_date),
+    msg = "Please use a valid start date"
   )
 
-  stop_if(
-    date_check(end_date),
-    .p = isFALSE,
-    msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
-  )
+
+  if (!is.null(start_date)) {
+    stop_if(
+      date_check(start_date),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+  if (!is.null(end_date)) {
+    stop_if(
+      date_check(end_date),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+
+  if (!is.null(start_date) & !is.null(end_date)) {
+    start_date <- as_datetime(start_date)
+
+    end_date <- as_datetime(end_date)
+
+    vd <- valid_dates(symbol)
+
+    message_if(
+      vd$timestamp > start_date,
+      msg = paste0(
+        "Earliest start date for given symbol is: ",
+        vd$timestamp,
+        ".\nContinuing with earliest start date"
+      )
+    )
+
+    if (vd$timestamp > start_date) {
+      start_date <- vd$timestamp
+    }
+
+    stop_if(
+      start_date > end_date,
+      msg = "Make sure start date is before end date"
+    )
+  }
+
 
   by <- switch(
     binSize,
@@ -79,7 +128,8 @@ map_bucket_trades <- function(
     "1m" = "1000 min"
   )
 
-  breaks <- seq(as_datetime(start_date), as_datetime(end_date), by = by)
+
+  breaks <- seq(start_date, end_date, by = by)
 
   pb <- progress_bar$new(
     format = "Progress[:bar] :current/:total  eta: ~:eta",
@@ -92,7 +142,7 @@ map_bucket_trades <- function(
 
   limit <- rate_limit(base_url)
 
-  pb$message(paste(length(breaks), "API requests generated."))
+  pb$message(paste0("\n", length(breaks), " API requests generated."))
   pb$message(paste("Current limit =", limit, "requests per minute"))
 
 
@@ -106,7 +156,8 @@ map_bucket_trades <- function(
       partial = partial,
       symbol = symbol
     )
-  })
+  }) %>%
+    mutate(timestamp = as_datetime(.data$timestamp))
 
   return(res)
 }

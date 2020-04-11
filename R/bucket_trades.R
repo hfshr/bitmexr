@@ -29,19 +29,19 @@
 #'  \item{foreignNotional}{USD value of the bucket}
 #'
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #'
 #' # Return most recent data for symbol "ETHUSD" for 1 hour buckets
 #'
 #' bucket_trades(binSize = "1h", symbol = "ETHUSD")
-#'
 #' }
 #' @export
 
 bucket_trades <- function(
   binSize = "1m",
   partial = "false",
-  symbol = "XBT",
+  symbol = "XBTUSD",
   filter = NULL,
   columns = NULL,
   count = 1000,
@@ -52,6 +52,14 @@ bucket_trades <- function(
 ) {
   check_internet()
 
+  stop_if_not(
+    symbol %in% available_symbols(),
+    msg = paste(
+      "Please use one of the available symbols:",
+      paste(available_symbols(), collapse = ", ")
+    )
+  )
+
   stop_if(
     !binSize %in% c("1m", "5m", "1h", "1d"),
     msg = "binSize must be 1m, 5m, 1h or 1d"
@@ -59,11 +67,12 @@ bucket_trades <- function(
 
   stop_if(
     count > 1000,
-    msg = "Maximum reponse per request is 1000. Consider using map_bucket_trades for returning > 1000 rows"
+    msg = "Maximum reponse per request is 1000. Use map_bucket_trades for returning > 1000 rows"
   )
 
   if (!is.null(startTime)) {
     reverse <- "false"
+
     stop_if(
       date_check(startTime),
       .p = isFALSE,
@@ -73,6 +82,7 @@ bucket_trades <- function(
 
   if (!is.null(endTime)) {
     reverse <- "false"
+
     stop_if(
       date_check(endTime),
       .p = isFALSE,
@@ -80,6 +90,16 @@ bucket_trades <- function(
     )
   }
 
+  if (!is.null(startTime) & !is.null(endTime)) {
+    startTime <- as_datetime(startTime)
+
+    endTime <- as_datetime(endTime)
+
+    stop_if(
+      startTime > endTime,
+      msg = "Make sure start date is before end date"
+    )
+  }
 
   args <- list(
     binSize = binSize,
@@ -99,7 +119,8 @@ bucket_trades <- function(
 
   check_status(res)
 
-  result <- jsonlite::fromJSON(content(res, "text"))
+  result <- jsonlite::fromJSON(content(res, "text")) %>%
+    mutate(timestamp = as_datetime(.data$timestamp))
 
   stop_if(
     length(result) == 0,

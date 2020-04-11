@@ -8,7 +8,7 @@ map_bucket_trades(
   start_date = "2015-09-25 13:00:00",
   end_date = now(tzone = "UTC"),
   binSize = "1d",
-  symbol = "XBT",
+  symbol = "XBTUSD",
   partial = "false"
 )
 }
@@ -19,7 +19,7 @@ map_bucket_trades(
 
 \item{binSize}{Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.}
 
-\item{symbol}{Instrument symbol. You can also send a timeframe, e.g. XBT:quarterly}
+\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
 
 \item{partial}{If true, will send in-progress (incomplete) bins for the current time period.}
 }
