@@ -14,6 +14,7 @@ test_that("The trades() functions works", {
   # })
 
   with_mock_api({
+
     res <- trades()
 
     expect_is(res, "data.frame")

@@ -52,13 +52,13 @@ library(dplyr)
 trades(symbol = "XBTUSD") %>% 
   select(timestamp, symbol, side, size, price) %>% 
   head()
-#>             timestamp symbol side  size  price
-#> 1 2020-04-11 19:09:48 XBTUSD Sell     3 6836.0
-#> 2 2020-04-11 19:09:48 XBTUSD  Buy    90 6836.5
-#> 3 2020-04-11 19:09:48 XBTUSD Sell 10000 6836.0
-#> 4 2020-04-11 19:09:47 XBTUSD  Buy     3 6836.5
-#> 5 2020-04-11 19:09:46 XBTUSD Sell 10000 6836.0
-#> 6 2020-04-11 19:09:46 XBTUSD Sell    20 6836.0
+#>             timestamp symbol side size  price
+#> 1 2020-04-12 12:06:01 XBTUSD  Buy 8229 6876.5
+#> 2 2020-04-12 12:06:01 XBTUSD  Buy 1000 6876.5
+#> 3 2020-04-12 12:06:01 XBTUSD  Buy 6000 6876.5
+#> 4 2020-04-12 12:06:01 XBTUSD  Buy   40 6876.5
+#> 5 2020-04-12 12:06:01 XBTUSD  Buy  160 6876.5
+#> 6 2020-04-12 12:06:01 XBTUSD  Buy  400 6876.5
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and
@@ -73,7 +73,7 @@ map_bucket_trades(start_date = "2019-01-01",
   head()
 #> 
 #> 4 API requests generated.
-#> Current limit = 30 requests per minute
+#> Current limit is 30 requests per minute
 #>             timestamp symbol   open   high    low  close
 #> 1 2019-01-01 00:00:00 XBTUSD 3686.5 3695.5 3682.5 3693.0
 #> 2 2019-01-01 01:00:00 XBTUSD 3693.0 3705.0 3684.5 3694.0

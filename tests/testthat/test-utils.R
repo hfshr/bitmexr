@@ -20,4 +20,9 @@ test_that("utils functions work", {
     symbols <- available_symbols()
     expect_is(symbols, "character")
   })
+
+  expect_false(date_check("hello"))
+
+
 })
+

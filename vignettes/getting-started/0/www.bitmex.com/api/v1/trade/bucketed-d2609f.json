@@ -12478,5 +12478,20 @@
         "turnover": 31745770723670,
         "homeNotional": 317457.70723670593,
         "foreignNotional": 2206832440
+    },
+    {
+        "timestamp": "2020-04-12T00:00:00.000Z",
+        "symbol": "XBTUSD",
+        "open": 6868.5,
+        "high": 6950,
+        "low": 6766,
+        "close": 6885,
+        "trades": 466526,
+        "volume": 1054582288,
+        "vwap": 6862.0051,
+        "lastSize": 2800,
+        "turnover": 15369125085381,
+        "homeNotional": 153691.25085380935,
+        "foreignNotional": 1054582288
     }
 ]

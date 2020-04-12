@@ -112,7 +112,7 @@ Using `map_bucket_trades()` is a much better option for time intervals spanning 
 paste(available_symbols(), collapse = ", ")
 ```
 
-`valid_dates` returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given
+`valid_dates()` returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given
 
 ```{r message=FALSE}
 valid_dates("ETHUSD")

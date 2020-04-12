@@ -52,11 +52,13 @@ bucket_trades <- function(
 ) {
   check_internet()
 
+  as <- available_symbols()
+
   stop_if_not(
-    symbol %in% available_symbols(),
+    symbol %in% as,
     msg = paste(
       "Please use one of the available symbols:",
-      paste(available_symbols(), collapse = ", ")
+      paste(as, collapse = ", ")
     )
   )
 
@@ -114,10 +116,22 @@ bucket_trades <- function(
     endTime = endTime
   )
 
+  ua <- user_agent("https://github.com/hfshr/bitmexr")
 
-  res <- GET(trade_bucketed_url, query = compact(args))
+
+  res <- GET(trade_bucketed_url, ua, query = compact(args))
 
   check_status(res)
+
+  limits <- rate_limit(res)
+
+  if (isTRUE(limits[["remaining"]] == 2)) {
+
+    cat("\nRate limit nearing max. Pausing for 60 seconds to reset limit")
+
+    Sys.sleep(60)
+
+  }
 
   result <- jsonlite::fromJSON(content(res, "text")) %>%
     mutate(timestamp = as_datetime(.data$timestamp))

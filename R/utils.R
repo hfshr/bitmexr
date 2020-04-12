@@ -14,9 +14,16 @@ check_status <- function(res) {
   )
 }
 
-rate_limit <- function(url) {
-  headers(GET(url)) %>%
-    pluck(limit = "x-ratelimit-limit")
+rate_limit <- function(res){
+
+  header <- res %>%
+    headers()
+
+  limits <- list(limit = as.numeric(header[["x-ratelimit-limit"]]),
+      remaining = as.numeric(header[["x-ratelimit-remaining"]]),
+      reset = as_datetime(as.numeric(header[["x-ratelimit-reset"]])))
+
+  return(limits)
 }
 
 date_check <- function(x) tryCatch(as_datetime(x), warning = function(w) FALSE)

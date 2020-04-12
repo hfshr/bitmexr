@@ -50,11 +50,13 @@ map_trades <- function(
 ) {
   check_internet()
 
+  as <- available_symbols()
+
   stop_if_not(
-    symbol %in% available_symbols(),
+    symbol %in% as,
     msg = paste(
       "Please use one of the available symbols:",
-      paste(available_symbols(), collapse = ", ")
+      paste(as, collapse = ", ")
     )
   )
 
@@ -98,14 +100,12 @@ map_trades <- function(
 
   result <- tibble()
 
-  limit <- rate_limit(base_url)
-
   cat(
     "Getting trade data between",
     format(start_date, "%Y/%m/%d %H:%M:%S"),
     "and",
     format(end_date, "%Y/%m/%d %H:%M:%S"),
-    paste0("\nCurrent limit = ", limit, " requests per minute\n")
+    paste0("\nCurrent limit is 30 requests per minute\n")
   )
 
   limit_trades <- slowly(trades, rate_delay(2))

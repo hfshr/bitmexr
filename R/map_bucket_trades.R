@@ -57,11 +57,13 @@ map_bucket_trades <- function(
 ) {
   check_internet()
 
+  as <- available_symbols()
+
   stop_if_not(
-    symbol %in% available_symbols(),
+    symbol %in% as,
     msg = paste(
       "Please use one of the available symbols:",
-      paste(available_symbols(), collapse = ", ")
+      paste(as, collapse = ", ")
     )
   )
 
@@ -140,12 +142,8 @@ map_bucket_trades <- function(
 
   limit_bucket_trades <- slowly(bucket_trades, rate_delay(2))
 
-  limit <- rate_limit(base_url)
-
   pb$message(paste0("\n", length(breaks), " API requests generated."))
-  pb$message(paste("Current limit =", limit, "requests per minute"))
-
-
+  pb$message(paste("Current limit is 30 requests per minute"))
 
   res <- map_dfr(breaks, ~ {
     pb$tick()
