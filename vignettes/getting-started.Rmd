@@ -73,7 +73,7 @@ To make this easy, the package provides map_* variates of the two core functions
 
 # Using map_* variants
 
-Take our desired 5-day time period again. Using `map_bucket_trades()` will create the necessary number of API requests to satisfy the time frame automatically.
+Take our desired 5-day time period again. Using `map_bucket_trades()` will create the necessary number of API requests to satisfy the desired sample time frame automatically.
 
 ```{r message=FALSE}
 
@@ -88,7 +88,7 @@ max(as.Date(bucket_data_long$timestamp))
 A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete.
 
 The `map_trades()` function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take.
-Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.
+Instead, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left.
 
 ```{r message=FALSE}
 map_trades(symbol = "XBTUSD",
@@ -118,6 +118,7 @@ paste(available_symbols(), collapse = ", ")
 valid_dates("ETHUSD")
 ```
 
+The core functions `trades()` and `bucket_trades()` also have a rate limiter built in that will initiate a 60 second pause to reset the limit if the the maximum number of requests per minute is approached while using the package.
 
 # Use with other packages
 

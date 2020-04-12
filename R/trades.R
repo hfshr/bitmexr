@@ -37,10 +37,12 @@
 #' trades(symbol = "XBTUSD")
 #'
 #' # Use filter for very specific values: Return trade data executed at 12:15.
-#' trades(symbol = "XBTUSD", filter = "{'timestamp.minute':'12:15'}")
+#' trades(symbol = "XBTUSD",
+#'        filter = "{'timestamp.minute':'12:15'}")
 #'
 #' # Also possible to combine more than one filter.
-#' trades(symbol = "XBTUSD", filter = "{'timestamp.minute':'12:15', 'size':10000}")
+#' trades(symbol = "XBTUSD",
+#'        filter = "{'timestamp.minute':'12:15', 'size':10000}")
 #' }
 #'
 #' @export
@@ -56,8 +58,6 @@ trades <- function(
   endTime = NULL
 ) {
   check_internet()
-
-  as <- available_symbols()
 
   stop_if_not(
     symbol %in% as,
@@ -100,7 +100,6 @@ trades <- function(
     )
   }
 
-
   args <- list(
     symbol = symbol,
     filter = gsub("'", "\"", filter),
@@ -122,7 +121,7 @@ trades <- function(
 
   if (isTRUE(limits[["remaining"]] == 2)) {
 
-    cat("\nRate limit nearing max. Pausing for 60 seconds to reset limit")
+    cat("\nRate limit nearing max. Pausing for 60 seconds to reset limit\n")
 
     Sys.sleep(60)
 

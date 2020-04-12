@@ -65,7 +65,8 @@ consider using \code{\link{map_bucket_trades}}.
 
 # Return most recent data for symbol "ETHUSD" for 1 hour buckets
 
-bucket_trades(binSize = "1h", symbol = "ETHUSD")
+bucket_trades(binSize = "1h",
+              symbol = "ETHUSD")
 }
 }
 \references{

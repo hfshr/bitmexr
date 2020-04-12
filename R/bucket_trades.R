@@ -34,7 +34,8 @@
 #'
 #' # Return most recent data for symbol "ETHUSD" for 1 hour buckets
 #'
-#' bucket_trades(binSize = "1h", symbol = "ETHUSD")
+#' bucket_trades(binSize = "1h",
+#'               symbol = "ETHUSD")
 #' }
 #' @export
 
@@ -51,8 +52,6 @@ bucket_trades <- function(
   endTime = NULL
 ) {
   check_internet()
-
-  as <- available_symbols()
 
   stop_if_not(
     symbol %in% as,
@@ -127,7 +126,7 @@ bucket_trades <- function(
 
   if (isTRUE(limits[["remaining"]] == 2)) {
 
-    cat("\nRate limit nearing max. Pausing for 60 seconds to reset limit")
+    cat("\nRate limit nearing max - Pausing for 60 seconds to reset limit.\n")
 
     Sys.sleep(60)
 

@@ -4,6 +4,7 @@
 #' bitmexr provides tools to obtain price/trade data from
 #' the BitMEX cryptocurrency derivatives exchange https://www.bitmex.com/.
 #'
+#'
 #' @section See Also:
 #'  * https://www.bitmex.com/app/apiOverview
 #'  * https://www.bitmex.com/api/explorer/

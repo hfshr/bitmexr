@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{valid_dates}
 \alias{valid_dates}
-\title{Start date of data availability for valid symbols}
+\title{Start date of data availability for available symbols}
 \usage{
 valid_dates(symbol = NULL)
 }
@@ -13,7 +13,7 @@ valid_dates(symbol = NULL)
 A data.frame containing the symbol and date from which data is available
 }
 \description{
-Can pass in a symbol from \code{available_symbols()} or no symbol to return dates for all valid symbols
+Pass in a symbol from \code{available_symbols()} or no symbol to return dates for all available symbols
 }
 \examples{
 \dontrun{

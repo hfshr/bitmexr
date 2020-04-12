@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -129,7 +129,7 @@
 <div id="using-map_-variants" class="section level1">
 <h1 class="hasAnchor">
 <a href="#using-map_-variants" class="anchor"></a>Using map_* variants</h1>
-<p>Take our desired 5-day time period again. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> will create the necessary number of API requests to satisfy the time frame automatically.</p>
+<p>Take our desired 5-day time period again. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> will create the necessary number of API requests to satisfy the desired sample time frame automatically.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r">
 <span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/map_bucket_trades.html">map_bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
                                       <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
@@ -139,14 +139,14 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data_long</span>$<span class="no">timestamp</span>))
 <span class="co">#&gt; [1] "2020-01-03"</span></pre></body></html></div>
 <p>A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete.</p>
-<p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of how long is left.</p>
+<p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left.</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(symbol = "XBTUSD",
            start_date = "2019-05-03 12:00:00", 
            end_date = "2019-05-03 12:05:00") %&gt;% 
   select(1:5) %&gt;% 
   head()
 #&gt; Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:05:00 
-#&gt; Current limit =  requests per minute
+#&gt; Current limit is 30 requests per minute
 #&gt; 
 Current progress:  2019/05/03 12:01:11
 Current progress:  2019/05/03 12:01:44
@@ -168,10 +168,11 @@ Current progress:  2019/05/03 12:05:08
 <p><code><a href="../reference/available_symbols.html">available_symbols()</a></code> returns a character vector of the currently valid symbols available to request.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="../reference/available_symbols.html">available_symbols</a></span>(), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">", "</span>)
 <span class="co">#&gt; [1] "XBTUSD, ETHUSD, XBTM20, XRPUSD, XBTU20, ETHM20, LTCM20, XRPM20, BCHM20, ADAM20, EOSM20, TRXM20"</span></pre></body></html></div>
-<p><code>valid_dates</code> returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given</p>
+<p><code><a href="../reference/valid_dates.html">valid_dates()</a></code> returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/valid_dates.html">valid_dates</a></span>(<span class="st">"ETHUSD"</span>)
 <span class="co">#&gt;   symbol           timestamp</span>
 <span class="co">#&gt; 1 ETHUSD 2018-08-02 09:06:10</span></pre></body></html></div>
+<p>The core functions <code><a href="../reference/trades.html">trades()</a></code> and <code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> also have a rate limiter built in that will initiate a 60 second pause to reset the limit if the the maximum number of requests per minute is approached while using the package.</p>
 </div>
 <div id="use-with-other-packages" class="section level1">
 <h1 class="hasAnchor">

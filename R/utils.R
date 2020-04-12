@@ -1,9 +1,9 @@
-
+# check for internet connection
 check_internet <- function() {
   stop_if_not(.x = has_internet(), msg = "Please check your internet connection")
 }
 
-
+# Check status, if error print error
 check_status <- function(res) {
   resp <- jsonlite::fromJSON(content(res, "text"))
 
@@ -14,6 +14,7 @@ check_status <- function(res) {
   )
 }
 
+# Get information regarding rate limits
 rate_limit <- function(res){
 
   header <- res %>%
@@ -26,8 +27,10 @@ rate_limit <- function(res){
   return(limits)
 }
 
+# Check is date format is correct
 date_check <- function(x) tryCatch(as_datetime(x), warning = function(w) FALSE)
 
+# Warn if attempt to use map_trades for long duration
 trade_warning <- function(start, end) {
   if (difftime(end, start, units = "days") > 1) {
     choice <- menu(
@@ -48,19 +51,26 @@ trade_warning <- function(start, end) {
 
 
 #' Available symbols
-#' @return A character vector of currently available symbols to be used in the 'symbol' argument
+#' @return A character vector of currently available symbols to be used as the 'symbol' value in
+#' functions within the package.
 #' @examples
 #' \dontrun{
 #' available_symbols()
 #' }
 #' @export
 available_symbols <- function() {
+
+  check_internet()
+
   jsonlite::fromJSON(content(GET("https://www.bitmex.com/api/bitcoincharts"), "text"))$all
 }
 
-#' Start date of data availability for valid symbols
+# Used to check for valid symbols in functions
+as <- available_symbols()
+
+#' Start date of data availability for available symbols
 #'
-#' Can pass in a symbol from \code{available_symbols()} or no symbol to return dates for all valid symbols
+#' Pass in a symbol from \code{available_symbols()} or no symbol to return dates for all available symbols
 #' @returns A data.frame containing the symbol and date from which data is available
 #' @param symbol symbol to find start date for, or NULL for all available symbols
 #'
@@ -73,8 +83,7 @@ available_symbols <- function() {
 #' @export
 valid_dates <- function(symbol = NULL) {
   if (is.null(symbol)) {
-    limit_trades <- slowly(trades, rate_delay(2))
-    dates <- map_dfr(available_symbols(), ~ limit_trades(.x, count = 1, reverse = "false")) %>%
+    dates <- map_dfr(available_symbols(), ~ trades(.x, count = 1, reverse = "false")) %>%
       select(.data$symbol, .data$timestamp) %>%
       mutate(timestamp = as_datetime(.data$timestamp))
   } else {
@@ -88,3 +97,5 @@ valid_dates <- function(symbol = NULL) {
 base_url <- "https://www.bitmex.com/api/v1/"
 trade_url <- "https://www.bitmex.com/api/v1/trade"
 trade_bucketed_url <- "https://www.bitmex.com/api/v1/trade/bucketed"
+
+

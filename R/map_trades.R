@@ -37,7 +37,9 @@
 #'
 #' # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 #'
-#' map_trades(start_date = "2019-05-03 12:00:00", end_date = "2019-05-03 12:15:00", symbol = "XBTUSD")
+#' map_trades(start_date = "2019-05-03 12:00:00",
+#'            end_date = "2019-05-03 12:15:00",
+#'            symbol = "XBTUSD")
 #' }
 #'
 #' @export
@@ -49,16 +51,6 @@ map_trades <- function(
   filter = NULL
 ) {
   check_internet()
-
-  as <- available_symbols()
-
-  stop_if_not(
-    symbol %in% as,
-    msg = paste(
-      "Please use one of the available symbols:",
-      paste(as, collapse = ", ")
-    )
-  )
 
   stop_if(
     date_check(start_date),
@@ -128,6 +120,7 @@ map_trades <- function(
     flush.console()
 
     start_date <- as_datetime(max(result$timestamp))
+
   })
 
   result <- result %>%

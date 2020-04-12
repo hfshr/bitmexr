@@ -13,8 +13,9 @@
 #'
 #' The function will print the number of API calls being sent and provides a progress bar in the console
 #'
-#' Public API requests are limited to 30 per minute. Consequently, the function uses purrr::slowly to ensure this
-#' limit is never reached while sending multiple API requests.
+#' Public API requests are limited to 30 per minute. Consequently, \code{map_bucket_trades} uses
+#' purrr::slowly to restrict how often the function is called.
+#'
 #'
 #' @family bucket_trades
 #'
@@ -22,8 +23,9 @@
 #'
 #' @inheritParams bucket_trades
 #'
-#' @param start_date The start date of the sample. Default to the earliest date for api calls
-#' @param end_date The end date of the sample. Default to today
+#' @param start_date The start date of the sample. Defaults to the earliest date available
+#' for each available symbol.
+#' @param end_date The end date of the sample. Default to today.
 #'
 #' @return `map_bucket_trades` returns a data.frame containing bucketed trade data for the specified time frame.
 #'  \item{timestamp}{Date and time of trade}
@@ -44,7 +46,9 @@
 #' \dontrun{
 #' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 #'
-#' map_bucket_trades(start_date = "2020-01-01", end_date = "2020-02-01", binSize = "1h")
+#' map_bucket_trades(start_date = "2020-01-01",
+#'                   end_date = "2020-02-01",
+#'                   binSize = "1h")
 #' }
 #'
 #' @export
@@ -56,16 +60,6 @@ map_bucket_trades <- function(
   partial = "false"
 ) {
   check_internet()
-
-  as <- available_symbols()
-
-  stop_if_not(
-    symbol %in% as,
-    msg = paste(
-      "Please use one of the available symbols:",
-      paste(as, collapse = ", ")
-    )
-  )
 
   stop_if_not(
     binSize %in% c("1m", "5m", "1h", "1d"),

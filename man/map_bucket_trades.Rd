@@ -13,9 +13,10 @@ map_bucket_trades(
 )
 }
 \arguments{
-\item{start_date}{The start date of the sample. Default to the earliest date for api calls}
+\item{start_date}{The start date of the sample. Defaults to the earliest date available
+for each available symbol.}
 
-\item{end_date}{The end date of the sample. Default to today}
+\item{end_date}{The end date of the sample. Default to today.}
 
 \item{binSize}{Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.}
 
@@ -54,14 +55,16 @@ If "1h" is chosen, it will be 1000 hours etc.
 
 The function will print the number of API calls being sent and provides a progress bar in the console
 
-Public API requests are limited to 30 per minute. Consequently, the function uses purrr::slowly to ensure this
-limit is never reached while sending multiple API requests.
+Public API requests are limited to 30 per minute. Consequently, \code{map_bucket_trades} uses
+purrr::slowly to restrict how often the function is called.
 }
 \examples{
 \dontrun{
 # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 
-map_bucket_trades(start_date = "2020-01-01", end_date = "2020-02-01", binSize = "1h")
+map_bucket_trades(start_date = "2020-01-01",
+                  end_date = "2020-02-01",
+                  binSize = "1h")
 }
 
 }
