@@ -140,11 +140,11 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades</a></cod
   <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1m"</span>,
   <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
+  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='st'>"true"</span>,
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='st'>"true"</span>,
   <span class='kw'>startTime</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>endTime</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
@@ -154,43 +154,43 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades</a></cod
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>binSize</th>
-      <td><p>Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.</p></td>
+      <td><p>character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".</p></td>
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>If true, will send in-progress (incomplete) bins for the current time period.</p></td>
+      <td><p>character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.</p></td>
     </tr>
     <tr>
       <th>symbol</th>
-      <td><p>Instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see valid symbols.</p></td>
-    </tr>
-    <tr>
-      <th>filter</th>
-      <td><p>Generic table filter. Send JSON key/value pairs, such as "{'key':'value'}".</p></td>
-    </tr>
-    <tr>
-      <th>columns</th>
-      <td><p>Array of column names to fetch. If omitted, will return all columns.</p></td>
+      <td><p>a character string for the instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
     </tr>
     <tr>
       <th>count</th>
-      <td><p>Number of results to fetch. Maximum of 1000 (the default) per request.</p></td>
-    </tr>
-    <tr>
-      <th>start</th>
-      <td><p>Starting point for results.</p></td>
+      <td><p>an optional integer to specify the number of rows to return. Maximum of 1000 (the default) per request.</p></td>
     </tr>
     <tr>
       <th>reverse</th>
-      <td><p>If true, will sort results newest first (default = "true").</p></td>
+      <td><p>an optional character string. Either "true" of "false". If "true", result will be ordered with starting with the newest (defaults to "true").</p></td>
+    </tr>
+    <tr>
+      <th>filter</th>
+      <td><p>an optional character string for table filtering. Send JSON key/value pairs, such as "{'key':'value'}". See examples.</p></td>
+    </tr>
+    <tr>
+      <th>columns</th>
+      <td><p>an optional character vector of column names to return. If <code>NULL</code>, all columns will be returned.</p></td>
+    </tr>
+    <tr>
+      <th>start</th>
+      <td><p>an optional integer. Can be used to specify the starting point for results.</p></td>
     </tr>
     <tr>
       <th>startTime</th>
-      <td><p>Starting date filter for results.</p></td>
+      <td><p>an optional character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
     </tr>
     <tr>
       <th>endTime</th>
-      <td><p>Ending date filter for results.</p></td>
+      <td><p>an optional character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
     </tr>
     </table>
 

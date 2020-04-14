@@ -103,47 +103,56 @@
 <p>The core of the package are the <code><a href="../reference/trades.html">trades()</a></code> and <code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> functions.</p>
 <p><code><a href="../reference/trades.html">trades()</a></code> collects data regarding individual trades that have been executed on the exchange.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># Get 1000 most recent trades on the exchange</span>
-
-<span class="no">trade_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trades.html">trades</a></span>(<span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>,
-                     <span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"true"</span>,
-                     <span class="kw">count</span> <span class="kw">=</span> <span class="fl">1000</span>)</pre></body></html></div>
-<p><code>bucket_trades</code> collects trade data which has been summarised into the follow time frames: 1-minute, 5-minute, 1-hour and 1-day. Given the large volume of trades performed daily on the exchange, this function is preferred over <code><a href="../reference/trades.html">trades()</a></code> if you want to obtain data spanning many days.</p>
+<span class="no">trade_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trades.html">trades</a></span>(
+  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>,
+  <span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"true"</span>,
+  <span class="kw">count</span> <span class="kw">=</span> <span class="fl">1000</span>
+)</pre></body></html></div>
+<p><code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> collects trade data which has been summarised into the follow time frames: 1-minute, 5-minute, 1-hour and 1-day. Given the large volume of trades performed daily on the exchange, this function is preferred over <code><a href="../reference/trades.html">trades()</a></code> if you want to obtain data spanning many days.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Daily OHLC data from 2017-01-01 to 2020-01-01</span>
 
-<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1d"</span>,
-                             <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2018-01-01"</span>,
-                             <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>,
-                             <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>)</pre></body></html></div>
+<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(
+  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1d"</span>,
+  <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2018-01-01"</span>,
+  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>,
+  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>
+)</pre></body></html></div>
 <p>For more fine grained data, you may want to specify a smaller time frame.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1-minute buckets from 2020-01-01 until 2020-01-03</span>
 
-<span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
-                                  <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
-                                  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
-                                  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>)
+<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(
+  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
+  <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
+  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
+  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>
+)
 
-<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data_long</span>$<span class="no">timestamp</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data</span>$<span class="no">timestamp</span>))
 <span class="co">#&gt; [1] "2020-01-01"</span></pre></body></html></div>
-<p>However, the maximum date returned is still the first day. This is because the maximum number of rows returned per API call is 1000. To obtain the desired 5-day sample, the <code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> function would need to be called multiple times. To make this easy, the package provides map_* variates of the two core functions.</p>
+<p>However, the maximum date returned is still “2020-01-01”. This is because the maximum number of rows returned per API calls is 1000, and there are greater than 1000 1-minute buckets spanning the desired 3 day sample. To solve this problem, the package provides map_* variates of the two core functions.</p>
 </div>
-<div id="using-map_-variants" class="section level1">
+<div id="using-the-map_-variants" class="section level1">
 <h1 class="hasAnchor">
-<a href="#using-map_-variants" class="anchor"></a>Using map_* variants</h1>
-<p>Take our desired 5-day time period again. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> will create the necessary number of API requests to satisfy the desired sample time frame automatically.</p>
+<a href="#using-the-map_-variants" class="anchor"></a>Using the map_* variants</h1>
+<p>Take our desired 3-day time period again. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> will create the necessary number of API requests to satisfy the desired sample time frame automatically.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r">
-<span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/map_bucket_trades.html">map_bucket_trades</a></span>(<span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
-                                      <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
-                                      <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
-                                      <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>)
+<span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/map_bucket_trades.html">map_bucket_trades</a></span>(
+  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
+  <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
+  <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
+  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>
+)
 
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data_long</span>$<span class="no">timestamp</span>))
 <span class="co">#&gt; [1] "2020-01-03"</span></pre></body></html></div>
-<p>A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete.</p>
-<p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(symbol = "XBTUSD",
-           start_date = "2019-05-03 12:00:00", 
-           end_date = "2019-05-03 12:05:00") %&gt;% 
-  select(1:5) %&gt;% 
+<p>A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete. The maximum date in the sample is now equal to the end date in the function.</p>
+<p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left. The function stops when the start_date is greater than the end_date.</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(
+  symbol = "XBTUSD",
+  start_date = "2019-05-03 12:00:00",
+  end_date = "2019-05-03 12:05:00"
+) %&gt;%
+  select(1:5) %&gt;%
   head()
 #&gt; Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:05:00 
 #&gt; Current limit is 30 requests per minute
@@ -159,8 +168,7 @@ Current progress:  2019/05/03 12:05:08
 #&gt; 4 2019-05-03 12:00:13 XBTUSD  Buy  100 5700.5
 #&gt; 5 2019-05-03 12:00:13 XBTUSD Sell  900 5700.0
 #&gt; 6 2019-05-03 12:00:13 XBTUSD Sell 2000 5700.0</pre></body></html></div>
-<p>The function stops when the start_date is greater than the end_date. This results in a slightly greater sample than intended, but ensures the full time frame is captures by the function call.</p>
-<p><strong>Note:</strong> A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> is a much better option for time intervals spanning multiple days.</p>
+<p><strong>Note:</strong> A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> is a better option for time intervals spanning multiple days.</p>
 </div>
 <div id="useful-extras" class="section level1">
 <h1 class="hasAnchor">

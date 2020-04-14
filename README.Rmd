@@ -84,7 +84,7 @@ If you spot any issues, or would like additional features added, please feel fre
 
 # Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). 
+Please note that this project is released with a [Contributor Code of Conduct](https://hfshr.github.io/bitmexr/CODE_OF_CONDUCT.html). 
 By participating in this project you agree to abide by its terms.
 
 

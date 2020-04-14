@@ -15,14 +15,15 @@ check_status <- function(res) {
 }
 
 # Get information regarding rate limits
-rate_limit <- function(res){
-
+rate_limit <- function(res) {
   header <- res %>%
     headers()
 
-  limits <- list(limit = as.numeric(header[["x-ratelimit-limit"]]),
-      remaining = as.numeric(header[["x-ratelimit-remaining"]]),
-      reset = as_datetime(as.numeric(header[["x-ratelimit-reset"]])))
+  limits <- list(
+    limit = as.numeric(header[["x-ratelimit-limit"]]),
+    remaining = as.numeric(header[["x-ratelimit-remaining"]]),
+    reset = as_datetime(as.numeric(header[["x-ratelimit-reset"]]))
+  )
 
   return(limits)
 }
@@ -59,7 +60,6 @@ trade_warning <- function(start, end) {
 #' }
 #' @export
 available_symbols <- function() {
-
   check_internet()
 
   jsonlite::fromJSON(content(GET("https://www.bitmex.com/api/bitcoincharts"), "text"))$all
@@ -97,5 +97,3 @@ valid_dates <- function(symbol = NULL) {
 base_url <- "https://www.bitmex.com/api/v1/"
 trade_url <- "https://www.bitmex.com/api/v1/trade"
 trade_bucketed_url <- "https://www.bitmex.com/api/v1/trade/bucketed"
-
-

@@ -21,11 +21,12 @@
 #'
 #' @references \href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}{API Documentation}
 #'
-#' @inheritParams bucket_trades
-#'
-#' @param start_date The start date of the sample. Defaults to the earliest date available
-#' for each available symbol.
-#' @param end_date The end date of the sample. Default to today.
+#' @param start_date character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".
+#' @param end_date character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".
+#' @param symbol a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.
+#' @param binSize character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".
+#' @param partial character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.
+#' @param filter an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples in \code{\link{trades}}.
 #'
 #' @return `map_bucket_trades` returns a data.frame containing bucketed trade data for the specified time frame.
 #'  \item{timestamp}{Date and time of trade}
@@ -38,7 +39,7 @@
 #'  \item{volume}{Volume in USD}
 #'  \item{vwap}{Volume weighted average price}
 #'  \item{lastSize}{Size of the last trade executed}
-#'  \item{turnover}{How many sathoshi were exchanged}
+#'  \item{turnover}{How many satoshi were exchanged}
 #'  \item{homeNotional}{BTC value of the bucket}
 #'  \item{foreignNotional}{USD value of the bucket}
 #'
@@ -46,9 +47,11 @@
 #' \dontrun{
 #' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 #'
-#' map_bucket_trades(start_date = "2020-01-01",
-#'                   end_date = "2020-02-01",
-#'                   binSize = "1h")
+#' map_bucket_trades(
+#'   start_date = "2020-01-01",
+#'   end_date = "2020-02-01",
+#'   binSize = "1h"
+#' )
 #' }
 #'
 #' @export
@@ -57,7 +60,8 @@ map_bucket_trades <- function(
   end_date = now(tzone = "UTC"),
   binSize = "1d",
   symbol = "XBTUSD",
-  partial = "false"
+  partial = "false",
+  filter = NULL
 ) {
   check_internet()
 
@@ -146,10 +150,12 @@ map_bucket_trades <- function(
       binSize = binSize,
       reverse = "false",
       partial = partial,
-      symbol = symbol
+      symbol = symbol,
+      filter = filter
     )
   }) %>%
-    mutate(timestamp = as_datetime(.data$timestamp))
+    mutate(timestamp = as_datetime(.data$timestamp)) %>%
+    filter(.data$timestamp <= end_date)
 
   return(res)
 }

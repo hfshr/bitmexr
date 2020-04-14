@@ -8,8 +8,8 @@
 #'
 #' @family map_bucket_trades
 #'
-#' @param binSize Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.
-#' @param partial If true, will send in-progress (incomplete) bins for the current time period.
+#' @param binSize character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".
+#' @param partial character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.
 #' @inheritParams trades
 #'
 #' @return \code{bucket_trades()} returns a data.frame containing open high low close data
@@ -24,7 +24,7 @@
 #'  \item{volume}{Volume in USD}
 #'  \item{vwap}{Volume weighted average price}
 #'  \item{lastSize}{Size of the last trade executed}
-#'  \item{turnover}{How many sathoshi were exchanged}
+#'  \item{turnover}{How many satoshi were exchanged}
 #'  \item{homeNotional}{BTC value of the bucket}
 #'  \item{foreignNotional}{USD value of the bucket}
 #'
@@ -34,8 +34,10 @@
 #'
 #' # Return most recent data for symbol "ETHUSD" for 1 hour buckets
 #'
-#' bucket_trades(binSize = "1h",
-#'               symbol = "ETHUSD")
+#' bucket_trades(
+#'   binSize = "1h",
+#'   symbol = "ETHUSD"
+#' )
 #' }
 #' @export
 
@@ -43,11 +45,11 @@ bucket_trades <- function(
   binSize = "1m",
   partial = "false",
   symbol = "XBTUSD",
+  count = 1000,
+  reverse = "true",
   filter = NULL,
   columns = NULL,
-  count = 1000,
   start = NULL,
-  reverse = "true",
   startTime = NULL,
   endTime = NULL
 ) {
@@ -125,11 +127,9 @@ bucket_trades <- function(
   limits <- rate_limit(res)
 
   if (isTRUE(limits[["remaining"]] == 2)) {
-
     cat("\nRate limit nearing max - Pausing for 60 seconds to reset limit.\n")
 
     Sys.sleep(60)
-
   }
 
   result <- jsonlite::fromJSON(content(res, "text")) %>%

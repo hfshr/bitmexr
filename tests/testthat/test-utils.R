@@ -22,7 +22,4 @@ test_that("utils functions work", {
   })
 
   expect_false(date_check("hello"))
-
-
 })
-

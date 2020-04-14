@@ -2,35 +2,35 @@
 % Please edit documentation in R/trades.R
 \name{trades}
 \alias{trades}
-\title{Trade data}
+\title{Individual trade data}
 \usage{
 trades(
   symbol = "XBTUSD",
+  count = 1000,
+  reverse = "true",
   filter = NULL,
   columns = NULL,
-  count = 1000,
   start = NULL,
-  reverse = "true",
   startTime = NULL,
   endTime = NULL
 )
 }
 \arguments{
-\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
+\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
 
-\item{filter}{Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".}
+\item{count}{an optional integer to specify the number of rows to return. Maximum of 1000 (the default) per request.}
 
-\item{columns}{Array of column names to fetch. If omitted, will return all columns.}
+\item{reverse}{an optional character string. Either "true" of "false". If "true", result will be ordered with starting with the newest (defaults to "true").}
 
-\item{count}{Number of results to fetch. Maximum of 1000 (the default) per request.}
+\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples.}
 
-\item{start}{Starting point for results.}
+\item{columns}{an optional character vector of column names to return. If \code{NULL}, all columns will be returned.}
 
-\item{reverse}{If true, will sort results newest first (default = "true").}
+\item{start}{an optional integer. Can be used to specify the starting point for results.}
 
-\item{startTime}{Starting date filter for results.}
+\item{startTime}{an optional character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 
-\item{endTime}{Ending date filter for results.}
+\item{endTime}{an optional character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 }
 \value{
 \code{trades()} returns a data.frame containing information for executed trades for the given arguments.
@@ -41,13 +41,13 @@ trades(
  \item{price}{Price the trade was executed at}
  \item{tickDirection}{Indicates if the trade price was higher, lower or the same as the previous trade price}
  \item{trdMatchID}{Unique trade ID}
- \item{grossValue}{How many sathoshi were exchanged. 1 satosi = 0.00000001 BTC}
+ \item{grossValue}{How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC}
  \item{homeNotional}{BTC value of the trade}
  \item{foreignNotional}{USD value of the trade}
 }
 \description{
-\code{trades()} retrieves information regarding individual trades that have taken place on the
-exchange for the given symbol / time frame.
+\code{trades()} retrieves data regarding individual trades that have been executed on the
+exchange for a given symbol.
 }
 \examples{
 \dontrun{
@@ -55,12 +55,16 @@ exchange for the given symbol / time frame.
 trades(symbol = "XBTUSD")
 
 # Use filter for very specific values: Return trade data executed at 12:15.
-trades(symbol = "XBTUSD",
-       filter = "{'timestamp.minute':'12:15'}")
+trades(
+  symbol = "XBTUSD",
+  filter = "{'timestamp.minute':'12:15'}"
+)
 
 # Also possible to combine more than one filter.
-trades(symbol = "XBTUSD",
-       filter = "{'timestamp.minute':'12:15', 'size':10000}")
+trades(
+  symbol = "XBTUSD",
+  filter = "{'timestamp.minute':'12:15', 'size':10000}"
+)
 }
 
 }

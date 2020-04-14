@@ -149,24 +149,23 @@ but do not want to have to manually call <code><a href='bucket_trades.html'>buck
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>start_date</th>
-      <td><p>The start date of the sample. Defaults to the earliest date available
-for each available symbol.</p></td>
+      <td><p>character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
     </tr>
     <tr>
       <th>end_date</th>
-      <td><p>The end date of the sample. Default to today.</p></td>
+      <td><p>character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
     </tr>
     <tr>
       <th>binSize</th>
-      <td><p>Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.</p></td>
+      <td><p>character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".</p></td>
     </tr>
     <tr>
       <th>symbol</th>
-      <td><p>Instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see valid symbols.</p></td>
+      <td><p>a character string for the instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>If true, will send in-progress (incomplete) bins for the current time period.</p></td>
+      <td><p>character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.</p></td>
     </tr>
     </table>
 

@@ -15,4 +15,25 @@ There was 1 NOTE:
     - cryptocurrency (10:57)
 
 
-Spellings are acceptable given packaged context
+Spellings are acceptable given package context
+
+# bitmexr 0.2.1 - Resubmission
+
+CRAN notes from initial submission:
+
+>    Found the following (possibly) invalid file URI:
+     URI: CODE_OF_CONDUCT.md
+       From: README.md
+
+Action taken:
+
+- Specified full URL link to code of conduct in readme.md file.
+
+Additional changes:
+
+- Minor edits to documentation to improve clarity
+- Included additional filter step within map_* functions to return specified end date.
+
+# bitmexr 0.2.0
+
+Initial CRAN submission

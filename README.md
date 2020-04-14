@@ -52,13 +52,13 @@ library(dplyr)
 trades(symbol = "XBTUSD") %>% 
   select(timestamp, symbol, side, size, price) %>% 
   head()
-#>             timestamp symbol side size  price
-#> 1 2020-04-12 12:06:01 XBTUSD  Buy 8229 6876.5
-#> 2 2020-04-12 12:06:01 XBTUSD  Buy 1000 6876.5
-#> 3 2020-04-12 12:06:01 XBTUSD  Buy 6000 6876.5
-#> 4 2020-04-12 12:06:01 XBTUSD  Buy   40 6876.5
-#> 5 2020-04-12 12:06:01 XBTUSD  Buy  160 6876.5
-#> 6 2020-04-12 12:06:01 XBTUSD  Buy  400 6876.5
+#>             timestamp symbol side  size  price
+#> 1 2020-04-14 16:34:47 XBTUSD  Buy  2870 6953.5
+#> 2 2020-04-14 16:34:47 XBTUSD  Buy   130 6953.5
+#> 3 2020-04-14 16:34:47 XBTUSD Sell  2000 6953.0
+#> 4 2020-04-14 16:34:47 XBTUSD Sell 10000 6953.0
+#> 5 2020-04-14 16:34:46 XBTUSD Sell    50 6953.0
+#> 6 2020-04-14 16:34:46 XBTUSD  Buy  4982 6953.5
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and
@@ -108,5 +108,5 @@ feel free to raise an issue, or submit a pull request.
 # Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
-to abide by its terms.
+Conduct](https://hfshr.github.io/bitmexr/CODE_OF_CONDUCT.html). By
+participating in this project you agree to abide by its terms.

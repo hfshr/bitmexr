@@ -1,13 +1,13 @@
 Package: bitmexr
 Type: Package
-Title: R Client for the BitMEX Exchange
-Version: 0.2.0
+Title: R Client for BitMEX
+Version: 0.2.1
 Authors@R: 
     person(given = "Harry",
            family = "Fisher",
            role = c("cre", "aut"),
            email = "harryfisher21@gmail.com")
-Description: Tools to obtain historic trade data from cryptocurrency exchange BitMEX <https://www.bitmex.com/>.
+Description: Tools to obtain historic trade data from cryptocurrency exchange BitMEX <https://www.bitmex.com/>. 
 License: MIT + file LICENSE
 URL: https://github.com/hfshr/bitmexr, https://hfshr.github.io/bitmexr
 BugReports: https://github.com/hfshr/bitmexr/issues

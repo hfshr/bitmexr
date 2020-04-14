@@ -1,3 +1,5 @@
+# bitmexr 0.2.1
+
 # bitmexr 0.2.0
 
 * New helper functions and tests

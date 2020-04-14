@@ -9,20 +9,22 @@ map_bucket_trades(
   end_date = now(tzone = "UTC"),
   binSize = "1d",
   symbol = "XBTUSD",
-  partial = "false"
+  partial = "false",
+  filter = NULL
 )
 }
 \arguments{
-\item{start_date}{The start date of the sample. Defaults to the earliest date available
-for each available symbol.}
+\item{start_date}{character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 
-\item{end_date}{The end date of the sample. Default to today.}
+\item{end_date}{character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 
-\item{binSize}{Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.}
+\item{binSize}{character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".}
 
-\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
+\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
 
-\item{partial}{If true, will send in-progress (incomplete) bins for the current time period.}
+\item{partial}{character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.}
+
+\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples in \code{\link{trades}}.}
 }
 \value{
 `map_bucket_trades` returns a data.frame containing bucketed trade data for the specified time frame.
@@ -36,7 +38,7 @@ for each available symbol.}
  \item{volume}{Volume in USD}
  \item{vwap}{Volume weighted average price}
  \item{lastSize}{Size of the last trade executed}
- \item{turnover}{How many sathoshi were exchanged}
+ \item{turnover}{How many satoshi were exchanged}
  \item{homeNotional}{BTC value of the bucket}
  \item{foreignNotional}{USD value of the bucket}
 }
@@ -62,9 +64,11 @@ purrr::slowly to restrict how often the function is called.
 \dontrun{
 # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 
-map_bucket_trades(start_date = "2020-01-01",
-                  end_date = "2020-02-01",
-                  binSize = "1h")
+map_bucket_trades(
+  start_date = "2020-01-01",
+  end_date = "2020-02-01",
+  binSize = "1h"
+)
 }
 
 }

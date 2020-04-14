@@ -8,35 +8,35 @@ bucket_trades(
   binSize = "1m",
   partial = "false",
   symbol = "XBTUSD",
+  count = 1000,
+  reverse = "true",
   filter = NULL,
   columns = NULL,
-  count = 1000,
   start = NULL,
-  reverse = "true",
   startTime = NULL,
   endTime = NULL
 )
 }
 \arguments{
-\item{binSize}{Time interval to bucket by. Must be one of: 1m, 5m, 1h or 1d.}
+\item{binSize}{character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".}
 
-\item{partial}{If true, will send in-progress (incomplete) bins for the current time period.}
+\item{partial}{character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.}
 
-\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
+\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
 
-\item{filter}{Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".}
+\item{count}{an optional integer to specify the number of rows to return. Maximum of 1000 (the default) per request.}
 
-\item{columns}{Array of column names to fetch. If omitted, will return all columns.}
+\item{reverse}{an optional character string. Either "true" of "false". If "true", result will be ordered with starting with the newest (defaults to "true").}
 
-\item{count}{Number of results to fetch. Maximum of 1000 (the default) per request.}
+\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples.}
 
-\item{start}{Starting point for results.}
+\item{columns}{an optional character vector of column names to return. If \code{NULL}, all columns will be returned.}
 
-\item{reverse}{If true, will sort results newest first (default = "true").}
+\item{start}{an optional integer. Can be used to specify the starting point for results.}
 
-\item{startTime}{Starting date filter for results.}
+\item{startTime}{an optional character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 
-\item{endTime}{Ending date filter for results.}
+\item{endTime}{an optional character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 }
 \value{
 \code{bucket_trades()} returns a data.frame containing open high low close data
@@ -51,7 +51,7 @@ for the specified time frame and symbol.
  \item{volume}{Volume in USD}
  \item{vwap}{Volume weighted average price}
  \item{lastSize}{Size of the last trade executed}
- \item{turnover}{How many sathoshi were exchanged}
+ \item{turnover}{How many satoshi were exchanged}
  \item{homeNotional}{BTC value of the bucket}
  \item{foreignNotional}{USD value of the bucket}
 }
@@ -65,8 +65,10 @@ consider using \code{\link{map_bucket_trades}}.
 
 # Return most recent data for symbol "ETHUSD" for 1 hour buckets
 
-bucket_trades(binSize = "1h",
-              symbol = "ETHUSD")
+bucket_trades(
+  binSize = "1h",
+  symbol = "ETHUSD"
+)
 }
 }
 \references{

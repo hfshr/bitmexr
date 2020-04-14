@@ -12,13 +12,13 @@ map_trades(
 )
 }
 \arguments{
-\item{symbol}{Instrument symbol. Use \code{available_symbols()} to see valid symbols.}
+\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
 
-\item{start_date}{The start date of the desired sample}
+\item{start_date}{character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 
-\item{end_date}{The end date of the desired sample}
+\item{end_date}{character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
 
-\item{filter}{Generic table filter. Send JSON key/value pairs, such as "\{'key':'value'\}".}
+\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples in \code{\link{trades}}.}
 }
 \value{
 A data.frame containing individual trade information for the specific time period / symbol.
@@ -29,7 +29,7 @@ A data.frame containing individual trade information for the specific time perio
  \item{price}{Price the trade was executed at}
  \item{tickDirection}{Indicates if the trade price was higher, lower or the same as the previous trade price}
  \item{trdMatchID}{Unique trade ID}
- \item{grossValue}{How many sathoshi were exchanged. 1 satosi = 0.00000001 BTC}
+ \item{grossValue}{How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC}
  \item{homeNotional}{BTC value of the trade}
  \item{foreignNotional}{USD value of the trade}
 }
@@ -52,9 +52,11 @@ Obtaining the trade data for this day alone would take over an hour, and users s
 
 # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 
-map_trades(start_date = "2019-05-03 12:00:00",
-           end_date = "2019-05-03 12:15:00",
-           symbol = "XBTUSD")
+map_trades(
+  start_date = "2019-05-03 12:00:00",
+  end_date = "2019-05-03 12:15:00",
+  symbol = "XBTUSD"
+)
 }
 
 }

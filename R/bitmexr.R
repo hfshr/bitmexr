@@ -14,7 +14,7 @@
 #' @importFrom attempt stop_if stop_if_not message_if
 #' @importFrom purrr compact map_dfr pluck slowly rate_delay
 #' @importFrom httr GET content status_code headers user_agent
-#' @importFrom dplyr bind_rows tibble select mutate
+#' @importFrom dplyr bind_rows tibble select mutate filter
 #' @importFrom magrittr "%>%"
 #' @importFrom jsonlite fromJSON
 #' @importFrom lubridate as_datetime now is.timepoint

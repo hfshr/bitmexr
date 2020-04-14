@@ -14,9 +14,11 @@
 #'
 #' @references \href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}{API Documentation}
 #'
-#' @inheritParams trades
-#' @param start_date The start date of the desired sample
-#' @param end_date The end date of the desired sample
+#' @param symbol a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.
+#' @param start_date character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".
+#' @param end_date character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".
+#' @param filter an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples in \code{\link{trades}}.
+#'
 #'
 #' @family trades
 #'
@@ -28,7 +30,7 @@
 #'  \item{price}{Price the trade was executed at}
 #'  \item{tickDirection}{Indicates if the trade price was higher, lower or the same as the previous trade price}
 #'  \item{trdMatchID}{Unique trade ID}
-#'  \item{grossValue}{How many sathoshi were exchanged. 1 satosi = 0.00000001 BTC}
+#'  \item{grossValue}{How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC}
 #'  \item{homeNotional}{BTC value of the trade}
 #'  \item{foreignNotional}{USD value of the trade}
 #'
@@ -37,9 +39,11 @@
 #'
 #' # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 #'
-#' map_trades(start_date = "2019-05-03 12:00:00",
-#'            end_date = "2019-05-03 12:15:00",
-#'            symbol = "XBTUSD")
+#' map_trades(
+#'   start_date = "2019-05-03 12:00:00",
+#'   end_date = "2019-05-03 12:15:00",
+#'   symbol = "XBTUSD"
+#' )
 #' }
 #'
 #' @export
@@ -120,11 +124,11 @@ map_trades <- function(
     flush.console()
 
     start_date <- as_datetime(max(result$timestamp))
-
   })
 
   result <- result %>%
-    mutate(timestamp = as_datetime(.data$timestamp))
+    mutate(timestamp = as_datetime(.data$timestamp)) %>%
+    filter(.data$timestamp <= end_date)
 
   return(result)
 }
