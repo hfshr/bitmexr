@@ -7,7 +7,7 @@
 available_symbols()
 }
 \value{
-A character vector of currently available symbols to be used as the 'symbol' value in
+A character vector of currently available symbols to be used as the \code{symbol} value in
 functions within the package.
 }
 \description{

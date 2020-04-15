@@ -40,9 +40,9 @@
 
 
 <meta property="og:title" content="Bucket trade data over an extended period — map_bucket_trades" />
-<meta property="og:description" content="map_bucket_trades uses purrr::map_dfr under the hood to execute multiple API calls.
+<meta property="og:description" content="map_bucket_trades() uses purrr::map_dfr to execute multiple API calls.
 This is useful when the data you want to return exceeds the maximum 1000 row response limit,
-but do not want to have to manually call bucket_trades repeatedly." />
+but do not want to have to manually call bucket_trades() repeatedly." />
 
 
 
@@ -74,7 +74,7 @@ but do not want to have to manually call bucket_trades repeatedly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -131,9 +131,9 @@ but do not want to have to manually call bucket_trades repeatedly." />
     </div>
 
     <div class="ref-description">
-    <p><code>map_bucket_trades</code> uses purrr::map_dfr under the hood to execute multiple API calls.
+    <p><code>map_bucket_trades()</code> uses <code><a href='https://purrr.tidyverse.org/reference/map.html'>purrr::map_dfr</a></code> to execute multiple API calls.
 This is useful when the data you want to return exceeds the maximum 1000 row response limit,
-but do not want to have to manually call <code><a href='bucket_trades.html'>bucket_trades</a></code> repeatedly.</p>
+but do not want to have to manually call <code><a href='bucket_trades.html'>bucket_trades()</a></code> repeatedly.</p>
     </div>
 
     <pre class="usage"><span class='fu'>map_bucket_trades</span>(
@@ -141,7 +141,8 @@ but do not want to have to manually call <code><a href='bucket_trades.html'>buck
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>now</span>(<span class='kw'>tzone</span> <span class='kw'>=</span> <span class='st'>"UTC"</span>),
   <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1d"</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
-  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"false"</span>
+  <span class='kw'>partial</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
+  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -149,64 +150,77 @@ but do not want to have to manually call <code><a href='bucket_trades.html'>buck
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>start_date</th>
-      <td><p>character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
+      <td><p>character string.
+Starting date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
     <tr>
       <th>end_date</th>
-      <td><p>character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
+      <td><p>character string.
+Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
     <tr>
       <th>binSize</th>
-      <td><p>character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".</p></td>
+      <td><p>character string.
+The time interval to bucket by, must be one of: <code>"1m"</code>, <code>"5m"</code>, <code>"1h"</code> or <code>"1d"</code>.</p></td>
     </tr>
     <tr>
       <th>symbol</th>
-      <td><p>a character string for the instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
+      <td><p>a character string for the instrument symbol.
+Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.</p></td>
+      <td><p>character string. Either <code>"true"</code> or <code>"false"</code>.
+If <code>"true"</code>, will send in-progress (incomplete) bins for the current time period.</p></td>
+    </tr>
+    <tr>
+      <th>filter</th>
+      <td><p>an optional character string for table filtering.
+Send JSON key/value pairs, such as <code>"{'key':'value'}"</code>. See examples in <code><a href='trades.html'>trades()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>`map_bucket_trades` returns a data.frame containing bucketed trade data for the specified time frame.</p>
-<dt>timestamp</dt><dd><p>Date and time of trade</p></dd>
- <dt>symbol</dt><dd><p>Instrument ticker</p></dd>
- <dt>open</dt><dd><p>Opening price for the bucket</p></dd>
- <dt>high</dt><dd><p>Highest price in the bucket</p></dd>
- <dt>low</dt><dd><p>Lowest price in the bucket</p></dd>
- <dt>close</dt><dd><p>Closing price of the bucket</p></dd>
- <dt>trades</dt><dd><p>Number of trades executed within the bucket</p></dd>
- <dt>volume</dt><dd><p>Volume in USD</p></dd>
- <dt>vwap</dt><dd><p>Volume weighted average price</p></dd>
- <dt>lastSize</dt><dd><p>Size of the last trade executed</p></dd>
- <dt>turnover</dt><dd><p>How many sathoshi were exchanged</p></dd>
- <dt>homeNotional</dt><dd><p>BTC value of the bucket</p></dd>
- <dt>foreignNotional</dt><dd><p>USD value of the bucket</p></dd>
+    <p><code>map_bucket_trades</code> returns a <code>data.frame</code> containing:</p><ul>
+<li><p>timestamp: POSIXct. Date and time of trade.</p></li>
+<li><p>symbol: character. Instrument ticker.</p></li>
+<li><p>open: numeric. Opening price for the bucket.</p></li>
+<li><p>high: numeric. Highest price in the bucket.</p></li>
+<li><p>low: numeric. Lowest price in the bucket.</p></li>
+<li><p>close: numeric. Closing price of the bucket.</p></li>
+<li><p>trades: numeric. Number of trades executed within the bucket.</p></li>
+<li><p>volume: numeric. Volume in USD.</p></li>
+<li><p>vwap: numeric. Volume weighted average price.</p></li>
+<li><p>lastSize: numeric. Size of the last trade executed.</p></li>
+<li><p>turnover: numeric. How many satoshi were exchanged.</p></li>
+<li><p>homeNotional: numeric. BTC value of the bucket.</p></li>
+<li><p>foreignNotional: numeric. USD value of the bucket.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>map_bucket_trades</code> takes a start and end date, and creates a sequence of start dates
-which are passed in to the <code>startTime</code> parameter in <code><a href='bucket_trades.html'>bucket_trades</a></code>.</p>
+    <p><code>map_bucket_trades()</code> takes a start and end date, and creates a sequence of start dates
+which are passed in to the `startTime`` parameter in <code><a href='bucket_trades.html'>bucket_trades()</a></code>.</p>
 <p>The length of time between each start time in each API call is determined by the binSize.
-For example, "1d" is chosen as the binSize the length of time between start dates will be 1000 days.
-If "1h" is chosen, it will be 1000 hours etc.</p>
+For example, <code>"1d"</code> is chosen as the binSize the length of time between start dates will be 1000 days.
+If <code>"1h"</code> is chosen, it will be 1000 hours etc.</p>
 <p>The function will print the number of API calls being sent and provides a progress bar in the console</p>
-<p>Public API requests are limited to 30 per minute. Consequently, <code>map_bucket_trades</code> uses
-purrr::slowly to restrict how often the function is called.</p>
+<p>Public API requests are limited to 30 per minute. Consequently, <code>map_bucket_trades()</code> uses
+<code><a href='https://purrr.tidyverse.org/reference/insistently.html'>purrr::slowly</a></code> to restrict how often the function is called.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed'>API Documentation</a></p>
+    <p>urlhttps://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Get hourly bucketed trade data between 2020-01-01 and 2020-02-01</span>
 
-<span class='fu'>map_bucket_trades</span>(<span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2020-01-01"</span>,
-                  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2020-02-01"</span>,
-                  <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>)
+<span class='fu'>map_bucket_trades</span>(
+  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2020-01-01"</span>,
+  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2020-02-01"</span>,
+  <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>
+)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

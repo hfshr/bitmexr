@@ -14,51 +14,59 @@ map_bucket_trades(
 )
 }
 \arguments{
-\item{start_date}{character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{start_date}{character string.
+Starting date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
-\item{end_date}{character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{end_date}{character string.
+Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
-\item{binSize}{character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".}
+\item{binSize}{character string.
+The time interval to bucket by, must be one of: \code{"1m"}, \code{"5m"}, \code{"1h"} or \code{"1d"}.}
 
-\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
+\item{symbol}{a character string for the instrument symbol.
+Use \code{\link[=available_symbols]{available_symbols()}} to see available symbols.}
 
-\item{partial}{character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.}
+\item{partial}{character string. Either \code{"true"} or \code{"false"}.
+If \code{"true"}, will send in-progress (incomplete) bins for the current time period.}
 
-\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples in \code{\link{trades}}.}
+\item{filter}{an optional character string for table filtering.
+Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
 }
 \value{
-`map_bucket_trades` returns a data.frame containing bucketed trade data for the specified time frame.
- \item{timestamp}{Date and time of trade}
- \item{symbol}{Instrument ticker}
- \item{open}{Opening price for the bucket}
- \item{high}{Highest price in the bucket}
- \item{low}{Lowest price in the bucket}
- \item{close}{Closing price of the bucket}
- \item{trades}{Number of trades executed within the bucket}
- \item{volume}{Volume in USD}
- \item{vwap}{Volume weighted average price}
- \item{lastSize}{Size of the last trade executed}
- \item{turnover}{How many satoshi were exchanged}
- \item{homeNotional}{BTC value of the bucket}
- \item{foreignNotional}{USD value of the bucket}
+\code{map_bucket_trades} returns a \code{data.frame} containing:
+\itemize{
+\item{timestamp: }{POSIXct. Date and time of trade.}
+\item{symbol: }{character. Instrument ticker.}
+\item{open: }{numeric. Opening price for the bucket.}
+\item{high: }{numeric. Highest price in the bucket.}
+\item{low: }{numeric. Lowest price in the bucket.}
+\item{close: }{numeric. Closing price of the bucket.}
+\item{trades: }{numeric. Number of trades executed within the bucket.}
+\item{volume: }{numeric. Volume in USD.}
+\item{vwap: }{numeric. Volume weighted average price.}
+\item{lastSize: }{numeric. Size of the last trade executed.}
+\item{turnover: }{numeric. How many satoshi were exchanged.}
+\item{homeNotional: }{numeric. BTC value of the bucket.}
+\item{foreignNotional: }{numeric. USD value of the bucket.}
+}
 }
 \description{
-\code{map_bucket_trades} uses purrr::map_dfr under the hood to execute multiple API calls.
+\code{map_bucket_trades()} uses \code{purrr::map_dfr} to execute multiple API calls.
 This is useful when the data you want to return exceeds the maximum 1000 row response limit,
-but do not want to have to manually call \code{\link{bucket_trades}} repeatedly.
+but do not want to have to manually call \code{\link[=bucket_trades]{bucket_trades()}} repeatedly.
 }
 \details{
-\code{map_bucket_trades} takes a start and end date, and creates a sequence of start dates
-which are passed in to the \code{startTime} parameter in \code{\link{bucket_trades}}.
+\code{map_bucket_trades()} takes a start and end date, and creates a sequence of start dates
+which are passed in to the `startTime`` parameter in \code{\link[=bucket_trades]{bucket_trades()}}.
 
 The length of time between each start time in each API call is determined by the binSize.
-For example, "1d" is chosen as the binSize the length of time between start dates will be 1000 days.
-If "1h" is chosen, it will be 1000 hours etc.
+For example, \code{"1d"} is chosen as the binSize the length of time between start dates will be 1000 days.
+If \code{"1h"} is chosen, it will be 1000 hours etc.
 
 The function will print the number of API calls being sent and provides a progress bar in the console
 
-Public API requests are limited to 30 per minute. Consequently, \code{map_bucket_trades} uses
-purrr::slowly to restrict how often the function is called.
+Public API requests are limited to 30 per minute. Consequently, \code{map_bucket_trades()} uses
+\code{purrr::slowly} to restrict how often the function is called.
 }
 \examples{
 \dontrun{
@@ -73,6 +81,6 @@ map_bucket_trades(
 
 }
 \references{
-\href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}{API Documentation}
+url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
 }
 \concept{bucket_trades}

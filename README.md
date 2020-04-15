@@ -1,10 +1,15 @@
 
 # bitmexr: R Client for the BitMEX Exchange
 
+<!-- badges: start -->
+
 [![Travis build
 status](https://travis-ci.org/hfshr/bitmexr.svg?branch=master)](https://travis-ci.org/hfshr/bitmexr)
 [![Codecov test
 coverage](https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=master)
+[![R build
+status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
+<!-- badges: end -->
 
 # Overview
 
@@ -53,12 +58,12 @@ trades(symbol = "XBTUSD") %>%
   select(timestamp, symbol, side, size, price) %>% 
   head()
 #>             timestamp symbol side  size  price
-#> 1 2020-04-14 16:34:47 XBTUSD  Buy  2870 6953.5
-#> 2 2020-04-14 16:34:47 XBTUSD  Buy   130 6953.5
-#> 3 2020-04-14 16:34:47 XBTUSD Sell  2000 6953.0
-#> 4 2020-04-14 16:34:47 XBTUSD Sell 10000 6953.0
-#> 5 2020-04-14 16:34:46 XBTUSD Sell    50 6953.0
-#> 6 2020-04-14 16:34:46 XBTUSD  Buy  4982 6953.5
+#> 1 2020-04-15 16:11:39 XBTUSD  Buy     1 6720.0
+#> 2 2020-04-15 16:11:38 XBTUSD  Buy     1 6720.0
+#> 3 2020-04-15 16:11:37 XBTUSD Sell    10 6719.5
+#> 4 2020-04-15 16:11:37 XBTUSD  Buy 20000 6720.0
+#> 5 2020-04-15 16:11:37 XBTUSD Sell     1 6719.5
+#> 6 2020-04-15 16:11:34 XBTUSD  Buy  1000 6720.0
 ```
 
 Get all bucketed trade data (hourly binSize) between January 2019 and

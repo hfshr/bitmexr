@@ -15,3 +15,4 @@ dev.R
 ^cran-comments\.md$
 ^codecov\.yml$
 ^CRAN-RELEASE$
+^\.github$

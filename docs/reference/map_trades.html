@@ -40,10 +40,12 @@
 
 
 <meta property="og:title" content="Trade data over an extended period — map_trades" />
-<meta property="og:description" content="The map variant of trades uses a repeat loop to continually request trade data between two time points.
-The function will stop when the 'start_date' is greater than 'end_date'.
+<meta property="og:description" content="The map variant of trades() uses a repeat loop to continually
+request trade data between two time points.
+The function will stop when the start_date is greater than end_date.
 Given the large number of trades executed per day,
-a warning message with a choice to continue is presented when inputting a date range spanning more than one day." />
+a warning message with a choice to continue is presented when inputting a
+date range spanning more than one day." />
 
 
 
@@ -75,7 +77,7 @@ a warning message with a choice to continue is presented when inputting a date r
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -132,10 +134,12 @@ a warning message with a choice to continue is presented when inputting a date r
     </div>
 
     <div class="ref-description">
-    <p>The map variant of <code><a href='trades.html'>trades</a></code> uses a repeat loop to continually request trade data between two time points.
-The function will stop when the 'start_date' is greater than 'end_date'.
+    <p>The map variant of <code><a href='trades.html'>trades()</a></code> uses a repeat loop to continually
+request trade data between two time points.
+The function will stop when the <code>start_date</code> is greater than <code>end_date</code>.
 Given the large number of trades executed per day,
-a warning message with a choice to continue is presented when inputting a date range spanning more than one day.</p>
+a warning message with a choice to continue is presented when inputting a
+date range spanning more than one day.</p>
     </div>
 
     <pre class="usage"><span class='fu'>map_trades</span>(
@@ -150,56 +154,65 @@ a warning message with a choice to continue is presented when inputting a date r
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>symbol</th>
-      <td><p>a character string for the instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
+      <td><p>a character string for the instrument symbol.
+Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
     </tr>
     <tr>
       <th>start_date</th>
-      <td><p>character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
+      <td><p>character string.
+Starting date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
     <tr>
       <th>end_date</th>
-      <td><p>character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
+      <td><p>character string.
+Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>an optional character string for table filtering. Send JSON key/value pairs, such as "{'key':'value'}". See examples.</p></td>
+      <td><p>an optional character string for table filtering.
+Send JSON key/value pairs, such as <code>"{'key':'value'}"</code>. See examples in <code><a href='trades.html'>trades()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame containing individual trade information for the specific time period / symbol.</p>
-<dt>timestamp</dt><dd><p>Date and time of trade</p></dd>
- <dt>symbol</dt><dd><p>Instrument ticker</p></dd>
- <dt>side</dt><dd><p>Whether the trade was buy or sell</p></dd>
- <dt>size</dt><dd><p>Size of the trade</p></dd>
- <dt>price</dt><dd><p>Price the trade was executed at</p></dd>
- <dt>tickDirection</dt><dd><p>Indicates if the trade price was higher, lower or the same as the previous trade price</p></dd>
- <dt>trdMatchID</dt><dd><p>Unique trade ID</p></dd>
- <dt>grossValue</dt><dd><p>How many sathoshi were exchanged. 1 satosi = 0.00000001 BTC</p></dd>
- <dt>homeNotional</dt><dd><p>BTC value of the trade</p></dd>
- <dt>foreignNotional</dt><dd><p>USD value of the trade</p></dd>
+    <p><code>map_trades()</code> returns a <code>data.frame</code> containing:</p><ul>
+<li><p>timestamp: POSIXct. Date and time of trade.</p></li>
+<li><p>symbol: character. The instrument ticker.</p></li>
+<li><p>side: character. Whether the trade was buy or sell.</p></li>
+<li><p>size: numeric. Size of the trade.</p></li>
+<li><p>price: numeric. Price the trade was executed at</p></li>
+<li><p>tickDirection: character. Indicates if the trade price was higher,
+lower or the same as the previous trade price.</p></li>
+<li><p>trdMatchID: character. Unique trade ID.</p></li>
+<li><p>grossValue: numeric. How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC.</p></li>
+<li><p>homeNotional: numeric. BTC value of the trade.</p></li>
+<li><p>foreignNotional: numeric. USD value of the trade.</p></li>
+</ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Warning! Due to the extremely large number of trades executed on the exchange,
-using this function over an extended of time frame will result in an extremely long running process.
+using this function over an extended of time frame will result in an extremely
+long running process.
 For example, during 2019 the exchange averaged approximately 630000 trades per day,
 with a maximum of 2114878 trades being executed in a single day.
-Obtaining the trade data for this day alone would take over an hour, and users should consider using
-<code><a href='map_bucket_trades.html'>map_bucket_trades</a></code> with a small 'binSize' (e.g., "1m") instead.</p>
+Obtaining the trade data for this day alone would take over an hour, and the use of
+<code><a href='map_bucket_trades.html'>map_bucket_trades()</a></code> with a small 'binSize' (e.g., <code>"1m"</code>) is preferrable.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_get'>API Documentation</a></p>
+    <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_get'>https://www.bitmex.com/api/explorer/#!/Trade/Trade_get</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 
 <span class='co'># Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00</span>
 
-<span class='fu'>map_trades</span>(<span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2019-05-03 12:00:00"</span>,
-           <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2019-05-03 12:15:00"</span>,
-           <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>)
+<span class='fu'>map_trades</span>(
+  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2019-05-03 12:00:00"</span>,
+  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2019-05-03 12:15:00"</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>
+)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

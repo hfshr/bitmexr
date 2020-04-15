@@ -12,40 +12,50 @@ map_trades(
 )
 }
 \arguments{
-\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
+\item{symbol}{a character string for the instrument symbol.
+Use \code{\link[=available_symbols]{available_symbols()}} to see available symbols.}
 
-\item{start_date}{character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{start_date}{character string.
+Starting date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
-\item{end_date}{character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{end_date}{character string.
+Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
-\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples in \code{\link{trades}}.}
+\item{filter}{an optional character string for table filtering.
+Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
 }
 \value{
-A data.frame containing individual trade information for the specific time period / symbol.
- \item{timestamp}{Date and time of trade}
- \item{symbol}{Instrument ticker}
- \item{side}{Whether the trade was buy or sell}
- \item{size}{Size of the trade}
- \item{price}{Price the trade was executed at}
- \item{tickDirection}{Indicates if the trade price was higher, lower or the same as the previous trade price}
- \item{trdMatchID}{Unique trade ID}
- \item{grossValue}{How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC}
- \item{homeNotional}{BTC value of the trade}
- \item{foreignNotional}{USD value of the trade}
+\code{map_trades()} returns a \code{data.frame} containing:
+\itemize{
+\item{timestamp: }{POSIXct. Date and time of trade.}
+\item{symbol: }{character. The instrument ticker.}
+\item{side: }{character. Whether the trade was buy or sell.}
+\item{size: }{numeric. Size of the trade.}
+\item{price: }{numeric. Price the trade was executed at}
+\item{tickDirection: }{character. Indicates if the trade price was higher,
+lower or the same as the previous trade price.}
+\item{trdMatchID: }{character. Unique trade ID.}
+\item{grossValue: }{numeric. How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC.}
+\item{homeNotional: }{numeric. BTC value of the trade.}
+\item{foreignNotional: }{numeric. USD value of the trade.}
+}
 }
 \description{
-The map variant of \code{\link{trades}} uses a repeat loop to continually request trade data between two time points.
-The function will stop when the 'start_date' is greater than 'end_date'.
+The map variant of \code{\link[=trades]{trades()}} uses a repeat loop to continually
+request trade data between two time points.
+The function will stop when the \code{start_date} is greater than \code{end_date}.
 Given the large number of trades executed per day,
-a warning message with a choice to continue is presented when inputting a date range spanning more than one day.
+a warning message with a choice to continue is presented when inputting a
+date range spanning more than one day.
 }
 \details{
 Warning! Due to the extremely large number of trades executed on the exchange,
-using this function over an extended of time frame will result in an extremely long running process.
+using this function over an extended of time frame will result in an extremely
+long running process.
 For example, during 2019 the exchange averaged approximately 630000 trades per day,
 with a maximum of 2114878 trades being executed in a single day.
-Obtaining the trade data for this day alone would take over an hour, and users should consider using
-\code{\link{map_bucket_trades}} with a small 'binSize' (e.g., "1m") instead.
+Obtaining the trade data for this day alone would take over an hour, and the use of
+\code{\link[=map_bucket_trades]{map_bucket_trades()}} with a small 'binSize' (e.g., \code{"1m"}) is preferrable.
 }
 \examples{
 \dontrun{
@@ -61,6 +71,6 @@ map_trades(
 
 }
 \references{
-\href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}{API Documentation}
+\url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}
 }
 \concept{trades}

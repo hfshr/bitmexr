@@ -18,52 +18,64 @@ bucket_trades(
 )
 }
 \arguments{
-\item{binSize}{character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".}
+\item{binSize}{character string.
+The time interval to bucket by, must be one of: \code{"1m"}, \code{"5m"}, \code{"1h"} or \code{"1d"}.}
 
-\item{partial}{character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.}
+\item{partial}{character string. Either \code{"true"} of \code{"false"}.
+If \code{"true"}, will send in-progress (incomplete) bins for the current time period.}
 
-\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
+\item{symbol}{a character string for the instrument symbol.
+Use \code{\link[=available_symbols]{available_symbols()}} to see available symbols.}
 
-\item{count}{an optional integer to specify the number of rows to return. Maximum of 1000 (the default) per request.}
+\item{count}{an optional integer to specify the number of rows to return.
+Maximum of 1000 (the default) per request.}
 
-\item{reverse}{an optional character string. Either "true" of "false". If "true", result will be ordered with starting with the newest (defaults to "true").}
+\item{reverse}{an optional character string. Either \code{"true"} of \code{"false"}.
+If \code{"true"}, result will be ordered with starting with the newest (defaults to \code{"true"}).}
 
-\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples.}
+\item{filter}{an optional character string for table filtering.
+Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples.}
 
-\item{columns}{an optional character vector of column names to return. If \code{NULL}, all columns will be returned.}
+\item{columns}{an optional character vector of column names to return.
+If \code{NULL}, all columns will be returned.}
 
 \item{start}{an optional integer. Can be used to specify the starting point for results.}
 
-\item{startTime}{an optional character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{startTime}{an optional character string.
+Starting date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
-\item{endTime}{an optional character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{endTime}{an optional character string.
+Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 }
 \value{
-\code{bucket_trades()} returns a data.frame containing open high low close data
-for the specified time frame and symbol.
- \item{timestamp}{Date and time of trade}
- \item{symbol}{Instrument ticker}
- \item{open}{Opening price for the bucket}
- \item{high}{Highest price in the bucket}
- \item{low}{Lowest price in the bucket}
- \item{close}{Closing price of the bucket}
- \item{trades}{Number of trades executed within the bucket}
- \item{volume}{Volume in USD}
- \item{vwap}{Volume weighted average price}
- \item{lastSize}{Size of the last trade executed}
- \item{turnover}{How many satoshi were exchanged}
- \item{homeNotional}{BTC value of the bucket}
- \item{foreignNotional}{USD value of the bucket}
+\code{bucket_trades()} returns a \code{data.frame} containing:
+\itemize{
+\item{timestamp: }{POSIXct. Date and time of trade.}
+\item{symbol: }{character. Instrument ticker.}
+\item{open: }{numeric. Opening price for the bucket.}
+\item{high: }{numeric. Highest price in the bucket.}
+\item{low: }{numeric. Lowest price in the bucket.}
+\item{close: }{numeric. Closing price of the bucket.}
+\item{trades: }{numeric. Number of trades executed within the bucket.}
+\item{volume: }{numeric. Volume in USD.}
+\item{vwap: }{numeric. Volume weighted average price.}
+\item{lastSize: }{numeric. Size of the last trade executed.}
+\item{turnover: }{numeric. How many satoshi were exchanged.}
+\item{homeNotional: }{numeric. BTC value of the bucket.}
+\item{foreignNotional: }{numeric. USD value of the bucket.}
+}
 }
 \description{
 \code{bucket_trades()} retrieves open high low close (OHLC) data for the specified symbol/time frame.
+}
+\details{
 The API will only return 1000 rows per call. If the desired time frame requires more than one API call,
-consider using \code{\link{map_bucket_trades}}.
+consider using \code{\link[=map_bucket_trades]{map_bucket_trades()}}.
 }
 \examples{
 \dontrun{
 
-# Return most recent data for symbol "ETHUSD" for 1 hour buckets
+# Return most recent data for symbol `"ETHUSD"` for 1 hour buckets
 
 bucket_trades(
   binSize = "1h",
@@ -72,6 +84,6 @@ bucket_trades(
 }
 }
 \references{
-\href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}{API Documentation}
+url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
 }
 \concept{map_bucket_trades}

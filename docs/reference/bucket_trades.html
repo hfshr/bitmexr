@@ -40,9 +40,7 @@
 
 
 <meta property="og:title" content="Bucketed trade data — bucket_trades" />
-<meta property="og:description" content="bucket_trades() retrieves open high low close (OHLC) data for the specified symbol/time frame.
-The API will only return 1000 rows per call. If the desired time frame requires more than one API call,
-consider using map_bucket_trades." />
+<meta property="og:description" content="bucket_trades() retrieves open high low close (OHLC) data for the specified symbol/time frame." />
 
 
 
@@ -74,7 +72,7 @@ consider using map_bucket_trades." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -131,9 +129,7 @@ consider using map_bucket_trades." />
     </div>
 
     <div class="ref-description">
-    <p><code>bucket_trades()</code> retrieves open high low close (OHLC) data for the specified symbol/time frame.
-The API will only return 1000 rows per call. If the desired time frame requires more than one API call,
-consider using <code><a href='map_bucket_trades.html'>map_bucket_trades</a></code>.</p>
+    <p><code>bucket_trades()</code> retrieves open high low close (OHLC) data for the specified symbol/time frame.</p>
     </div>
 
     <pre class="usage"><span class='fu'>bucket_trades</span>(
@@ -154,31 +150,38 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades</a></cod
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>binSize</th>
-      <td><p>character string. The time interval to bucket by, must be one of: "1m", "5m", "1h" or "1d".</p></td>
+      <td><p>character string.
+The time interval to bucket by, must be one of: <code>"1m"</code>, <code>"5m"</code>, <code>"1h"</code> or <code>"1d"</code>.</p></td>
     </tr>
     <tr>
       <th>partial</th>
-      <td><p>character string. Either "true" of "false". If "true", will send in-progress (incomplete) bins for the current time period.</p></td>
+      <td><p>character string. Either <code>"true"</code> of <code>"false"</code>.
+If <code>"true"</code>, will send in-progress (incomplete) bins for the current time period.</p></td>
     </tr>
     <tr>
       <th>symbol</th>
-      <td><p>a character string for the instrument symbol. Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
+      <td><p>a character string for the instrument symbol.
+Use <code><a href='available_symbols.html'>available_symbols()</a></code> to see available symbols.</p></td>
     </tr>
     <tr>
       <th>count</th>
-      <td><p>an optional integer to specify the number of rows to return. Maximum of 1000 (the default) per request.</p></td>
+      <td><p>an optional integer to specify the number of rows to return.
+Maximum of 1000 (the default) per request.</p></td>
     </tr>
     <tr>
       <th>reverse</th>
-      <td><p>an optional character string. Either "true" of "false". If "true", result will be ordered with starting with the newest (defaults to "true").</p></td>
+      <td><p>an optional character string. Either <code>"true"</code> of <code>"false"</code>.
+If <code>"true"</code>, result will be ordered with starting with the newest (defaults to <code>"true"</code>).</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>an optional character string for table filtering. Send JSON key/value pairs, such as "{'key':'value'}". See examples.</p></td>
+      <td><p>an optional character string for table filtering.
+Send JSON key/value pairs, such as <code>"{'key':'value'}"</code>. See examples.</p></td>
     </tr>
     <tr>
       <th>columns</th>
-      <td><p>an optional character vector of column names to return. If <code>NULL</code>, all columns will be returned.</p></td>
+      <td><p>an optional character vector of column names to return.
+If <code>NULL</code>, all columns will be returned.</p></td>
     </tr>
     <tr>
       <th>start</th>
@@ -186,43 +189,51 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades</a></cod
     </tr>
     <tr>
       <th>startTime</th>
-      <td><p>an optional character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
+      <td><p>an optional character string.
+Starting date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
     <tr>
       <th>endTime</th>
-      <td><p>an optional character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".</p></td>
+      <td><p>an optional character string.
+Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>bucket_trades()</code> returns a data.frame containing open high low close data
-for the specified time frame and symbol.</p>
-<dt>timestamp</dt><dd><p>Date and time of trade</p></dd>
- <dt>symbol</dt><dd><p>Instrument ticker</p></dd>
- <dt>open</dt><dd><p>Opening price for the bucket</p></dd>
- <dt>high</dt><dd><p>Highest price in the bucket</p></dd>
- <dt>low</dt><dd><p>Lowest price in the bucket</p></dd>
- <dt>close</dt><dd><p>Closing price of the bucket</p></dd>
- <dt>trades</dt><dd><p>Number of trades executed within the bucket</p></dd>
- <dt>volume</dt><dd><p>Volume in USD</p></dd>
- <dt>vwap</dt><dd><p>Volume weighted average price</p></dd>
- <dt>lastSize</dt><dd><p>Size of the last trade executed</p></dd>
- <dt>turnover</dt><dd><p>How many sathoshi were exchanged</p></dd>
- <dt>homeNotional</dt><dd><p>BTC value of the bucket</p></dd>
- <dt>foreignNotional</dt><dd><p>USD value of the bucket</p></dd>
+    <p><code>bucket_trades()</code> returns a <code>data.frame</code> containing:</p><ul>
+<li><p>timestamp: POSIXct. Date and time of trade.</p></li>
+<li><p>symbol: character. Instrument ticker.</p></li>
+<li><p>open: numeric. Opening price for the bucket.</p></li>
+<li><p>high: numeric. Highest price in the bucket.</p></li>
+<li><p>low: numeric. Lowest price in the bucket.</p></li>
+<li><p>close: numeric. Closing price of the bucket.</p></li>
+<li><p>trades: numeric. Number of trades executed within the bucket.</p></li>
+<li><p>volume: numeric. Volume in USD.</p></li>
+<li><p>vwap: numeric. Volume weighted average price.</p></li>
+<li><p>lastSize: numeric. Size of the last trade executed.</p></li>
+<li><p>turnover: numeric. How many satoshi were exchanged.</p></li>
+<li><p>homeNotional: numeric. BTC value of the bucket.</p></li>
+<li><p>foreignNotional: numeric. USD value of the bucket.</p></li>
+</ul>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The API will only return 1000 rows per call. If the desired time frame requires more than one API call,
+consider using <code><a href='map_bucket_trades.html'>map_bucket_trades()</a></code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed'>API Documentation</a></p>
+    <p>urlhttps://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 
-<span class='co'># Return most recent data for symbol "ETHUSD" for 1 hour buckets</span>
+<span class='co'># Return most recent data for symbol `"ETHUSD"` for 1 hour buckets</span>
 
-<span class='fu'>bucket_trades</span>(<span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>,
-              <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>)
+<span class='fu'>bucket_trades</span>(
+  <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>
+)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

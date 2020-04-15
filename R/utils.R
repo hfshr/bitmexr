@@ -52,7 +52,7 @@ trade_warning <- function(start, end) {
 
 
 #' Available symbols
-#' @return A character vector of currently available symbols to be used as the 'symbol' value in
+#' @return A character vector of currently available symbols to be used as the `symbol` value in
 #' functions within the package.
 #' @examples
 #' \dontrun{
@@ -70,9 +70,10 @@ as <- available_symbols()
 
 #' Start date of data availability for available symbols
 #'
-#' Pass in a symbol from \code{available_symbols()} or no symbol to return dates for all available symbols
+#' Pass in a symbol from [available_symbols()] or no symbol to return dates for all available symbols
 #' @returns A data.frame containing the symbol and date from which data is available
-#' @param symbol symbol to find start date for, or NULL for all available symbols
+#' @param symbol character string of the instrument
+#' symbol to find start date for, or `NULL` for all available symbols
 #'
 #' @examples
 #' \dontrun{

@@ -7,13 +7,14 @@
 valid_dates(symbol = NULL)
 }
 \arguments{
-\item{symbol}{symbol to find start date for, or NULL for all available symbols}
+\item{symbol}{character string of the instrument
+symbol to find start date for, or \code{NULL} for all available symbols}
 }
 \value{
 A data.frame containing the symbol and date from which data is available
 }
 \description{
-Pass in a symbol from \code{available_symbols()} or no symbol to return dates for all available symbols
+Pass in a symbol from \code{\link[=available_symbols]{available_symbols()}} or no symbol to return dates for all available symbols
 }
 \examples{
 \dontrun{

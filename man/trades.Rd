@@ -16,38 +16,47 @@ trades(
 )
 }
 \arguments{
-\item{symbol}{a character string for the instrument symbol. Use \code{available_symbols()} to see available symbols.}
+\item{symbol}{a character string for the instrument symbol.
+Use \code{\link[=available_symbols]{available_symbols()}} to see available symbols.}
 
-\item{count}{an optional integer to specify the number of rows to return. Maximum of 1000 (the default) per request.}
+\item{count}{an optional integer to specify the number of rows to return.
+Maximum of 1000 (the default) per request.}
 
-\item{reverse}{an optional character string. Either "true" of "false". If "true", result will be ordered with starting with the newest (defaults to "true").}
+\item{reverse}{an optional character string. Either \code{"true"} of \code{"false"}.
+If \code{"true"}, result will be ordered with starting with the newest (defaults to \code{"true"}).}
 
-\item{filter}{an optional character string for table filtering. Send JSON key/value pairs, such as "\{'key':'value'\}". See examples.}
+\item{filter}{an optional character string for table filtering.
+Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples.}
 
-\item{columns}{an optional character vector of column names to return. If \code{NULL}, all columns will be returned.}
+\item{columns}{an optional character vector of column names to return.
+If \code{NULL}, all columns will be returned.}
 
 \item{start}{an optional integer. Can be used to specify the starting point for results.}
 
-\item{startTime}{an optional character string. Starting date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{startTime}{an optional character string.
+Starting date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
-\item{endTime}{an optional character string. Ending date for results in the format "yyyy-mm-dd" or "yyyy-mm-dd hh-mm-ss".}
+\item{endTime}{an optional character string.
+Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 }
 \value{
-\code{trades()} returns a data.frame containing information for executed trades for the given arguments.
- \item{timestamp}{Date and time of trade}
- \item{symbol}{Instrument ticker}
- \item{side}{Whether the trade was buy or sell}
- \item{size}{Size of the trade}
- \item{price}{Price the trade was executed at}
- \item{tickDirection}{Indicates if the trade price was higher, lower or the same as the previous trade price}
- \item{trdMatchID}{Unique trade ID}
- \item{grossValue}{How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC}
- \item{homeNotional}{BTC value of the trade}
- \item{foreignNotional}{USD value of the trade}
+\code{trades()} returns a \code{data.frame} containing:
+\itemize{
+\item{timestamp: }{POSIXct. Date and time of trade.}
+\item{symbol: }{character. The instrument ticker.}
+\item{side: }{character. Whether the trade was buy or sell.}
+\item{size: }{numeric. Size of the trade.}
+\item{price: }{numeric. Price the trade was executed at}
+\item{tickDirection: }{character. Indicates if the trade price was higher, lower or the same as the previous trade price.}
+\item{trdMatchID: }{character. Unique trade ID.}
+\item{grossValue: }{numeric. How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC.}
+\item{homeNotional: }{numeric. BTC value of the trade.}
+\item{foreignNotional: }{numeric. USD value of the trade.}
+}
 }
 \description{
 \code{trades()} retrieves data regarding individual trades that have been executed on the
-exchange for a given symbol.
+exchange.
 }
 \examples{
 \dontrun{
@@ -69,6 +78,6 @@ trades(
 
 }
 \references{
-\href{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}{API Documentation}
+\url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}
 }
 \concept{map_trades}
