@@ -55,7 +55,7 @@ trade_warning <- function(start, end) {
 #' @return A character vector of currently available symbols to be used as the `symbol` value in
 #' functions within the package.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' available_symbols()
 #' }
 #' @export
@@ -76,7 +76,7 @@ as <- available_symbols()
 #' symbol to find start date for, or `NULL` for all available symbols
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' valid_dates("XBTUSD")
 #'
 #' valid_dates(NULL)

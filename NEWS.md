@@ -1,5 +1,8 @@
 # bitmexr 0.2.1
 
+* Improved documentation
+* Verbose option for map_* functions
+
 # bitmexr 0.2.0
 
 * New helper functions and tests
