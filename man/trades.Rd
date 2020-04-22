@@ -59,7 +59,7 @@ Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd h
 exchange.
 }
 \examples{
-\dontrun{
+\donttest{
 # Return 1000 most recent trades for symbol "XBTUSD".
 trades(symbol = "XBTUSD")
 

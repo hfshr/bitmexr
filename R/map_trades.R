@@ -25,6 +25,8 @@
 #' Ending date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
 #' @param filter an optional character string for table filtering.
 #' Send JSON key/value pairs, such as `"{'key':'value'}"`. See examples in [trades()].
+#' @param verbose logical. If `TRUE`, will print information to the console. Useful for
+#' long running requests.
 #'
 #'
 #' @family trades
@@ -45,7 +47,7 @@
 #'}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 #'
@@ -61,7 +63,8 @@ map_trades <- function(
   symbol = "XBTUSD",
   start_date = "2019-01-01 12:00:00",
   end_date = "2019-01-01 12:15:00",
-  filter = NULL
+  filter = NULL,
+  verbose = FALSE
 ) {
   check_internet()
 
@@ -105,13 +108,17 @@ map_trades <- function(
 
   result <- tibble()
 
-  cat(
-    "Getting trade data between",
-    format(start_date, "%Y/%m/%d %H:%M:%S"),
-    "and",
-    format(end_date, "%Y/%m/%d %H:%M:%S"),
-    paste0("\nCurrent limit is 30 requests per minute\n")
-  )
+  if(verbose == TRUE){
+    cat(
+      "Getting trade data between",
+      format(start_date, "%Y/%m/%d %H:%M:%S"),
+      "and",
+      format(end_date, "%Y/%m/%d %H:%M:%S"),
+      paste0("\nCurrent limit is 30 requests per minute\n")
+    )
+
+  }
+
 
   limit_trades <- slowly(trades, rate_delay(2))
 
@@ -128,7 +135,11 @@ map_trades <- function(
 
     result <- rbind(result, data)
 
-    cat("\rCurrent progress: ", format(as_datetime(max(result$timestamp)), "%Y/%m/%d %H:%M:%OS"))
+    if(verbose == TRUE){
+    cat("\rCurrent progress: ",
+                         format(as_datetime(max(result$timestamp)),
+                                "%Y/%m/%d %H:%M:%OS"))
+    }
 
     flush.console()
 

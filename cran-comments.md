@@ -17,7 +17,21 @@ There was 1 NOTE:
 
 Spellings are acceptable given package context
 
-# bitmexr 0.2.1 - Resubmission
+# bitmexr 0.2.1 - Resubmission 2
+
+CRAN notes:
+
+1. Update copyright holder
+2. Please replace \dontrun{} with \donttest{}.
+3. Enable messages printed to the console to be easily suppressed
+
+Action taken:
+
+1. Updated "cph" in description
+2. Replaced \dontrun with \donttest
+3. Added verbose option to functions that printed information to the console. Now no information is printed by default.
+
+# bitmexr 0.2.1 - Resubmission 1
 
 CRAN notes from initial submission:
 

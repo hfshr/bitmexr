@@ -5,7 +5,7 @@ Version: 0.2.1
 Authors@R: 
     person(given = "Harry",
            family = "Fisher",
-           role = c("cre", "aut"),
+           role = c("cre", "aut", "cph"),
            email = "harryfisher21@gmail.com")
 Description: Tools to obtain historic trade data from
     cryptocurrency exchange BitMEX <https://www.bitmex.com/>.

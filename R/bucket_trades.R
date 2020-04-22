@@ -33,7 +33,7 @@
 #'}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' # Return most recent data for symbol `"ETHUSD"` for 1 hour buckets
 #'

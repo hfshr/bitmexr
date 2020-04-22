@@ -33,6 +33,7 @@
 #' If `"true"`, will send in-progress (incomplete) bins for the current time period.
 #' @param filter an optional character string for table filtering.
 #' Send JSON key/value pairs, such as `"{'key':'value'}"`. See examples in [trades()].
+#' @inheritParams map_trades
 #'
 #' @return `map_bucket_trades` returns a `data.frame` containing:
 #' \itemize{
@@ -52,7 +53,7 @@
 #'}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 #'
 #' map_bucket_trades(
@@ -69,7 +70,8 @@ map_bucket_trades <- function(
   binSize = "1d",
   symbol = "XBTUSD",
   partial = "false",
-  filter = NULL
+  filter = NULL,
+  verbose = FALSE
 ) {
   check_internet()
 
@@ -148,11 +150,15 @@ map_bucket_trades <- function(
 
   limit_bucket_trades <- slowly(bucket_trades, rate_delay(2))
 
-  pb$message(paste0("\n", length(breaks), " API requests generated."))
-  pb$message(paste("Current limit is 30 requests per minute"))
+  if(verbose == TRUE){
+    pb$message(paste0("\n", length(breaks), " API requests generated."))
+    pb$message(paste("Current limit is 30 requests per minute"))
+  }
 
   res <- map_dfr(breaks, ~ {
-    pb$tick()
+    if(verbose == TRUE){
+     pb$tick()
+    }
     limit_bucket_trades(
       startTime = .x,
       binSize = binSize,

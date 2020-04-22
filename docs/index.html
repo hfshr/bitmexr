@@ -125,13 +125,13 @@
 <span class="fu"><a href="reference/trades.html">trades</a></span>(<span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">timestamp</span>, <span class="no">symbol</span>, <span class="no">side</span>, <span class="no">size</span>, <span class="no">price</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()
-<span class="co">#&gt;             timestamp symbol side  size  price</span>
-<span class="co">#&gt; 1 2020-04-15 16:11:39 XBTUSD  Buy     1 6720.0</span>
-<span class="co">#&gt; 2 2020-04-15 16:11:38 XBTUSD  Buy     1 6720.0</span>
-<span class="co">#&gt; 3 2020-04-15 16:11:37 XBTUSD Sell    10 6719.5</span>
-<span class="co">#&gt; 4 2020-04-15 16:11:37 XBTUSD  Buy 20000 6720.0</span>
-<span class="co">#&gt; 5 2020-04-15 16:11:37 XBTUSD Sell     1 6719.5</span>
-<span class="co">#&gt; 6 2020-04-15 16:11:34 XBTUSD  Buy  1000 6720.0</span></pre></div>
+<span class="co">#&gt;             timestamp symbol side size  price</span>
+<span class="co">#&gt; 1 2020-04-22 19:38:08 XBTUSD  Buy    4 7109.5</span>
+<span class="co">#&gt; 2 2020-04-22 19:37:59 XBTUSD Sell   50 7109.0</span>
+<span class="co">#&gt; 3 2020-04-22 19:37:58 XBTUSD Sell  212 7109.0</span>
+<span class="co">#&gt; 4 2020-04-22 19:37:48 XBTUSD Sell    2 7109.0</span>
+<span class="co">#&gt; 5 2020-04-22 19:37:45 XBTUSD Sell 1000 7109.0</span>
+<span class="co">#&gt; 6 2020-04-22 19:37:44 XBTUSD Sell  250 7109.0</span></pre></div>
 <p>Get all bucketed trade data (hourly binSize) between January 2019 and June 2019.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/map_bucket_trades.html">map_bucket_trades</a></span>(<span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2019-01-01"</span>,
                   <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2019-06-01"</span>,
@@ -139,9 +139,6 @@
                   <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="fl">1</span>:<span class="fl">6</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()
-<span class="co">#&gt; </span>
-<span class="co">#&gt; 4 API requests generated.</span>
-<span class="co">#&gt; Current limit is 30 requests per minute</span>
 <span class="co">#&gt;             timestamp symbol   open   high    low  close</span>
 <span class="co">#&gt; 1 2019-01-01 00:00:00 XBTUSD 3686.5 3695.5 3682.5 3693.0</span>
 <span class="co">#&gt; 2 2019-01-01 01:00:00 XBTUSD 3693.0 3705.0 3684.5 3694.0</span>
@@ -199,7 +196,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Harry Fisher <br><small class="roles"> Maintainer, author </small>  </li>
+<li>Harry Fisher <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
 </ul>
 </div>
 

@@ -83,24 +83,26 @@ bucket_data_long <- map_bucket_trades(
   binSize = "1m",
   start_date = "2020-01-01",
   end_date = "2020-01-03",
-  symbol = "XBTUSD"
+  symbol = "XBTUSD",
+  verbose = FALSE
 )
 
 max(as.Date(bucket_data_long$timestamp))
 ```
 
-A progress bar is provided in the console to provide some information regarding the expected duration for the function to complete. 
+If verbose is `TRUE`, a progress bar is printed in the console to provide information regarding the expected duration for the function to complete. 
 The maximum date in the sample is now equal to the end date in the function.
 
 The `map_trades()` function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take.
-Instead, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left. 
+Instead, if verbose is `TRUE`, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left. 
 The function stops when the start_date is greater than the end_date. 
 
 ```{r message=FALSE}
 map_trades(
   symbol = "XBTUSD",
   start_date = "2019-05-03 12:00:00",
-  end_date = "2019-05-03 12:05:00"
+  end_date = "2019-05-03 12:05:00",
+  verbose = TRUE
 ) %>%
   select(1:5) %>%
   head()

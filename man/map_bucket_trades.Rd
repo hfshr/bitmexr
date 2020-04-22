@@ -10,7 +10,8 @@ map_bucket_trades(
   binSize = "1d",
   symbol = "XBTUSD",
   partial = "false",
-  filter = NULL
+  filter = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ If \code{"true"}, will send in-progress (incomplete) bins for the current time p
 
 \item{filter}{an optional character string for table filtering.
 Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
+
+\item{verbose}{logical. If \code{TRUE}, will print information to the console. Useful for
+long running requests.}
 }
 \value{
 \code{map_bucket_trades} returns a \code{data.frame} containing:
@@ -69,7 +73,7 @@ Public API requests are limited to 30 per minute. Consequently, \code{map_bucket
 \code{purrr::slowly} to restrict how often the function is called.
 }
 \examples{
-\dontrun{
+\donttest{
 # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 
 map_bucket_trades(

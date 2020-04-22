@@ -40,7 +40,7 @@
 #' @references \url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Return 1000 most recent trades for symbol "XBTUSD".
 #' trades(symbol = "XBTUSD")
 #'

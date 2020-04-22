@@ -8,7 +8,8 @@ map_trades(
   symbol = "XBTUSD",
   start_date = "2019-01-01 12:00:00",
   end_date = "2019-01-01 12:15:00",
-  filter = NULL
+  filter = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -23,6 +24,9 @@ Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd h
 
 \item{filter}{an optional character string for table filtering.
 Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
+
+\item{verbose}{logical. If \code{TRUE}, will print information to the console. Useful for
+long running requests.}
 }
 \value{
 \code{map_trades()} returns a \code{data.frame} containing:
@@ -58,7 +62,7 @@ Obtaining the trade data for this day alone would take over an hour, and the use
 \code{\link[=map_bucket_trades]{map_bucket_trades()}} with a small 'binSize' (e.g., \code{"1m"}) is preferrable.
 }
 \examples{
-\dontrun{
+\donttest{
 
 # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 
