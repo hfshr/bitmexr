@@ -17,7 +17,7 @@ There was 1 NOTE:
 
 Spellings are acceptable given package context
 
-# bitmexr 0.2.1 - Resubmission 2
+# bitmexr 0.2.2 - Resubmission 2
 
 CRAN notes:
 
