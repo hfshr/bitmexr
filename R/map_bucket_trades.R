@@ -50,7 +50,7 @@
 #'  \item{turnover: }{numeric. How many satoshi were exchanged.}
 #'  \item{homeNotional: }{numeric. BTC value of the bucket.}
 #'  \item{foreignNotional: }{numeric. USD value of the bucket.}
-#'}
+#' }
 #'
 #' @examples
 #' \donttest{
@@ -150,14 +150,14 @@ map_bucket_trades <- function(
 
   limit_bucket_trades <- slowly(bucket_trades, rate_delay(2))
 
-  if(verbose == TRUE){
+  if (verbose == TRUE) {
     pb$message(paste0("\n", length(breaks), " API requests generated."))
     pb$message(paste("Current limit is 30 requests per minute"))
   }
 
   res <- map_dfr(breaks, ~ {
-    if(verbose == TRUE){
-     pb$tick()
+    if (verbose == TRUE) {
+      pb$tick()
     }
     limit_bucket_trades(
       startTime = .x,

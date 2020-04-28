@@ -17,6 +17,16 @@ There was 1 NOTE:
 
 Spellings are acceptable given package context
 
+# bitmexr 0.2.3 - Resubmission 3
+
+CRAN notes: 
+
+Instead of print()/cat() rather use message()/warning()
+
+Action taken:
+
+Replace two messages using cat() with warning(). Now all messages in the package can be suppressd if desired. 
+
 # bitmexr 0.2.2 - Resubmission 2
 
 CRAN notes:

@@ -33,7 +33,7 @@
 #'  \item{grossValue: }{numeric. How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC.}
 #'  \item{homeNotional: }{numeric. BTC value of the trade.}
 #'  \item{foreignNotional: }{numeric. USD value of the trade.}
-#'}
+#' }
 #'
 #' @family map_trades
 #'
@@ -132,7 +132,10 @@ trades <- function(
   limits <- rate_limit(res)
 
   if (isTRUE(limits[["remaining"]] == 2)) {
-    cat("\nRate limit nearing max. Pausing for 60 seconds to reset limit\n")
+    warning(
+      "\nRate limit nearing max. Pausing for 60 seconds to reset limit\n",
+      immediate. = TRUE
+    )
 
     Sys.sleep(60)
   }

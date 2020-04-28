@@ -30,7 +30,7 @@
 #'  \item{turnover: }{numeric. How many satoshi were exchanged.}
 #'  \item{homeNotional: }{numeric. BTC value of the bucket.}
 #'  \item{foreignNotional: }{numeric. USD value of the bucket.}
-#'}
+#' }
 #'
 #' @examples
 #' \donttest{
@@ -130,7 +130,10 @@ bucket_trades <- function(
   limits <- rate_limit(res)
 
   if (isTRUE(limits[["remaining"]] == 2)) {
-    cat("\nRate limit nearing max - Pausing for 60 seconds to reset limit.\n")
+    warning(
+      "\nRate limit nearing max - Pausing for 60 seconds to reset limit.\n",
+      immediate. = TRUE
+    )
 
     Sys.sleep(60)
   }

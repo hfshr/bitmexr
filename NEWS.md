@@ -1,3 +1,7 @@
+# bitmexr 0.2.3
+
+* Messages that were printed to the console using `cat()` now use `warning()` instead and can be suppressed if desired.
+
 # bitmexr 0.2.2
 
 * Verbose option for map_* functions

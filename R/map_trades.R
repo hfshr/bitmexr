@@ -44,7 +44,7 @@
 #'  \item{grossValue: }{numeric. How many satoshi were exchanged. 1 satoshi = 0.00000001 BTC.}
 #'  \item{homeNotional: }{numeric. BTC value of the trade.}
 #'  \item{foreignNotional: }{numeric. USD value of the trade.}
-#'}
+#' }
 #'
 #' @examples
 #' \donttest{
@@ -108,7 +108,7 @@ map_trades <- function(
 
   result <- tibble()
 
-  if(verbose == TRUE){
+  if (verbose == TRUE) {
     cat(
       "Getting trade data between",
       format(start_date, "%Y/%m/%d %H:%M:%S"),
@@ -116,7 +116,6 @@ map_trades <- function(
       format(end_date, "%Y/%m/%d %H:%M:%S"),
       paste0("\nCurrent limit is 30 requests per minute\n")
     )
-
   }
 
 
@@ -135,10 +134,14 @@ map_trades <- function(
 
     result <- rbind(result, data)
 
-    if(verbose == TRUE){
-    cat("\rCurrent progress: ",
-                         format(as_datetime(max(result$timestamp)),
-                                "%Y/%m/%d %H:%M:%OS"))
+    if (verbose == TRUE) {
+      cat(
+        "\rCurrent progress: ",
+        format(
+          as_datetime(max(result$timestamp)),
+          "%Y/%m/%d %H:%M:%OS"
+        )
+      )
     }
 
     flush.console()
