@@ -1,3 +1,5 @@
+# bitmexr (development version)
+
 # bitmexr 0.2.3
 
 * Messages that were printed to the console using `cat()` now use `warning()` instead and can be suppressed if desired.

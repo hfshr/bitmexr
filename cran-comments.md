@@ -25,7 +25,7 @@ Instead of print()/cat() rather use message()/warning()
 
 Action taken:
 
-Replace two messages using cat() with warning(). Now all messages in the package can be suppressd if desired. 
+Replaced two messages using cat() with warning(). Now all messages in the package can be suppressed if desired. 
 
 # bitmexr 0.2.2 - Resubmission 2
 
