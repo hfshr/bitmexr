@@ -96,5 +96,7 @@ valid_dates <- function(symbol = NULL) {
 }
 
 base_url <- "https://www.bitmex.com/api/v1/"
+testnet_url <- "https://testnet.bitmex.com/api/v1/"
+
 trade_url <- "https://www.bitmex.com/api/v1/trade"
 trade_bucketed_url <- "https://www.bitmex.com/api/v1/trade/bucketed"

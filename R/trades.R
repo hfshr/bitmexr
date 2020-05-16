@@ -19,6 +19,8 @@
 #' Starting date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
 #' @param endTime an optional character string.
 #' Ending date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
+#' @param testnet logical. Use `TRUE` to query the BitMEX testnet platform.
+#' Set to `FALSE` by default.
 #'
 #'
 #' @return `trades()` returns a `data.frame` containing:
@@ -67,7 +69,8 @@ trades <- function(
   columns = NULL,
   start = NULL,
   startTime = NULL,
-  endTime = NULL
+  endTime = NULL,
+  testnet = FALSE
 ) {
   check_internet()
 
@@ -125,7 +128,16 @@ trades <- function(
 
   ua <- user_agent("https://github.com/hfshr/bitmexr")
 
-  res <- GET(trade_url, ua, query = compact(args))
+
+  if (isTRUE(testnet)) {
+
+    res <- GET(paste0(testnet_url, "trade"), ua, query = compact(args))
+
+  } else {
+
+    res <- GET(paste0(base_url, "trade"), ua, query = compact(args))
+
+  }
 
   check_status(res)
 

@@ -54,7 +54,8 @@ bucket_trades <- function(
   columns = NULL,
   start = NULL,
   startTime = NULL,
-  endTime = NULL
+  endTime = NULL,
+  testnet = FALSE
 ) {
   check_internet()
 
@@ -123,7 +124,15 @@ bucket_trades <- function(
   ua <- user_agent("https://github.com/hfshr/bitmexr")
 
 
-  res <- GET(trade_bucketed_url, ua, query = compact(args))
+  if (isTRUE(testnet)) {
+
+    res <- GET(paste0(testnet_url, "trade/bucketed"), ua, query = compact(args))
+
+  } else {
+
+    res <- GET(paste0(base_url, "trade/bucketed"), ua, query = compact(args))
+
+  }
 
   check_status(res)
 

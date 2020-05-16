@@ -27,6 +27,8 @@
 #' Send JSON key/value pairs, such as `"{'key':'value'}"`. See examples in [trades()].
 #' @param verbose logical. If `TRUE`, will print information to the console. Useful for
 #' long running requests.
+#' @param testnet logical. Use `TRUE` to query the BitMEX testnet platform.
+#' Set to `FALSE` by default.
 #'
 #'
 #' @family trades
@@ -64,6 +66,7 @@ map_trades <- function(
   start_date = "2019-01-01 12:00:00",
   end_date = "2019-01-01 12:15:00",
   filter = NULL,
+  testnet = FALSE,
   verbose = FALSE
 ) {
   check_internet()
@@ -127,7 +130,8 @@ map_trades <- function(
       reverse = "false",
       symbol = symbol,
       filter = filter,
-      count = 1000
+      count = 1000,
+      testnet = testnet
     )
 
     if (start_date > end_date) break() # the end was reached...

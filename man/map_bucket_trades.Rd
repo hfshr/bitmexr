@@ -11,6 +11,7 @@ map_bucket_trades(
   symbol = "XBTUSD",
   partial = "false",
   filter = NULL,
+  testnet = FALSE,
   verbose = FALSE
 )
 }
@@ -32,6 +33,9 @@ If \code{"true"}, will send in-progress (incomplete) bins for the current time p
 
 \item{filter}{an optional character string for table filtering.
 Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
+
+\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
+Set to \code{FALSE} by default.}
 
 \item{verbose}{logical. If \code{TRUE}, will print information to the console. Useful for
 long running requests.}

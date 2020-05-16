@@ -12,7 +12,8 @@ trades(
   columns = NULL,
   start = NULL,
   startTime = NULL,
-  endTime = NULL
+  endTime = NULL,
+  testnet = FALSE
 )
 }
 \arguments{
@@ -38,6 +39,9 @@ Starting date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd
 
 \item{endTime}{an optional character string.
 Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
+
+\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
+Set to \code{FALSE} by default.}
 }
 \value{
 \code{trades()} returns a \code{data.frame} containing:

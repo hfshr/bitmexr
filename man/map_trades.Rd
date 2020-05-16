@@ -9,6 +9,7 @@ map_trades(
   start_date = "2019-01-01 12:00:00",
   end_date = "2019-01-01 12:15:00",
   filter = NULL,
+  testnet = FALSE,
   verbose = FALSE
 )
 }
@@ -24,6 +25,9 @@ Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd h
 
 \item{filter}{an optional character string for table filtering.
 Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
+
+\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
+Set to \code{FALSE} by default.}
 
 \item{verbose}{logical. If \code{TRUE}, will print information to the console. Useful for
 long running requests.}

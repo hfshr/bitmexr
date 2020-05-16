@@ -71,6 +71,7 @@ map_bucket_trades <- function(
   symbol = "XBTUSD",
   partial = "false",
   filter = NULL,
+  testnet = FALSE,
   verbose = FALSE
 ) {
   check_internet()
@@ -165,7 +166,8 @@ map_bucket_trades <- function(
       reverse = "false",
       partial = partial,
       symbol = symbol,
-      filter = filter
+      filter = filter,
+      testnet = testnet
     )
   }) %>%
     mutate(timestamp = as_datetime(.data$timestamp)) %>%
