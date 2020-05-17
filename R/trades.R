@@ -21,6 +21,7 @@
 #' Ending date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
 #' @param testnet logical. Use `TRUE` to query the BitMEX testnet platform.
 #' Set to `FALSE` by default.
+#' @param use_auth logical. Use `TRUE` to enable authentication with API key.
 #'
 #'
 #' @return `trades()` returns a `data.frame` containing:
@@ -70,7 +71,8 @@ trades <- function(
   start = NULL,
   startTime = NULL,
   endTime = NULL,
-  testnet = FALSE
+  testnet = FALSE,
+  use_auth = FALSE
 ) {
   check_internet()
 
@@ -131,13 +133,49 @@ trades <- function(
 
   if (isTRUE(testnet)) {
 
-    res <- GET(paste0(testnet_url, "trade"), ua, query = compact(args))
+    if (isTRUE(use_auth)) {
+
+      expires<-as.character(as.integer(now() + 10))
+
+      sig <- gen_signature(secret = Sys.getenv("apisecret_test"),
+                           verb = "GET",
+                           url = modify_url(paste0(testnet_url, "/trade"), query = compact(args)) %>%
+                             gsub("https://testnet.bitmex.com", "", .))
+
+      res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args),
+                add_headers(.headers = c("api-expires"=expires,
+                                         "api-key" = Sys.getenv("apikey_test"),
+                                         "api-signature"=sig))
+      )
+
+    } else {
+      res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args))
+    }
 
   } else {
 
-    res <- GET(paste0(base_url, "trade"), ua, query = compact(args))
+    if (isTRUE(use_auth)) {
 
-  }
+      expires<-as.character(as.integer(now() + 10))
+
+      sig <- gen_signature(secret = Sys.getenv("apisecret"),
+                           verb = "GET",
+                           url = modify_url(paste0(live_url, "/trade"), query = compact(args)) %>%
+                             gsub("https://www.bitmex.com", "", .))
+
+      res <- GET(paste0(live_url, "/trade"), ua, query = compact(args),
+                 add_headers(.headers = c("api-expires"=expires,
+                                          "api-key" = Sys.getenv("apikey"),
+                                          "api-signature"=sig))
+      )
+    }
+
+      else {
+
+        res <- GET(paste0(live_url, "/trade"), ua, query = compact(args))
+      }
+
+    }
 
   check_status(res)
 

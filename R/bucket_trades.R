@@ -55,6 +55,7 @@ bucket_trades <- function(
   start = NULL,
   startTime = NULL,
   endTime = NULL,
+  use_auth = FALSE,
   testnet = FALSE
 ) {
   check_internet()
@@ -126,13 +127,50 @@ bucket_trades <- function(
 
   if (isTRUE(testnet)) {
 
-    res <- GET(paste0(testnet_url, "trade/bucketed"), ua, query = compact(args))
+    if (isTRUE(use_auth)) {
+
+      expires<-as.character(as.integer(now() + 10))
+
+      sig <- gen_signature(secret = Sys.getenv("apisecret_test"),
+                           verb = "GET",
+                           url = modify_url(paste0(testnet_url, "/trade/bucketed"), query = compact(args)) %>%
+                             gsub("https://testnet.bitmex.com", "", .))
+
+      res <- GET(paste0(testnet_url, "/trade/bucketed"), ua, query = compact(args),
+                 add_headers(.headers = c("api-expires"=expires,
+                                          "api-key" = Sys.getenv("apikey_test"),
+                                          "api-signature"=sig))
+      )
+
+    } else {
+      res <- GET(paste0(testnet_url, "/trade/bucketed"), ua, query = compact(args))
+    }
 
   } else {
 
-    res <- GET(paste0(base_url, "trade/bucketed"), ua, query = compact(args))
+    if (isTRUE(use_auth)) {
+
+      expires<-as.character(as.integer(now() + 10))
+
+      sig <- gen_signature(secret = Sys.getenv("apisecret"),
+                           verb = "GET",
+                           url = modify_url(paste0(live_url, "/trade/bucketed"), query = compact(args)) %>%
+                             gsub("https://www.bitmex.com", "", .))
+
+      res <- GET(paste0(live_url, "/trade/bucketed"), ua, query = compact(args),
+                 add_headers(.headers = c("api-expires"=expires,
+                                          "api-key" = Sys.getenv("apikey"),
+                                          "api-signature"=sig))
+      )
+    }
+
+    else {
+
+      res <- GET(paste0(live_url, "/trade/bucketed"), ua, query = compact(args))
+    }
 
   }
+
 
   check_status(res)
 

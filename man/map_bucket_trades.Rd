@@ -12,6 +12,7 @@ map_bucket_trades(
   partial = "false",
   filter = NULL,
   testnet = FALSE,
+  use_auth = FALSE,
   verbose = FALSE
 )
 }

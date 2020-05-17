@@ -24,7 +24,8 @@ Imports:
     progress,
     purrr,
     rlang,
-    utils
+    utils,
+    digest
 Suggests: 
     covr,
     ggplot2,

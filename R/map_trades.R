@@ -67,6 +67,7 @@ map_trades <- function(
   end_date = "2019-01-01 12:15:00",
   filter = NULL,
   testnet = FALSE,
+  use_auth = FALSE,
   verbose = FALSE
 ) {
   check_internet()
@@ -111,18 +112,26 @@ map_trades <- function(
 
   result <- tibble()
 
+  if (isTRUE(use_auth)) {
+    delay <- 1
+    requests <- 60
+  } else {
+    delay <- 2
+    requests <- 30
+  }
+
   if (verbose == TRUE) {
     cat(
       "Getting trade data between",
       format(start_date, "%Y/%m/%d %H:%M:%S"),
       "and",
       format(end_date, "%Y/%m/%d %H:%M:%S"),
-      paste0("\nCurrent limit is 30 requests per minute\n")
+      paste0("\nCurrent limit is ", requests, " requests per minute\n")
     )
   }
 
 
-  limit_trades <- slowly(trades, rate_delay(2))
+  limit_trades <- slowly(trades, rate_delay(delay))
 
   repeat({
     data <- limit_trades(
@@ -131,6 +140,7 @@ map_trades <- function(
       symbol = symbol,
       filter = filter,
       count = 1000,
+      use_auth = use_auth,
       testnet = testnet
     )
 

@@ -10,6 +10,7 @@ map_trades(
   end_date = "2019-01-01 12:15:00",
   filter = NULL,
   testnet = FALSE,
+  use_auth = FALSE,
   verbose = FALSE
 )
 }

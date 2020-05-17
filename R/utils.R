@@ -95,8 +95,19 @@ valid_dates <- function(symbol = NULL) {
   return(dates)
 }
 
-base_url <- "https://www.bitmex.com/api/v1/"
-testnet_url <- "https://testnet.bitmex.com/api/v1/"
 
-trade_url <- "https://www.bitmex.com/api/v1/trade"
-trade_bucketed_url <- "https://www.bitmex.com/api/v1/trade/bucketed"
+#' Authentication
+gen_signature <- function(secret, verb, url) {
+
+  expires<-as.integer(now() + 10)
+
+  sig <- hmac(secret,
+              object = paste0(verb,url,expires),
+              algo = "sha256")
+
+  return(sig)
+}
+
+live_url <- "https://www.bitmex.com/api/v1"
+testnet_url <- "https://testnet.bitmex.com/api/v1"
+

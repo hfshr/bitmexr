@@ -13,7 +13,8 @@ trades(
   start = NULL,
   startTime = NULL,
   endTime = NULL,
-  testnet = FALSE
+  testnet = FALSE,
+  use_auth = FALSE
 )
 }
 \arguments{
@@ -42,6 +43,8 @@ Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd h
 
 \item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
 Set to \code{FALSE} by default.}
+
+\item{use_auth}{logical. Use \code{TRUE} to enable authentication with API key.}
 }
 \value{
 \code{trades()} returns a \code{data.frame} containing:

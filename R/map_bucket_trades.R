@@ -72,6 +72,7 @@ map_bucket_trades <- function(
   partial = "false",
   filter = NULL,
   testnet = FALSE,
+  use_auth = FALSE,
   verbose = FALSE
 ) {
   check_internet()
@@ -149,11 +150,20 @@ map_bucket_trades <- function(
     clear = FALSE
   )
 
-  limit_bucket_trades <- slowly(bucket_trades, rate_delay(2))
+  if (isTRUE(use_auth)) {
+    delay <- 1
+    requests <- 60
+  } else {
+    delay <- 2
+    requests <- 30
+  }
+
+  limit_bucket_trades <- slowly(bucket_trades, rate_delay(delay))
 
   if (verbose == TRUE) {
     pb$message(paste0("\n", length(breaks), " API requests generated."))
-    pb$message(paste("Current limit is 30 requests per minute"))
+    pb$message(paste("Current limit is", requests, "requests per minute"))
+
   }
 
   res <- map_dfr(breaks, ~ {
@@ -164,9 +174,11 @@ map_bucket_trades <- function(
       startTime = .x,
       binSize = binSize,
       reverse = "false",
+      count = 1000,
       partial = partial,
       symbol = symbol,
       filter = filter,
+      use_auth = use_auth,
       testnet = testnet
     )
   }) %>%
