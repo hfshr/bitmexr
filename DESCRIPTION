@@ -25,7 +25,8 @@ Imports:
     purrr,
     rlang,
     utils,
-    digest
+    digest,
+    stringr
 Suggests: 
     covr,
     ggplot2,

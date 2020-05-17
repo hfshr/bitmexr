@@ -140,7 +140,7 @@ trades <- function(
       sig <- gen_signature(secret = Sys.getenv("apisecret_test"),
                            verb = "GET",
                            url = modify_url(paste0(testnet_url, "/trade"), query = compact(args)) %>%
-                             gsub("https://testnet.bitmex.com", "", .))
+                             gsub("https://testnet.bitmex.com", "", .data))
 
       res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args),
                 add_headers(.headers = c("api-expires"=expires,
@@ -161,7 +161,7 @@ trades <- function(
       sig <- gen_signature(secret = Sys.getenv("apisecret"),
                            verb = "GET",
                            url = modify_url(paste0(live_url, "/trade"), query = compact(args)) %>%
-                             gsub("https://www.bitmex.com", "", .))
+                             gsub("https://www.bitmex.com", "", .data))
 
       res <- GET(paste0(live_url, "/trade"), ua, query = compact(args),
                  add_headers(.headers = c("api-expires"=expires,

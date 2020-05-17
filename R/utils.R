@@ -96,13 +96,13 @@ valid_dates <- function(symbol = NULL) {
 }
 
 
-#' Authentication
-gen_signature <- function(secret, verb, url) {
+# Generate authentication signature
+gen_signature <- function(secret, verb, url, data = "") {
 
   expires<-as.integer(now() + 10)
 
   sig <- hmac(secret,
-              object = paste0(verb,url,expires),
+              object = str_glue("{verb}{url}{expires}{data}"),
               algo = "sha256")
 
   return(sig)

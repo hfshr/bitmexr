@@ -25,10 +25,12 @@
 #' Ending date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
 #' @param filter an optional character string for table filtering.
 #' Send JSON key/value pairs, such as `"{'key':'value'}"`. See examples in [trades()].
-#' @param verbose logical. If `TRUE`, will print information to the console. Useful for
-#' long running requests.
 #' @param testnet logical. Use `TRUE` to query the BitMEX testnet platform.
 #' Set to `FALSE` by default.
+#' @param use_auth logical. Use `TRUE` to enable authentication with API key.
+#' @param verbose logical. If `TRUE`, will print information to the console. Useful for
+#' long running requests.
+
 #'
 #'
 #' @family trades

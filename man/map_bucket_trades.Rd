@@ -38,6 +38,8 @@ Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \co
 \item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
 Set to \code{FALSE} by default.}
 
+\item{use_auth}{logical. Use \code{TRUE} to enable authentication with API key.}
+
 \item{verbose}{logical. If \code{TRUE}, will print information to the console. Useful for
 long running requests.}
 }

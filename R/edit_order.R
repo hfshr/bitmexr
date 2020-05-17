@@ -1,0 +1,71 @@
+#' Edit an order
+#'
+#' @inheritParams place_order
+#' @param orderID string. Order ID.
+#'
+#'
+#' @export
+edit_order <- function(testnet = TRUE,
+                       orderID = NULL,
+                       origClOrdID = NULL,
+                       clOrdID = NULL,
+                       orderQty = NULL,
+                       leavesQty = NULL,
+                       price = NULL,
+                       stopPx = NULL,
+                       pegOffsetValue = NULL,
+                       text = NULL){
+
+  args <- list(orderID = orderID,
+               origClOrdID = origClOrdID,
+               clOrdID = clOrdID,
+               orderQty = orderQty,
+               leavesQty = leavesQty,
+               price = price,
+               stopPx = stopPx,
+               pegOffsetValue = pegOffsetValue,
+               text = text)
+
+  json_body <- toJSON(compact(args), auto_unbox = TRUE)
+
+  expires <- as.character(as.integer(now() + 10))
+
+  if (isTRUE(testnet)) {
+
+    url <- testnet_url
+    key <-  Sys.getenv("bitmex_apikey_test")
+    secret <- Sys.getenv("bitmex_apisecret_test")
+
+  } else {
+
+    url <- live_url
+    key <-  Sys.getenv("bitmex_apikey")
+    secret <- Sys.getenv("bitmex_apisecret")
+
+  }
+
+
+  sig <- gen_signature(
+    secret = secret,
+    verb = "PUT",
+    url = "/api/v1/order",
+    data = json_body
+  )
+
+  res <- PUT(
+    paste0(url, "/order"),
+    body = json_body,
+    encode = "json",
+    content_type_json(),
+    add_headers(.headers = c(
+      "api-expires" = expires,
+      "api-key" = key,
+      "api-signature" = sig
+    ))
+  )
+
+  check_status(res)
+
+  result <- fromJSON(content(res, "text"))
+
+}
