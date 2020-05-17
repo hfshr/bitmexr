@@ -1,11 +1,13 @@
 #' POST requests
 #'
+#' Use `post_bitmex()` to send POST requests. All POST requests require authentication.
+#'
 #' @param path string. End point for the api.
 #' @param args A named list containing the
-#' @param testnet logcial. Use `TRUE` access testnet.bitmex, `FALSE` to access the live site.
+#' @param testnet logcial. Use `TRUE` access the testnet API, `FALSE` to access the live API.
 #'
 #' @export
-post_bitmex <- function(path, args = NULL, testnet = TRUE){
+post_bitmex <- function(path, args = NULL, testnet = FALSE){
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
@@ -49,17 +51,31 @@ post_bitmex <- function(path, args = NULL, testnet = TRUE){
 
   result <- fromJSON(content(res, "text"))
 
-
+  return(result)
 }
 
 
 #' GET requests
 #'
+#' Use `get_bitmex()` to send GET requests. For private endpoints, authentication is required.
+#'
 #' @inheritParams post_bitmex
-#' @param use_auth logcial. Use `TRUE` to use apikey with request
+#' @param use_auth logcial. Use `TRUE` to access private endpoints.
+#'
+#' @examples
+#' donttest{
+#' # Access a public endpoint
+#' chat <- get_bitmex(path = "/chat", args = list(channelID = 1,reverse='true'))
+#'
+#' # Access private endpoint using `use_auth` = `TRUE`
+#'
+#' user <- get_bitmex(path = "/execution", args = list(symbol = "XBTUSD), use_auth = TRUE)
+#'
+#'
+#' }
 #'
 #' @export
-get_bitmex <- function(path, args = NULL, use_auth = FALSE, testnet = FALSE){
+get_bitmex <- function(path, args = NULL, testnet = FALSE, use_auth = FALSE){
 
   ua <- user_agent("https://github.com/hfshr/bitmexr")
 
@@ -72,7 +88,7 @@ get_bitmex <- function(path, args = NULL, use_auth = FALSE, testnet = FALSE){
       sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret_test"),
                            verb = "GET",
                            url = modify_url(paste0(testnet_url, path), query = compact(args)) %>%
-                             gsub("https://testnet.bitmex.com", "", .))
+                             gsub("https://testnet.bitmex.com", "", .data))
 
       res <- GET(paste0(testnet_url, path), ua, query = compact(args),
                  add_headers(.headers = c("api-expires"=expires,
@@ -88,14 +104,14 @@ get_bitmex <- function(path, args = NULL, use_auth = FALSE, testnet = FALSE){
 
     if (isTRUE(use_auth)) {
 
-      expires<-as.character(as.integer(now() + 10))
+      expires <- as.character(as.integer(now() + 10))
 
       sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret"),
                            verb = "GET",
-                           url = modify_url(paste0(base_url, path), query = compact(args)) %>%
-                             gsub("https://www.bitmex.com", "", .))
+                           url = modify_url(paste0(live_url, path), query = compact(args)) %>%
+                             gsub("https://www.bitmex.com", "", .data))
 
-      res <- GET(paste0(base_url, path), ua, query = compact(args),
+      res <- GET(paste0(live_url, path), ua, query = compact(args),
                  add_headers(.headers = c("api-expires"=expires,
                                           "api-key" = Sys.getenv("bitmex_apikey"),
                                           "api-signature"=sig))
@@ -104,14 +120,15 @@ get_bitmex <- function(path, args = NULL, use_auth = FALSE, testnet = FALSE){
 
     else {
 
-      res <- GET(paste0(base_url, path), ua, query = compact(args))
+      res <- GET(paste0(live_url, path), ua, query = compact(args))
     }
 
   }
 
   check_status(res)
 
-  x <- fromJSON(content(res, "text"))
+  result <- fromJSON(content(res, "text"))
 
-  return(x)
+  return(result)
 }
+

@@ -10,10 +10,12 @@ delete_order(testnet = TRUE, orderID = NULL, clOrdID = NULL, text = NULL)
 \item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
 Set to \code{FALSE} by default.}
 
-\item{clOrdID}{string. Optional Client Order ID. This clOrdID will come back on the order and any related executions.}
+\item{orderID}{string. Order ID.}
 
-\item{text}{string. Optional order annotation. e.g. 'Take profit'.}
+\item{clOrdID}{string. Optional client ID set when placing an order.}
+
+\item{text}{string. Optional cancellation annotation. e.g. 'Spread Exceeded'.}
 }
 \description{
-Delete order
+Delete an order that has been placed.
 }

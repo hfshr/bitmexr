@@ -7,15 +7,16 @@
 delete_all_orders(symbol = NULL, filter = NULL, text = NULL, testnet = TRUE)
 }
 \arguments{
-\item{symbol}{string. Instrument symbol. e.g. 'XBTUSD'.}
+\item{symbol}{string. Optional symbol. If provided, only cancels orders for that symbol.}
 
-\item{filter}{Optional filter for cancellation. Use to only cancel some orders, e.g. '{"side": "Buy"}'.}
+\item{filter}{string. Optional filter for cancellation. Use to only cancel some orders,
+e.g. '{"side": "Buy"}'.}
 
-\item{text}{string. Optional order annotation. e.g. 'Take profit'.}
+\item{text}{string. Optional cancellation annotation. e.g. 'Spread Exceeded'.}
 
 \item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
 Set to \code{FALSE} by default.}
 }
 \description{
-Delete all orders
+Delete all orders that have been placed.
 }

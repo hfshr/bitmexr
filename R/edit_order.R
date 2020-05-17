@@ -1,8 +1,14 @@
 #' Edit an order
 #'
+#' Edit an order that has been placed.
+#'
 #' @inheritParams place_order
 #' @param orderID string. Order ID.
-#'
+#' @param origClOrdID string. The original client order ID
+#' @param clOrdID string. Optional new client order ID.
+#' @param text string. Optional amend annotation. e.g. 'Adjust skew'.
+#' @param leavesQty string. Optional leaves quantity in units of the instrument (i.e. contracts).
+#' Useful for amending partially filled orders.
 #'
 #' @export
 edit_order <- function(testnet = TRUE,

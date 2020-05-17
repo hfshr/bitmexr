@@ -4,15 +4,15 @@
 \alias{post_bitmex}
 \title{POST requests}
 \usage{
-post_bitmex(path, args = NULL, testnet = TRUE)
+post_bitmex(path, args = NULL, testnet = FALSE)
 }
 \arguments{
 \item{path}{string. End point for the api.}
 
 \item{args}{A named list containing the}
 
-\item{testnet}{logcial. Use \code{TRUE} access testnet.bitmex, \code{FALSE} to access the live site.}
+\item{testnet}{logcial. Use \code{TRUE} access the testnet API, \code{FALSE} to access the live API.}
 }
 \description{
-POST requests
+Use \code{post_bitmex()} to send POST requests. All POST requests require authentication.
 }

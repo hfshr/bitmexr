@@ -1,9 +1,11 @@
 
 #' Delete order
 #'
+#' Delete an order that has been placed.
+#'
 #' @param orderID string. Order ID.
 #' @param text string. Optional cancellation annotation. e.g. 'Spread Exceeded'.
-#' @param clOrdID string. The optinal client ID set when placing an order
+#' @param clOrdID string. Optional client ID set when placing an order.
 #' @inheritParams place_order
 #'
 #'
@@ -66,9 +68,12 @@ delete_order <- function(testnet = TRUE,
 
 #' Delete all orders
 #'
+#' Delete all orders that have been placed.
+#'
 #' @inheritParams delete_order
-#' @param symbol Optional symbol. If provided, only cancels orders for that symbol.
-#' @param filter Optional filter for cancellation. Use to only cancel some orders, e.g. '{"side": "Buy"}'.
+#' @param symbol string. Optional symbol. If provided, only cancels orders for that symbol.
+#' @param filter string. Optional filter for cancellation. Use to only cancel some orders,
+#' e.g. '{"side": "Buy"}'.
 #'
 #'
 #' @export

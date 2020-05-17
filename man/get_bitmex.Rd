@@ -4,17 +4,25 @@
 \alias{get_bitmex}
 \title{GET requests}
 \usage{
-get_bitmex(path, args = NULL, use_auth = FALSE, testnet = FALSE)
+get_bitmex(path, args = NULL, testnet = FALSE, use_auth = FALSE)
 }
 \arguments{
 \item{path}{string. End point for the api.}
 
 \item{args}{A named list containing the}
 
-\item{use_auth}{logcial. Use \code{TRUE} to use apikey with request}
+\item{testnet}{logcial. Use \code{TRUE} access the testnet API, \code{FALSE} to access the live API.}
 
-\item{testnet}{logcial. Use \code{TRUE} access testnet.bitmex, \code{FALSE} to access the live site.}
+\item{use_auth}{logcial. Use \code{TRUE} to access private endpoints.}
 }
 \description{
-GET requests
+Use \code{get_bitmex()} to send GET requests. For private endpoints, authentication is required.
+}
+\examples{
+donttest{
+# Access a public endpoint
+chat <- get_bitmex(path = "/chat")
+
+}
+
 }

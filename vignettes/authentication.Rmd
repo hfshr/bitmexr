@@ -1,0 +1,26 @@
+---
+title: "Authentication"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Authentication}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bitmexr)
+```
+
+To access private endpoints in the Bitmex API, authentication is need. First, An API key needs to be genereated for the account you want to use with `bitmexr`. 
+
+The 
+
+
+I would highly suggest experimenting with the testnet API

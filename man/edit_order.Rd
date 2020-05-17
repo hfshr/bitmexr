@@ -17,6 +17,31 @@ edit_order(
   text = NULL
 )
 }
+\arguments{
+\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
+Set to \code{FALSE} by default.}
+
+\item{orderID}{string. Order ID.}
+
+\item{origClOrdID}{string. The original client order ID}
+
+\item{clOrdID}{string. Optional new client order ID.}
+
+\item{leavesQty}{string. Optional leaves quantity in units of the instrument (i.e. contracts).
+Useful for amending partially filled orders.}
+
+\item{price}{double. Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.}
+
+\item{stopPx}{double. Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
+Use a price below the current price for stop-sell orders and buy-if-touched orders.
+Use \code{execInst} of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.}
+
+\item{pegOffsetValue}{string. Optional trailing offset from the current price for 'Stop', 'StopLimit', '
+MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders.
+Optional offset from the peg price for 'Pegged' orders.}
+
+\item{text}{string. Optional amend annotation. e.g. 'Adjust skew'.}
+}
 \description{
-Edit an order
+Edit an order that has been placed.
 }
