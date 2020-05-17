@@ -69,9 +69,7 @@ post_bitmex <- function(path, args = NULL, testnet = FALSE){
 #'
 #' # Access private endpoint using `use_auth` = `TRUE`
 #'
-#' user <- get_bitmex(path = "/execution", args = list(symbol = "XBTUSD), use_auth = TRUE)
-#'
-#'
+#' user <- get_bitmex(path = "/execution", args = list(symbol = "XBTUSD"), use_auth = TRUE)
 #' }
 #'
 #' @export

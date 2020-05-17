@@ -61,7 +61,6 @@
 #' }
 #'
 #' @export
-
 trades <- function(
   symbol = "XBTUSD",
   count = 1000,
@@ -140,7 +139,8 @@ trades <- function(
       sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret_test"),
                            verb = "GET",
                            url = modify_url(paste0(testnet_url, "/trade"), query = compact(args)) %>%
-                             gsub("https://testnet.bitmex.com", "", .data))
+                             gsub("https://testnet.bitmex.com", "", .data),
+                           data = "")
 
       res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args),
                 add_headers(.headers = c("api-expires"=expires,
@@ -161,7 +161,8 @@ trades <- function(
       sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret"),
                            verb = "GET",
                            url = modify_url(paste0(live_url, "/trade"), query = compact(args)) %>%
-                             gsub("https://www.bitmex.com", "", .data))
+                             gsub("https://www.bitmex.com", "", .data),
+                           data = "")
 
       res <- GET(paste0(live_url, "/trade"), ua, query = compact(args),
                  add_headers(.headers = c("api-expires"=expires,
@@ -195,3 +196,5 @@ trades <- function(
 
   return(result)
 }
+
+

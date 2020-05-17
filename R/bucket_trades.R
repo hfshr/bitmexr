@@ -131,14 +131,14 @@ bucket_trades <- function(
 
       expires<-as.character(as.integer(now() + 10))
 
-      sig <- gen_signature(secret = Sys.getenv("apisecret_test"),
+      sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret_test"),
                            verb = "GET",
                            url = modify_url(paste0(testnet_url, "/trade/bucketed"), query = compact(args)) %>%
                              gsub("https://testnet.bitmex.com", "", .data))
 
       res <- GET(paste0(testnet_url, "/trade/bucketed"), ua, query = compact(args),
                  add_headers(.headers = c("api-expires"=expires,
-                                          "api-key" = Sys.getenv("apikey_test"),
+                                          "api-key" = Sys.getenv("bitmex_apikey_test"),
                                           "api-signature"=sig))
       )
 
@@ -152,14 +152,14 @@ bucket_trades <- function(
 
       expires<-as.character(as.integer(now() + 10))
 
-      sig <- gen_signature(secret = Sys.getenv("apisecret"),
+      sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret"),
                            verb = "GET",
                            url = modify_url(paste0(live_url, "/trade/bucketed"), query = compact(args)) %>%
                              gsub("https://www.bitmex.com", "", .data))
 
       res <- GET(paste0(live_url, "/trade/bucketed"), ua, query = compact(args),
                  add_headers(.headers = c("api-expires"=expires,
-                                          "api-key" = Sys.getenv("apikey"),
+                                          "api-key" = Sys.getenv("bitmex_apikey"),
                                           "api-signature"=sig))
       )
     }
