@@ -18,3 +18,14 @@ get_bitmex(path, args = NULL, testnet = FALSE, use_auth = FALSE)
 \description{
 Use \code{get_bitmex()} to send GET requests. For private endpoints, authentication is required.
 }
+\examples{
+donttest{
+# Access a public endpoint
+chat <- get_bitmex(path = "/chat", args = list(channelID = 1,reverse='true'))
+
+# Access private endpoint using `use_auth` = `TRUE`
+
+user <- get_bitmex(path = "/execution", args = list(symbol = "XBTUSD"), use_auth = TRUE)
+}
+
+}

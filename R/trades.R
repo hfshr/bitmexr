@@ -131,52 +131,38 @@ trades <- function(
 
 
   if (isTRUE(testnet)) {
-
-    if (isTRUE(use_auth)) {
-
-      expires<-as.character(as.integer(now() + 10))
-
-      sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret_test"),
-                           verb = "GET",
-                           url = modify_url(paste0(testnet_url, "/trade"), query = compact(args)) %>%
-                             gsub("https://testnet.bitmex.com", "", .data),
-                           data = "")
-
-      res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args),
-                add_headers(.headers = c("api-expires"=expires,
-                                         "api-key" = Sys.getenv("bitmex_apikey_test"),
-                                         "api-signature"=sig))
-      )
-
-    } else {
-      res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args))
-    }
-
+    url <- testnet_url
+    base_url <- "https://testnet.bitmex.com"
+    key <-  Sys.getenv("bitmex_apikey_test")
+    secret <- Sys.getenv("bitmex_apisecret_test")
   } else {
+    url <- live_url
+    base_url <- "https://www.bitmex.com"
+    key <-  Sys.getenv("bitmex_apikey")
+    secret <- Sys.getenv("bitmex_apisecret")
+  }
 
-    if (isTRUE(use_auth)) {
 
-      expires<-as.character(as.integer(now() + 10))
+  if (isTRUE(use_auth)) {
 
-      sig <- gen_signature(secret = Sys.getenv("bitmex_apisecret"),
-                           verb = "GET",
-                           url = modify_url(paste0(live_url, "/trade"), query = compact(args)) %>%
-                             gsub("https://www.bitmex.com", "", .data),
-                           data = "")
+    prep_url <- modify_url(paste0(url, "/trade"), query = compact(args))
 
-      res <- GET(paste0(live_url, "/trade"), ua, query = compact(args),
-                 add_headers(.headers = c("api-expires"=expires,
-                                          "api-key" = Sys.getenv("bitmex_apikey"),
-                                          "api-signature"=sig))
-      )
-    }
+    expires<-as.character(as.integer(now() + 10))
 
-      else {
+    sig <- gen_signature(secret = secret,
+                         verb = "GET",
+                         url = gsub(base_url, "", prep_url),
+                         data = "")
 
-        res <- GET(paste0(live_url, "/trade"), ua, query = compact(args))
-      }
+    res <- GET(paste0(url, "/trade"), ua, query = compact(args),
+               add_headers(.headers = c("api-expires"=expires,
+                                        "api-key" = key,
+                                        "api-signature"=sig))
+    )
 
-    }
+  }  else {
+    res <- GET(paste0(url, "/trade"), ua, query = compact(args))
+  }
 
   check_status(res)
 
