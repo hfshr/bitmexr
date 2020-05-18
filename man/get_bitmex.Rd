@@ -13,17 +13,17 @@ get_bitmex(path, args = NULL, testnet = FALSE, use_auth = FALSE)
 
 \item{testnet}{logcial. Use \code{TRUE} access the testnet API, \code{FALSE} to access the live API.}
 
-\item{use_auth}{logcial. Use \code{TRUE} to access private endpoints.}
+\item{use_auth}{logical. Use \code{TRUE} to access private endpoints.}
 }
 \description{
 Use \code{get_bitmex()} to send GET requests. For private endpoints, authentication is required.
 }
 \examples{
-donttest{
+\donttest{
 # Access a public endpoint
-chat <- get_bitmex(path = "/chat", args = list(channelID = 1,reverse='true'))
+chat <- get_bitmex(path = "/chat", args = list(channelID = 1, reverse = "true"))
 
-# Access private endpoint using `use_auth` = `TRUE`
+# Access private endpoint using `use_auth` = `TRUE`.
 
 user <- get_bitmex(path = "/execution", args = list(symbol = "XBTUSD"), use_auth = TRUE)
 }

@@ -14,13 +14,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(bitmexr)
+To access private endpoints in the Bitmex API, authentication is needed. First, An API key needs to be generated for the account you want to use with `bitmexr`. For guidance see https://www.bitmex.com/app/restAPI#Authentication
+
+When you have an API key, edit your .Renviron file and include both the key and secret.
+
+Open .Renviron:
+
+```r
+file.edit("~/.Renviron")
 ```
 
-To access private endpoints in the Bitmex API, authentication is need. First, An API key needs to be genereated for the account you want to use with `bitmexr`. 
+For a testnet API key use:
 
-The 
+```
+bitmex_apikey_testnet = "your testnet api key"
+bitmex_apisecret_testnet = "your testnet api sectret"
+```
 
+For a live API key use:
 
-I would highly suggest experimenting with the testnet API
+```
+bitmex_apikey = "your live api key"
+bitmex_apisecret = "your live api sectret"
+```
+
+Functions in `bitmexr` requiring authentication will use these keys when creating the encrypted signature to send to private API endpoints. I would highly recommend experimenting with the testnet API prior to using the live API when it comes to submitting/editing/cancelling orders, and of course, use these functions at your own risk. 

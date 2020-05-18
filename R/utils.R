@@ -98,16 +98,16 @@ valid_dates <- function(symbol = NULL) {
 
 # Generate authentication signature
 gen_signature <- function(secret, verb, url, data = "") {
+  expires <- as.integer(now() + 10)
 
-  expires<-as.integer(now() + 10)
-
-  sig <- hmac(secret,
-              object = str_glue("{verb}{url}{expires}{data}"),
-              algo = "sha256")
+  sig <- hmac(
+    secret,
+    object = str_glue("{verb}{url}{expires}{data}"),
+    algo = "sha256"
+  )
 
   return(sig)
 }
 
 live_url <- "https://www.bitmex.com/api/v1"
 testnet_url <- "https://testnet.bitmex.com/api/v1"
-

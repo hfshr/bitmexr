@@ -163,7 +163,6 @@ map_bucket_trades <- function(
   if (verbose == TRUE) {
     pb$message(paste0("\n", length(breaks), " API requests generated."))
     pb$message(paste("Current limit is", requests, "requests per minute"))
-
   }
 
   res <- map_dfr(breaks, ~ {

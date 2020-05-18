@@ -27,6 +27,8 @@ Set to \code{FALSE} by default.}
 
 \item{clOrdID}{string. Optional new client order ID.}
 
+\item{orderQty}{double. Order quantity in units of the instrument (i.e. contracts).}
+
 \item{leavesQty}{string. Optional leaves quantity in units of the instrument (i.e. contracts).
 Useful for amending partially filled orders.}
 

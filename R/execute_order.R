@@ -6,7 +6,7 @@
 #' Set to `FALSE` by default.
 #' @param symbol string. Instrument symbol. e.g. 'XBTUSD'.
 #' @param side string. Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty`is negative.
-#' @param OrderQty double. Order quantity in units of the instrument (i.e. contracts).
+#' @param orderQty double. Order quantity in units of the instrument (i.e. contracts).
 #' @param price double. Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
 #' @param displayQty double. Optional quantity to display in the book. Use 0 for a fully hidden order.
 #' @param stopPx double. Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
@@ -46,6 +46,8 @@ place_order <- function(
   execInst = NULL,
   text = NULL
 ) {
+  check_internet()
+
   args <- list(
     symbol = symbol,
     side = side,
@@ -65,17 +67,13 @@ place_order <- function(
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
   if (isTRUE(testnet)) {
-
     url <- testnet_url
-    key <-  Sys.getenv("bitmex_apikey_test")
-    secret <- Sys.getenv("bitmex_apisecret_test")
-
+    key <- Sys.getenv("bitmex_apikey_testnet")
+    secret <- Sys.getenv("bitmex_apisecret_testnet")
   } else {
-
     url <- live_url
-    key <-  Sys.getenv("bitmex_apikey")
+    key <- Sys.getenv("bitmex_apikey")
     secret <- Sys.getenv("bitmex_apisecret")
-
   }
 
   expires <- as.character(as.integer(now() + 10))

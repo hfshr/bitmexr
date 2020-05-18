@@ -29,6 +29,8 @@ Set to \code{FALSE} by default.}
 
 \item{side}{string. Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless \code{orderQty}is negative.}
 
+\item{orderQty}{double. Order quantity in units of the instrument (i.e. contracts).}
+
 \item{price}{double. Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.}
 
 \item{displayQty}{double. Optional quantity to display in the book. Use 0 for a fully hidden order.}
@@ -59,8 +61,6 @@ AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed.
 instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.}
 
 \item{text}{string. Optional order annotation. e.g. 'Take profit'.}
-
-\item{OrderQty}{double. Order quantity in units of the instrument (i.e. contracts).}
 }
 \description{
 Place an order using the Bitmex API. Requires API key.

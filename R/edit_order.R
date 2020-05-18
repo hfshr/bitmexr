@@ -11,43 +11,44 @@
 #' Useful for amending partially filled orders.
 #'
 #' @export
-edit_order <- function(testnet = TRUE,
-                       orderID = NULL,
-                       origClOrdID = NULL,
-                       clOrdID = NULL,
-                       orderQty = NULL,
-                       leavesQty = NULL,
-                       price = NULL,
-                       stopPx = NULL,
-                       pegOffsetValue = NULL,
-                       text = NULL){
+edit_order <- function(
+  testnet = TRUE,
+  orderID = NULL,
+  origClOrdID = NULL,
+  clOrdID = NULL,
+  orderQty = NULL,
+  leavesQty = NULL,
+  price = NULL,
+  stopPx = NULL,
+  pegOffsetValue = NULL,
+  text = NULL
+) {
+  check_internet()
 
-  args <- list(orderID = orderID,
-               origClOrdID = origClOrdID,
-               clOrdID = clOrdID,
-               orderQty = orderQty,
-               leavesQty = leavesQty,
-               price = price,
-               stopPx = stopPx,
-               pegOffsetValue = pegOffsetValue,
-               text = text)
+  args <- list(
+    orderID = orderID,
+    origClOrdID = origClOrdID,
+    clOrdID = clOrdID,
+    orderQty = orderQty,
+    leavesQty = leavesQty,
+    price = price,
+    stopPx = stopPx,
+    pegOffsetValue = pegOffsetValue,
+    text = text
+  )
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
   expires <- as.character(as.integer(now() + 10))
 
   if (isTRUE(testnet)) {
-
     url <- testnet_url
-    key <-  Sys.getenv("bitmex_apikey_test")
-    secret <- Sys.getenv("bitmex_apisecret_test")
-
+    key <- Sys.getenv("bitmex_apikey_testnet")
+    secret <- Sys.getenv("bitmex_apisecret_testnet")
   } else {
-
     url <- live_url
-    key <-  Sys.getenv("bitmex_apikey")
+    key <- Sys.getenv("bitmex_apikey")
     secret <- Sys.getenv("bitmex_apisecret")
-
   }
 
 
@@ -73,5 +74,4 @@ edit_order <- function(testnet = TRUE,
   check_status(res)
 
   result <- fromJSON(content(res, "text"))
-
 }

@@ -2,8 +2,8 @@
 
 export(available_symbols)
 export(bucket_trades)
-export(delete_all_orders)
-export(delete_order)
+export(cancel_all_orders)
+export(cancel_order)
 export(edit_order)
 export(get_bitmex)
 export(map_bucket_trades)
