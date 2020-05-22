@@ -40,7 +40,8 @@
 #' bucket_trades(
 #'   binSize = "1h",
 #'   symbol = "ETHUSD"
-#' )
+#' ) %>%
+#'   head()
 #' }
 #' @export
 bucket_trades <- function(
@@ -191,10 +192,10 @@ bucket_trades <- function(
 #' tn_bucket_trades(
 #'   binSize = "1h",
 #'   symbol = "ETHUSD"
-#' )
+#' ) %>%
+#'   head()
 #' }
 #' @export
-
 tn_bucket_trades <- function(
   binSize = "1m",
   partial = "false",

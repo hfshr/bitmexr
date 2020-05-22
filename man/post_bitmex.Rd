@@ -15,11 +15,14 @@ post_bitmex(path, args = NULL)
 Use \code{post_bitmex()} to send POST requests. All POST requests require authentication.
 }
 \examples{
+
 \dontrun{
 # edit leverage on a position
 
-post_bitmex(path = "/position/leverage",
-            args = list("symbol" = "XBTUSD", "leverage" = 10))
+post_bitmex(
+  path = "/position/leverage",
+  args = list("symbol" = "XBTUSD", "leverage" = 10)
+)
 }
 
 }

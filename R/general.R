@@ -8,11 +8,14 @@
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
 #' @examples
+#'
 #' \dontrun{
 #' # edit leverage on a position
 #'
-#' post_bitmex(path = "/position/leverage",
-#'             args = list("symbol" = "XBTUSD", "leverage" = 10))
+#' post_bitmex(
+#'   path = "/position/leverage",
+#'   args = list("symbol" = "XBTUSD", "leverage" = 10)
+#' )
 #' }
 #'
 #' @export
@@ -61,6 +64,7 @@ post_bitmex <- function(
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
+#' @examples
 #' \dontrun{
 #' # edit leverage on a position
 #'

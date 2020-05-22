@@ -66,7 +66,6 @@ Place an order using the Bitmex API. Requires API key.
 
 # place limit order to Buy 10 contracts at a specific price
 place_order(symbol = "XBTUSD", price = 6000, orderQty = 10)
-
 }
 
 }

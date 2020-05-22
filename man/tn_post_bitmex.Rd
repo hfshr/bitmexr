@@ -14,13 +14,15 @@ tn_post_bitmex(path, args = NULL)
 \description{
 Use \code{tn_post_bitmex()} to send POST requests to the testnet API. All POST requests require authentication.
 }
-\references{
-\url{https://www.bitmex.com/api/explorer/}
-
+\examples{
 \dontrun{
 # edit leverage on a position
 
 tn_post_bitmex(path = "/position/leverage",
                args = list("symbol" = "XBTUSD", "leverage" = 10))
 }
+
+}
+\references{
+\url{https://www.bitmex.com/api/explorer/}
 }

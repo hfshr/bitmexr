@@ -70,13 +70,15 @@ trades(symbol = "XBTUSD", count = 10)
 trades(
   symbol = "XBTUSD",
   filter = "{'timestamp.minute':'12:15'}",
-  count = 10)
+  count = 10
+)
 
 # Also possible to combine more than one filter.
 trades(
   symbol = "XBTUSD",
   filter = "{'timestamp.minute':'12:15', 'size':10000}",
-  count = 10)
+  count = 10
+)
 }
 
 }
