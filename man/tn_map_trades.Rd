@@ -45,8 +45,7 @@ tn_map_trades(
   start_date = "2019-05-03 12:00:00",
   end_date = "2019-05-03 12:15:00",
   symbol = "XBTUSD"
-) \%>\%
-  head()
+)
 }
 
 }

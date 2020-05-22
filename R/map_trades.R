@@ -57,8 +57,7 @@
 #'   start_date = "2019-05-03 12:00:00",
 #'   end_date = "2019-05-03 12:15:00",
 #'   symbol = "XBTUSD"
-#' ) %>%
-#'   head()
+#' )
 #' }
 #'
 #' @export
@@ -189,8 +188,7 @@ map_trades <- function(
 #'   start_date = "2019-05-03 12:00:00",
 #'   end_date = "2019-05-03 12:15:00",
 #'   symbol = "XBTUSD"
-#' ) %>%
-#'   head()
+#' )
 #' }
 #'
 #' @export

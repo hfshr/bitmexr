@@ -64,8 +64,9 @@ consider using \code{\link[=tn_map_bucket_trades]{tn_map_bucket_trades()}}.
 
 tn_bucket_trades(
   binSize = "1h",
-  symbol = "ETHUSD"
-) \%>\%
-  head()
+  symbol = "ETHUSD",
+  count = 10
+)
+
 }
 }

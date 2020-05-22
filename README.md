@@ -66,8 +66,8 @@ example `tn_place_order()` will place an order on the testnet exchange.
 
 Accessing privite API endpoints requires an API key and secret.
 `bitmexr` reads these from the ~/.Renviron file - see vignette
-[“Authentication”](docs/articles/authentication.html) for more
-information.
+[Authentication](https://hfshr.github.io/bitmexr/articles/authentication.html)
+for more information.
 
 # Disclaimer
 

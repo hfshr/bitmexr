@@ -82,9 +82,10 @@ consider using \code{\link[=map_bucket_trades]{map_bucket_trades()}}.
 
 bucket_trades(
   binSize = "1h",
-  symbol = "ETHUSD"
-) \%>\%
-  head()
+  symbol = "ETHUSD",
+  count = 10
+)
+
 }
 }
 \references{
