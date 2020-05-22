@@ -11,7 +11,8 @@ tn_get_bitmex(path, args = NULL, use_auth = FALSE)
 
 \item{args}{A named list containing the}
 
-\item{use_auth}{logical. Use \code{TRUE} to access private endpoints.}
+\item{use_auth}{logical. Use \code{TRUE} to access private endpoints
+if authentication has been set up}
 }
 \description{
 Use \code{tn_get_bitmex()} to send GET requests to the testnet API. For private endpoints, authentication is required.
@@ -26,4 +27,7 @@ chat <- tn_get_bitmex(path = "/chat", args = list(channelID = 1, reverse = "true
 user <- tn_get_bitmex(path = "/execution", args = list(symbol = "XBTUSD"), use_auth = TRUE)
 }
 
+}
+\references{
+\url{https://www.bitmex.com/api/explorer/}
 }

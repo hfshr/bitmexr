@@ -2,7 +2,7 @@
 title: "Authentication"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Authentication}
+  %\VignetteIndexEntry{authentication}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -5,6 +5,16 @@
 #' @param path string. End point for the api.
 #' @param args A named list containing the
 #'
+#' @references \url{https://www.bitmex.com/api/explorer/}
+#'
+#' @examples
+#' \dontrun{
+#' # edit leverage on a position
+#'
+#' post_bitmex(path = "/position/leverage",
+#'             args = list("symbol" = "XBTUSD", "leverage" = 10))
+#' }
+#'
 #' @export
 post_bitmex <- function(
   path,
@@ -49,6 +59,15 @@ post_bitmex <- function(
 #' @param path string. End point for the api.
 #' @param args A named list containing valid paramteters for the request.
 #'
+#' @references \url{https://www.bitmex.com/api/explorer/}
+#'
+#' \dontrun{
+#' # edit leverage on a position
+#'
+#' tn_post_bitmex(path = "/position/leverage",
+#'                args = list("symbol" = "XBTUSD", "leverage" = 10))
+#' }
+#'
 #' @export
 tn_post_bitmex <- function(
   path,
@@ -91,7 +110,10 @@ tn_post_bitmex <- function(
 #' Use `get_bitmex()` to send GET requests. For private endpoints, authentication is required.
 #'
 #' @inheritParams post_bitmex
-#' @param use_auth logical. Use `TRUE` to access private endpoints.
+#' @param use_auth logical. Use `TRUE` to access private endpoints
+#' if authentication has been set up
+#'
+#' @references \url{https://www.bitmex.com/api/explorer/}
 #'
 #' @examples
 #' \dontrun{
@@ -151,7 +173,10 @@ get_bitmex <- function(
 #' Use `tn_get_bitmex()` to send GET requests to the testnet API. For private endpoints, authentication is required.
 #'
 #' @inheritParams post_bitmex
-#' @param use_auth logical. Use `TRUE` to access private endpoints.
+#' @param use_auth logical. Use `TRUE` to access private endpoints
+#' if authentication has been set up
+#'
+#' @references \url{https://www.bitmex.com/api/explorer/}
 #'
 #' @examples
 #' \dontrun{

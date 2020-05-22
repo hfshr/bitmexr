@@ -71,6 +71,8 @@ navbar:
     menu:
     - text: Authentication
       href: articles/authentication.html
+    - text: Trade data
+      href: articles/trade-data.html
     - text: Placing orders with bitmexr
       href: articles/placing-orders.html
   right:
