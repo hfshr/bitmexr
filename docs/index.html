@@ -32,17 +32,20 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+  <a href="/index.html">
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="articles/getting-started.html">Intro</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -55,18 +58,30 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/getting-started.html">Getting started</a>
+      <a href="articles/authentication.html">Authentication</a>
+    </li>
+    <li>
+      <a href="articles/placing-orders.html">Placing orders with bitmexr</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="news/index.html">Change log</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/hfshr/bitmexr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/hfshr/bitmexr">
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -92,7 +107,7 @@
 <div id="overview" class="section level1">
 <h1 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h1>
-<p>The goal of <code>bitmexr</code> is to provide an API wrapper for cryptocurrency derivatives exchange <a href="https://www.bitmex.com/">BitMEX</a>. Specifically, it can help R users access price/trade data across the many products available on the exchange, which can then be used for further analysis. For more information about the API, check <a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a>.</p>
+<p>The goal of <code>bitmexr</code> is to provide an API wrapper for cryptocurrency derivatives exchange BitMEX. <code>bitmexr</code> now provides support for all endpoints for both the testnet (www.testnet.bitmex.com) and the live exchange (www.bitmex.com). For more information about the API, check <a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a>.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -100,57 +115,28 @@
 <p>The development version of <code>bitmexr</code> can be installed from github:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"hfshr/bitmexr"</span>)</pre></div>
+<p>Or the released version from CRAN:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"bitmexr"</span>)</pre></div>
 </div>
 <div id="package-contents" class="section level1">
 <h1 class="hasAnchor">
 <a href="#package-contents" class="anchor"></a>Package contents</h1>
-<p>The package as two main functions:</p>
+<p>The package contains wrappers around the majority of API endpoints.</p>
 <ul>
 <li>
-<code><a href="reference/trades.html">trades()</a></code> returns individual trade data for a specified symbol/time period</li>
+<code><a href="reference/trades.html">trades()</a></code> and <code><a href="reference/map_trades.html">map_trades()</a></code> return individual trade data for a specified symbol/time period</li>
 <li>
-<code><a href="reference/bucket_trades.html">bucket_trades()</a></code> returns bucketed trade data (open, high, low, close) for either 1 minute, 5 minute, 1 hour or 1 day time frames for a specified symbol.</li>
+<code><a href="reference/bucket_trades.html">bucket_trades()</a></code> and <code><a href="reference/map_bucket_trades.html">map_bucket_trades()</a></code> return bucketed trade data (open, high, low, close) for either 1 minute, 5 minute, 1 hour or 1 day time frames for a specified symbol.</li>
+<li>
+<code><a href="reference/place_order.html">place_order()</a></code>, <code><a href="reference/edit_order.html">edit_order()</a></code> and <code><a href="reference/cancel_order.html">cancel_order()</a></code> can be used to manage trades on the exchange.</li>
 </ul>
-<p>The package also contains map_* variants of these functions (<code><a href="reference/map_trades.html">map_trades()</a></code> and <code><a href="reference/map_bucket_trades.html">map_bucket_trades()</a></code>) which create and send multiple API requests when the total length of the data desired is greater than the 1000 row limit in a single API request.</p>
-</div>
-<div id="examples" class="section level1">
-<h1 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h1>
-<p>Simple price data for the most recent trades on the exchange:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bitmexr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-
-<span class="co"># 1000 for most recent trades on the exchange for "XBTUSD"</span>
-
-<span class="fu"><a href="reference/trades.html">trades</a></span>(<span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">timestamp</span>, <span class="no">symbol</span>, <span class="no">side</span>, <span class="no">size</span>, <span class="no">price</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()
-<span class="co">#&gt;             timestamp symbol side size  price</span>
-<span class="co">#&gt; 1 2020-04-22 19:38:08 XBTUSD  Buy    4 7109.5</span>
-<span class="co">#&gt; 2 2020-04-22 19:37:59 XBTUSD Sell   50 7109.0</span>
-<span class="co">#&gt; 3 2020-04-22 19:37:58 XBTUSD Sell  212 7109.0</span>
-<span class="co">#&gt; 4 2020-04-22 19:37:48 XBTUSD Sell    2 7109.0</span>
-<span class="co">#&gt; 5 2020-04-22 19:37:45 XBTUSD Sell 1000 7109.0</span>
-<span class="co">#&gt; 6 2020-04-22 19:37:44 XBTUSD Sell  250 7109.0</span></pre></div>
-<p>Get all bucketed trade data (hourly binSize) between January 2019 and June 2019.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/map_bucket_trades.html">map_bucket_trades</a></span>(<span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2019-01-01"</span>,
-                  <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2019-06-01"</span>,
-                  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1h"</span>,
-                  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="fl">1</span>:<span class="fl">6</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()
-<span class="co">#&gt;             timestamp symbol   open   high    low  close</span>
-<span class="co">#&gt; 1 2019-01-01 00:00:00 XBTUSD 3686.5 3695.5 3682.5 3693.0</span>
-<span class="co">#&gt; 2 2019-01-01 01:00:00 XBTUSD 3693.0 3705.0 3684.5 3694.0</span>
-<span class="co">#&gt; 3 2019-01-01 02:00:00 XBTUSD 3694.0 3695.0 3675.5 3681.5</span>
-<span class="co">#&gt; 4 2019-01-01 03:00:00 XBTUSD 3681.5 3683.5 3665.0 3678.5</span>
-<span class="co">#&gt; 5 2019-01-01 04:00:00 XBTUSD 3678.5 3687.0 3678.5 3685.0</span>
-<span class="co">#&gt; 6 2019-01-01 05:00:00 XBTUSD 3685.0 3699.0 3683.0 3684.0</span></pre></div>
-</div>
-<div id="what-the-package-does-not-do" class="section level1">
-<h1 class="hasAnchor">
-<a href="#what-the-package-does-not-do" class="anchor"></a>What the package <em>does not</em> do</h1>
-<p>The package is designed to simply obtain trade data from the exchange for further analysis/visualisation within R. However the BitMEX API can do far more than what is implemented within this package. For more information please see <a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a>. Currently, the package does not support any of the API requests requiring authentication (e.g., obtaining trade data for personal account, posting/executing trades etc), however this may change in the future.</p>
+<p>Additional API endpoints that do not have a dedicated wrapper can be accessed using <code><a href="reference/get_bitmex.html">get_bitmex()</a></code> for GET requests and <code><a href="reference/post_bitmex.html">post_bitmex()</a></code> for post requests. For example use:</p>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/get_bitmex.html">get_bitmex</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">"/chat"</span>, <span class="kw">args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"false"</span>))</pre></div>
+<p>to get the latest trollbox messages.</p>
+<p><strong>Testnet API</strong></p>
+<p>All functions in the package also work with the testnet API simply use the “tn_” prefix to access the testnet version of the function. For example <code><a href="reference/tn_place_order.html">tn_place_order()</a></code> will place an order on the testnet exchange.</p>
+<p><strong>Authentication</strong></p>
+<p>Accessing privite API endpoints requires an API key and secret. <code>bitmexr</code> reads these from the ~/.Renviron file - see vignette <a href="docs/articles/authentication.html">“Authentication”</a> for more information.</p>
 </div>
 <div id="disclaimer" class="section level1">
 <h1 class="hasAnchor">
@@ -174,6 +160,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=bitmexr">https://​cloud.r-project.org/​package=bitmexr</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/hfshr/bitmexr/">https://​github.com/​hfshr/​bitmexr/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/hfshr/bitmexr/issues">https://​github.com/​hfshr/​bitmexr/​issues</a>

@@ -5,7 +5,6 @@
 \title{Place an order}
 \usage{
 place_order(
-  testnet = FALSE,
   symbol = NULL,
   side = NULL,
   orderQty = NULL,
@@ -22,9 +21,6 @@ place_order(
 )
 }
 \arguments{
-\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
-Set to \code{FALSE} by default.}
-
 \item{symbol}{string. Instrument symbol. e.g. 'XBTUSD'.}
 
 \item{side}{string. Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless \code{orderQty}is negative.}
@@ -64,4 +60,13 @@ instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouche
 }
 \description{
 Place an order using the Bitmex API. Requires API key.
+}
+\examples{
+\dontrun{
+
+# place limit order to Buy 10 contracts at a specific price
+place_order(symbol = "XBTUSD", price = 6000, orderQty = 10)
+
+}
+
 }

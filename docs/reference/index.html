@@ -71,17 +71,20 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/getting-started.html">Intro</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -94,18 +97,30 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/getting-started.html">Getting started</a>
+      <a href="../articles/authentication.html">Authentication</a>
+    </li>
+    <li>
+      <a href="../articles/placing-orders.html">Placing orders with bitmexr</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Change log</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/hfshr/bitmexr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/hfshr/bitmexr">
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -136,25 +151,6 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-bitmexr" class="hasAnchor"><a href="#section-bitmexr" class="anchor"></a>bitmexr</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="bitmexr.html">bitmexr</a></code> </p>
-        </td>
-        <td><p>bitmexr: R Client for the BitMEX Exchange</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
           <h2 id="section-individual-trade-data" class="hasAnchor"><a href="#section-individual-trade-data" class="anchor"></a>Individual trade data</h2>
           <p class="section-desc"><p>These function retrieve data regarding individual trades that have been executed on the exchange.</p></p>
         </th>
@@ -173,15 +169,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="tn_trades.html">tn_trades()</a></code> </p>
+        </td>
+        <td><p>Individual trade data (testnet)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="map_trades.html">map_trades()</a></code> </p>
         </td>
         <td><p>Trade data over an extended period</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_map_trades.html">tn_map_trades()</a></code> </p>
+        </td>
+        <td><p>Trade data over an extended period (testnet)</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
           <h2 id="section-bucketed-trade-data" class="hasAnchor"><a href="#section-bucketed-trade-data" class="anchor"></a>Bucketed trade data</h2>
-          <p class="section-desc"><p>It is often convient to grouped individual trades together into “buckets” for a specified time interval. These functions return bucketed trade data for the follow intervals: 1-minute, 5-minutes, 1-hour, 1-day</p></p>
+          <p class="section-desc"><p>It is often convient to group individual trades together into “buckets” for a specified time interval. These functions return bucketed trade data for the follow intervals: 1-minute, 5-minutes, 1-hour, 1-day</p></p>
         </th>
       </tr>
       
@@ -198,9 +206,119 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="tn_bucket_trades.html">tn_bucket_trades()</a></code> </p>
+        </td>
+        <td><p>Bucketed trade data (testnet)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="map_bucket_trades.html">map_bucket_trades()</a></code> </p>
         </td>
         <td><p>Bucket trade data over an extended period</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_map_bucket_trades.html">tn_map_bucket_trades()</a></code> </p>
+        </td>
+        <td><p>Bucket trade data over an extended period (testnet)</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-managing-trades" class="hasAnchor"><a href="#section-managing-trades" class="anchor"></a>Managing trades</h2>
+          <p class="section-desc"><p>These functions allow you to place, edit and cancel orders on the exchange.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="place_order.html">place_order()</a></code> </p>
+        </td>
+        <td><p>Place an order</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_place_order.html">tn_place_order()</a></code> </p>
+        </td>
+        <td><p>Place an order (testnet)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="edit_order.html">edit_order()</a></code> </p>
+        </td>
+        <td><p>Edit an order</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_edit_order.html">tn_edit_order()</a></code> </p>
+        </td>
+        <td><p>Edit an order (testnet)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cancel_order.html">cancel_order()</a></code> </p>
+        </td>
+        <td><p>Cancel order</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_cancel_order.html">tn_cancel_order()</a></code> </p>
+        </td>
+        <td><p>Cancel order (testnet)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cancel_all_orders.html">cancel_all_orders()</a></code> </p>
+        </td>
+        <td><p>Canncel all orders</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_cancel_all_orders.html">tn_cancel_all_orders()</a></code> </p>
+        </td>
+        <td><p>Canncel all orders (testnet)</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-additional-requests" class="hasAnchor"><a href="#section-additional-requests" class="anchor"></a>Additional requests</h2>
+          <p class="section-desc"><p>Use these functions for addition GET or POST requests that do not have a specific wrapper. Just specify the path to the API endpiont and valid parameters with the request.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="get_bitmex.html">get_bitmex()</a></code> </p>
+        </td>
+        <td><p>GET requests</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_get_bitmex.html">tn_get_bitmex()</a></code> </p>
+        </td>
+        <td><p>GET requests (testnet)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="post_bitmex.html">post_bitmex()</a></code> </p>
+        </td>
+        <td><p>POST requests</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tn_post_bitmex.html">tn_post_bitmex()</a></code> </p>
+        </td>
+        <td><p>POST requests (testnet)</p></td>
       </tr>
     </tbody><tbody>
       <tr>

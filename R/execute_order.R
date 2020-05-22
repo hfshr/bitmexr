@@ -2,8 +2,6 @@
 #'
 #' Place an order using the Bitmex API. Requires API key.
 #'
-#' @param testnet logical. Use `TRUE` to query the BitMEX testnet platform.
-#' Set to `FALSE` by default.
 #' @param symbol string. Instrument symbol. e.g. 'XBTUSD'.
 #' @param side string. Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty`is negative.
 #' @param orderQty double. Order quantity in units of the instrument (i.e. contracts).
@@ -29,9 +27,17 @@
 #' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
 #' @param text string. Optional order annotation. e.g. 'Take profit'.
 #'
+#'
+#' @examples
+#' \dontrun{
+#'
+#' # place limit order to Buy 10 contracts at a specific price
+#' place_order(symbol = "XBTUSD", price = 6000, orderQty = 10)
+#'
+#' }
+#'
 #' @export
 place_order <- function(
-  testnet = FALSE,
   symbol = NULL,
   side = NULL,
   orderQty = NULL,
@@ -66,33 +72,99 @@ place_order <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  if (isTRUE(testnet)) {
-    url <- testnet_url
-    key <- Sys.getenv("bitmex_apikey_testnet")
-    secret <- Sys.getenv("bitmex_apisecret_testnet")
-  } else {
-    url <- live_url
-    key <- Sys.getenv("bitmex_apikey")
-    secret <- Sys.getenv("bitmex_apisecret")
-  }
-
   expires <- as.character(as.integer(now() + 10))
 
   sig <- gen_signature(
-    secret = secret,
+    secret = Sys.getenv("bitmex_apisecret"),
     verb = "POST",
     url = "/api/v1/order",
     data = json_body
   )
 
   res <- POST(
-    paste0(url, "/order"),
+    paste0(live_url, "/order"),
     body = json_body,
     encode = "json",
     content_type_json(),
     add_headers(.headers = c(
       "api-expires" = expires,
-      "api-key" = key,
+      "api-key" = Sys.getenv("bitmex_apikey"),
+      "api-signature" = sig
+    ))
+  )
+
+  check_status(res)
+
+  result <- fromJSON(content(res, "text"))
+
+  return(result)
+}
+
+#' Place an order (testnet)
+#'
+#' Place an order using the Bitmex tetsnet API. Requires testnet API key.
+#'
+#' @inheritParams place_order
+#'
+#' @examples
+#' \dontrun{
+#' # place limit order to Buy at specific price
+#' tn_place_order(symbol = "XBTUSD", price = 6000, orderQty = 10)
+#' }
+#'
+#' @export
+tn_place_order <- function(
+  symbol = NULL,
+  side = NULL,
+  orderQty = NULL,
+  price = NULL,
+  displayQty = NULL,
+  stopPx = NULL,
+  clOrdID = NULL,
+  pegOffsetValue = NULL,
+  pegPriceType = NULL,
+  ordType = NULL,
+  timeInForce = NULL,
+  execInst = NULL,
+  text = NULL
+) {
+  check_internet()
+
+  args <- list(
+    symbol = symbol,
+    side = side,
+    orderQty = orderQty,
+    price = price,
+    displayQty = displayQty,
+    stopPx = stopPx,
+    clOrdID = clOrdID,
+    pegOffsetValue = pegOffsetValue,
+    pegPriceType = pegPriceType,
+    ordType = ordType,
+    timeInForce = timeInForce,
+    execInst = execInst,
+    text = text
+  )
+
+  json_body <- toJSON(compact(args), auto_unbox = TRUE)
+
+  expires <- as.character(as.integer(now() + 10))
+
+  sig <- gen_signature(
+    secret = Sys.getenv("testnet_bitmex_apisecret"),
+    verb = "POST",
+    url = "/api/v1/order",
+    data = json_body
+  )
+
+  res <- POST(
+    paste0(testnet_url, "/order"),
+    body = json_body,
+    encode = "json",
+    content_type_json(),
+    add_headers(.headers = c(
+      "api-expires" = expires,
+      "api-key" = Sys.getenv("testnet_bitmex_apikey"),
       "api-signature" = sig
     ))
   )

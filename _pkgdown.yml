@@ -1,9 +1,6 @@
-destination: docs
+url: https://hfshr.github.io/bitmexr/
 
 reference:
-- title: bitmexr
-  contents:
-  - bitmexr
 
 - title: Individual trade data
   desc: >
@@ -11,16 +8,47 @@ reference:
     executed on the exchange.
   contents:
   - trades
+  - tn_trades
   - map_trades
+  - tn_map_trades
 
 - title: Bucketed trade data
   desc: >
-    It is often convient to grouped individual trades together into "buckets" for
+    It is often convient to group individual trades together into "buckets" for
     a specified time interval. These functions return bucketed trade data for the follow intervals:
     1-minute, 5-minutes, 1-hour, 1-day
   contents:
   - bucket_trades
+  - tn_bucket_trades
   - map_bucket_trades
+  - tn_map_bucket_trades
+
+- title: Managing trades
+  desc: >
+    These functions allow you to place, edit and cancel orders on the exchange.
+  contents:
+  - place_order
+  - tn_place_order
+
+  - edit_order
+  - tn_edit_order
+
+  - cancel_order
+  - tn_cancel_order
+
+  - cancel_all_orders
+  - tn_cancel_all_orders
+
+- title: Additional requests
+  desc: >
+    Use these functions for addition GET or POST requests that do not have a
+    specific wrapper. Just specify the path to the API endpiont and valid parameters
+    with the request.
+  contents:
+  - get_bitmex
+  - tn_get_bitmex
+  - post_bitmex
+  - tn_post_bitmex
 
 - title: Helpers
   desc: >
@@ -29,4 +57,27 @@ reference:
   - available_symbols
   - valid_dates
 
+navbar:
+  title: bitmexr
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: /index.html
+  - text: Intro
+    href: articles/getting-started.html
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    menu:
+    - text: Authentication
+      href: articles/authentication.html
+    - text: Placing orders with bitmexr
+      href: articles/placing-orders.html
+  right:
+  - text: News
+    menu:
+    - text: "Change log"
+      href: news/index.html
+  - icon: fa-github fa-lg
+    href: https://github.com/hfshr/bitmexr
 

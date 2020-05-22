@@ -11,7 +11,6 @@ map_bucket_trades(
   symbol = "XBTUSD",
   partial = "false",
   filter = NULL,
-  testnet = FALSE,
   use_auth = FALSE,
   verbose = FALSE
 )
@@ -34,9 +33,6 @@ If \code{"true"}, will send in-progress (incomplete) bins for the current time p
 
 \item{filter}{an optional character string for table filtering.
 Send JSON key/value pairs, such as \code{"{'key':'value'}"}. See examples in \code{\link[=trades]{trades()}}.}
-
-\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
-Set to \code{FALSE} by default.}
 
 \item{use_auth}{logical. Use \code{TRUE} to enable authentication with API key.}
 
@@ -92,6 +88,6 @@ map_bucket_trades(
 
 }
 \references{
-url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
+\url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
 }
 \concept{bucket_trades}

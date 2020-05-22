@@ -15,8 +15,7 @@ bucket_trades(
   start = NULL,
   startTime = NULL,
   endTime = NULL,
-  use_auth = FALSE,
-  testnet = FALSE
+  use_auth = FALSE
 )
 }
 \arguments{
@@ -50,9 +49,6 @@ Starting date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd
 Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd hh-mm-ss"}.}
 
 \item{use_auth}{logical. Use \code{TRUE} to enable authentication with API key.}
-
-\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
-Set to \code{FALSE} by default.}
 }
 \value{
 \code{bucket_trades()} returns a \code{data.frame} containing:

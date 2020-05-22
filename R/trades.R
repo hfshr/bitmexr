@@ -19,8 +19,6 @@
 #' Starting date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
 #' @param endTime an optional character string.
 #' Ending date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
-#' @param testnet logical. Use `TRUE` to query the BitMEX testnet platform.
-#' Set to `FALSE` by default.
 #' @param use_auth logical. Use `TRUE` to enable authentication with API key.
 #'
 #'
@@ -45,19 +43,19 @@
 #' @examples
 #' \donttest{
 #' # Return 1000 most recent trades for symbol "XBTUSD".
-#' trades(symbol = "XBTUSD")
+#' trades(symbol = "XBTUSD", count = 10)
 #'
 #' # Use filter for very specific values: Return trade data executed at 12:15.
 #' trades(
 #'   symbol = "XBTUSD",
-#'   filter = "{'timestamp.minute':'12:15'}"
-#' )
+#'   filter = "{'timestamp.minute':'12:15'}",
+#'   count = 10)
 #'
 #' # Also possible to combine more than one filter.
 #' trades(
 #'   symbol = "XBTUSD",
-#'   filter = "{'timestamp.minute':'12:15', 'size':10000}"
-#' )
+#'   filter = "{'timestamp.minute':'12:15', 'size':10000}",
+#'   count = 10)
 #' }
 #'
 #' @export
@@ -70,7 +68,6 @@ trades <- function(
   start = NULL,
   startTime = NULL,
   endTime = NULL,
-  testnet = FALSE,
   use_auth = FALSE
 ) {
   check_internet()
@@ -129,44 +126,174 @@ trades <- function(
 
   ua <- user_agent("https://github.com/hfshr/bitmexr")
 
-
-  if (isTRUE(testnet)) {
-    url <- testnet_url
-    base_url <- "https://testnet.bitmex.com"
-    key <- Sys.getenv("bitmex_apikey_testnet")
-    secret <- Sys.getenv("bitmex_apisecret_testnet")
-  } else {
-    url <- live_url
-    base_url <- "https://www.bitmex.com"
-    key <- Sys.getenv("bitmex_apikey")
-    secret <- Sys.getenv("bitmex_apisecret")
-  }
-
-
   if (isTRUE(use_auth)) {
-    prep_url <- modify_url(paste0(url, "/trade"), query = compact(args))
+    prep_url <- modify_url(paste0(live_url, "/trade"), query = compact(args))
 
     expires <- as.character(as.integer(now() + 10))
 
     sig <- gen_signature(
-      secret = secret,
+      secret = Sys.getenv("bitmex_apisecret"),
       verb = "GET",
-      url = gsub(base_url, "", prep_url),
+      url = gsub("https://www.bitmex.com", "", prep_url),
       data = ""
     )
 
     res <- GET(
-      paste0(url, "/trade"),
+      paste0(live_url, "/trade"),
       ua,
       query = compact(args),
       add_headers(.headers = c(
         "api-expires" = expires,
-        "api-key" = key,
+        "api-key" = Sys.getenv("bitmex_apikey"),
         "api-signature" = sig
       ))
     )
   } else {
-    res <- GET(paste0(url, "/trade"), ua, query = compact(args))
+    res <- GET(paste0(live_url, "/trade"), ua, query = compact(args))
+  }
+
+  check_status(res)
+
+  limits <- rate_limit(res)
+
+  if (isTRUE(limits[["remaining"]] == 2)) {
+    warning(
+      "\nRate limit nearing max. Pausing for 60 seconds to reset limit\n",
+      immediate. = TRUE
+    )
+
+    Sys.sleep(60)
+  }
+
+  result <- jsonlite::fromJSON(content(res, "text")) %>%
+    mutate(timestamp = as_datetime(.data$timestamp))
+
+  return(result)
+}
+
+
+
+#' Individual trade data (testnet)
+#'
+#' `tn_trades()` retrieves data regarding individual trades that have been executed on the
+#' testnet exchange.
+#'
+#' @inheritParams trades
+#'
+#' @family tn_map_trades
+#'
+#' @references \url{https://testnet.bitmex.com/api/explorer/#!/Trade/Trade_get}
+#'
+#' @examples
+#' \donttest{
+#' # Return 1000 most recent trades for symbol "XBTUSD".
+#' tn_trades(symbol = "XBTUSD")
+#'
+#' # Use filter for very specific values: Return trade data executed at 12:15.
+#' tn_trades(
+#'   symbol = "XBTUSD",
+#'   filter = "{'timestamp.minute':'12:15'}"
+#' )
+#'
+#' # Also possible to combine more than one filter.
+#' tn_trades(
+#'   symbol = "XBTUSD",
+#'   filter = "{'timestamp.minute':'12:15', 'size':10000}"
+#' )
+#' }
+#'
+#' @export
+tn_trades <- function(
+  symbol = "XBTUSD",
+  count = 1000,
+  reverse = "true",
+  filter = NULL,
+  columns = NULL,
+  start = NULL,
+  startTime = NULL,
+  endTime = NULL,
+  use_auth = FALSE
+) {
+  check_internet()
+
+  stop_if_not(
+    symbol %in% as,
+    msg = paste(
+      "Please use one of the available symbols:",
+      paste(as, collapse = ", ")
+    )
+  )
+
+  stop_if(
+    count > 1000,
+    msg = "Maximum reponse per request is 1000. Use map_trades for returning > 1000 rows"
+  )
+
+  if (!is.null(startTime)) {
+    reverse <- "false"
+    stop_if(
+      date_check(startTime),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+  if (!is.null(endTime)) {
+    reverse <- "false"
+    stop_if(
+      date_check(endTime),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+  if (!is.null(startTime) & !is.null(endTime)) {
+    startTime <- as_datetime(startTime)
+    endTime <- as_datetime(endTime)
+
+    stop_if(
+      startTime > endTime,
+      msg = "Make sure start date is before end date"
+    )
+  }
+
+  args <- list(
+    symbol = symbol,
+    filter = gsub("'", "\"", filter),
+    columns = columns,
+    count = count,
+    start = start,
+    reverse = reverse,
+    startTime = startTime,
+    endTime = endTime
+  )
+
+  ua <- user_agent("https://github.com/hfshr/bitmexr")
+
+  if (isTRUE(use_auth)) {
+    prep_url <- modify_url(paste0(testnet_url, "/trade"), query = compact(args))
+
+    expires <- as.character(as.integer(now() + 10))
+
+    sig <- gen_signature(
+      secret = Sys.getenv("testnet_bitmex_apisecret"),
+      verb = "GET",
+      url = gsub("https://testnet.bitmex.com", "", prep_url),
+      data = ""
+    )
+
+    res <- GET(
+      paste0(testnet_url, "/trade"),
+      ua,
+      query = compact(args),
+      add_headers(.headers = c(
+        "api-expires" = expires,
+        "api-key" = Sys.getenv("testnet_bitmex_apikey"),
+        "api-signature" = sig
+      ))
+    )
+  } else {
+    res <- GET(paste0(testnet_url, "/trade"), ua, query = compact(args))
   }
 
   check_status(res)

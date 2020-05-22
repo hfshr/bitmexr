@@ -12,140 +12,34 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(httptest)
-start_vignette("getting-started")
 ```
 
-```{r setup, message=FALSE}
-library(bitmexr)
-library(dplyr)
-library(ggplot2)
-library(tidyquant)
-```
+This vignette gives a brief overview of the main functions within the `bitmexr` package. 
+To access the testnet API, use the `tn_` prefix to any of the functions in the package (e.g., `bitmexr::trades()` accesses trade data from the live API whereas `bitmexr::tn_trades()` accesses trade data from the testnet API). This is useful is you want to test out placing/managing orders in a risk free environment.
 
-The following examples demonstrate how `bitmexr` can be used to obtain trade data from BitMEX, and used with other packages such as `tidyqaunt` to explore and visualise the data.
+# Trade data
 
-# Core functions
+To access trades that have been executed on the exchange you can use either:
 
-The core of the package are the `trades()` and `bucket_trades()` functions. 
+- `trades()`: to get individual trades that have been executed.
+- `bucket_trades()` to get bucketed trade data in 1m, 5m, 1hour or 1day buckets
 
-`trades()` collects data regarding individual trades that have been executed on the exchange. 
+`bucket_trades() `is typically more useful when wanting data over an extended period of time due to the sheer volume of trades that are executed on the exchange each day. These functions also have map_* variants to help overcome the 1000 row per request limit. 
 
-```{r message=FALSE}
-# Get 1000 most recent trades on the exchange
-trade_data <- trades(
-  symbol = "XBTUSD",
-  reverse = "true",
-  count = 1000
-)
-```
+Please see the [Trade data](trade-data.html) vignette for more details on the functions.
 
+# Placing, editing and cancelling orders
 
-`bucket_trades()` collects trade data which has been summarised into the follow time frames: 1-minute, 5-minute, 1-hour and 1-day. 
-Given the large volume of trades performed daily on the exchange, this function is preferred over `trades()` if you want to obtain data spanning many days.
+`bitmexr` also supports placing and managing orders on the exchange. These functions require an API key and secret to work. Please read the vignette [Authentication](authentication.html) for information on how to set this up in `bitmexr`.
 
-```{r message=FALSE}
-# Daily OHLC data from 2017-01-01 to 2020-01-01
+The following functions are available:
 
-bucket_data <- bucket_trades(
-  binSize = "1d",
-  startTime = "2018-01-01",
-  endTime = "2020-05-01",
-  symbol = "XBTUSD"
-)
-```
+- `place_order()` for placing orders
+- `edit_order()` for editing orders
+- `cancel_order()` or `cancel_all_orders()` to cancel orders
 
-For more fine grained data, you may want to specify a smaller time frame.
+Please see the vignette [Placing and managing order with bitmexr](placing-orders.html) for more information.
 
-```{r message=FALSE}
-# 1-minute buckets from 2020-01-01 until 2020-01-03
+# Tips
 
-bucket_data <- bucket_trades(
-  binSize = "1m",
-  startTime = "2020-01-01",
-  endTime = "2020-01-03",
-  symbol = "XBTUSD"
-)
-
-max(as.Date(bucket_data$timestamp))
-```
-
-However, the maximum date returned is still "2020-01-01". This is because the maximum number of rows returned per API calls is 1000, and there are greater than 1000 1-minute buckets spanning the desired 3 day sample.
-To solve this problem, the package provides map_* variates of the two core functions.
-
-# Using the map_* variants
-
-Take our desired 3-day time period again. Using `map_bucket_trades()` will create the necessary number of API requests to satisfy the desired sample time frame automatically.
-
-```{r message=FALSE}
-
-bucket_data_long <- map_bucket_trades(
-  binSize = "1m",
-  start_date = "2020-01-01",
-  end_date = "2020-01-03",
-  symbol = "XBTUSD",
-  verbose = FALSE
-)
-
-max(as.Date(bucket_data_long$timestamp))
-```
-
-If verbose is `TRUE`, a progress bar is printed in the console to provide information regarding the expected duration for the function to complete. 
-The maximum date in the sample is now equal to the end date in the function.
-
-The `map_trades()` function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take.
-Instead, if verbose is `TRUE`, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left. 
-The function stops when the start_date is greater than the end_date. 
-
-```{r message=FALSE}
-map_trades(
-  symbol = "XBTUSD",
-  start_date = "2019-05-03 12:00:00",
-  end_date = "2019-05-03 12:05:00",
-  verbose = TRUE
-) %>%
-  select(1:5) %>%
-  head()
-```
-
-
-**Note:** A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest.
-Using `map_bucket_trades()` is a better option for time intervals spanning multiple days.
-
-# Useful extras
-
-`available_symbols()` returns a character vector of the currently valid symbols available to request.
-
-```{r message=FALSE}
-paste(available_symbols(), collapse = ", ")
-```
-
-`valid_dates()` returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given
-
-```{r message=FALSE}
-valid_dates("ETHUSD")
-```
-
-The core functions `trades()` and `bucket_trades()` also have a rate limiter built in that will initiate a 60 second pause to reset the limit if the the maximum number of requests per minute is approached while using the package.
-
-# Use with other packages
-
-Once data has been obtained, it is possible to use packages such as the excellent `tidyquant` to explore/visualise the data further.
-
-```{r fig.width=7, fig.height=5, fig.retina=2}
-
-bucket_data_long %>%
-  filter(timestamp > "2020-01-01" & timestamp < "2020-01-03") %>%
-  mutate(timestamp = as_datetime(timestamp)) %>%
-  ggplot(aes(x = timestamp, y = close)) +
-  geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
-  geom_ma(ma_fun = SMA, n = 200) +
-  scale_x_datetime(date_breaks = "12 hour", date_labels = "%H:%M") +
-  theme_tq()
-```
-
-See the `tidyquant` vignette for more details https://CRAN.R-project.org/package=tidyquant
-
-```{r, include=FALSE}
-end_vignette()
-```
+It is recommended to have a throughough understanding of the bitmex API documentation prior to using the package. Please take some time to read both https://www.bitmex.com/app/apiOverview and https://www.bitmex.com/api/explorer/. 

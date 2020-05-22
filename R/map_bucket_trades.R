@@ -19,7 +19,7 @@
 #'
 #' @family bucket_trades
 #'
-#' @references url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
+#' @references \url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
 #'
 #' @param start_date character string.
 #' Starting date for results in the format `"yyyy-mm-dd"` or `"yyyy-mm-dd hh-mm-ss"`.
@@ -71,7 +71,6 @@ map_bucket_trades <- function(
   symbol = "XBTUSD",
   partial = "false",
   filter = NULL,
-  testnet = FALSE,
   use_auth = FALSE,
   verbose = FALSE
 ) {
@@ -177,8 +176,152 @@ map_bucket_trades <- function(
       partial = partial,
       symbol = symbol,
       filter = filter,
-      use_auth = use_auth,
-      testnet = testnet
+      use_auth = use_auth
+    )
+  }) %>%
+    mutate(timestamp = as_datetime(.data$timestamp)) %>%
+    filter(.data$timestamp <= end_date)
+
+  return(res)
+}
+
+#' Bucket trade data over an extended period (testnet)
+#'
+#' `tn_map_bucket_trades()` uses `purrr::map_dfr` to execute multiple API calls.
+#' This is useful when the data you want to return exceeds the maximum 1000 row response limit,
+#' but do not want to have to manually call [tn_bucket_trades()] repeatedly.
+#'
+#' @seealso [map_bucket_trades()] for more information.
+#'
+#' @inheritParams map_bucket_trades
+#'
+#' @references \url{https://testnet.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed}
+#'
+#'
+#' @examples
+#' \donttest{
+#' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
+#'
+#' tn_map_bucket_trades(
+#'   start_date = "2020-01-01",
+#'   end_date = "2020-02-01",
+#'   binSize = "1h"
+#' )
+#' }
+#' @export
+tn_map_bucket_trades <- function(
+  start_date = "2015-09-25 13:00:00",
+  end_date = now(tzone = "UTC"),
+  binSize = "1d",
+  symbol = "XBTUSD",
+  partial = "false",
+  filter = NULL,
+  use_auth = FALSE,
+  verbose = FALSE
+) {
+  check_internet()
+
+  stop_if_not(
+    binSize %in% c("1m", "5m", "1h", "1d"),
+    msg = "binSize must be 1m, 5m, 1h or 1d"
+  )
+
+  stop_if(
+    is.null(start_date),
+    msg = "Please use a valid start date"
+  )
+
+
+  if (!is.null(start_date)) {
+    stop_if(
+      date_check(start_date),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+  if (!is.null(end_date)) {
+    stop_if(
+      date_check(end_date),
+      .p = isFALSE,
+      msg = "Invalid date format. Please use 'yyyy-mm-dd' or 'yyyy-mm-dd hh:mm:ss'"
+    )
+  }
+
+
+  if (!is.null(start_date) & !is.null(end_date)) {
+    start_date <- as_datetime(start_date)
+
+    end_date <- as_datetime(end_date)
+
+    vd <- valid_dates(symbol)
+
+    message_if(
+      vd$timestamp > start_date,
+      msg = paste0(
+        "Earliest start date for given symbol is: ",
+        vd$timestamp,
+        ".\nContinuing with earliest start date"
+      )
+    )
+
+    if (vd$timestamp > start_date) {
+      start_date <- vd$timestamp
+    }
+
+    stop_if(
+      start_date > end_date,
+      msg = "Make sure start date is before end date"
+    )
+  }
+
+
+  by <- switch(
+    binSize,
+    "1d" = "1000 days",
+    "1h" = "1000 hours",
+    "5m" = "5000 min",
+    "1m" = "1000 min"
+  )
+
+
+  breaks <- seq(start_date, end_date, by = by)
+
+  pb <- progress_bar$new(
+    format = "Progress[:bar] :current/:total  eta: ~:eta",
+    total = length(breaks),
+    width = 70,
+    clear = FALSE
+  )
+
+  if (isTRUE(use_auth)) {
+    delay <- 1
+    requests <- 60
+  } else {
+    delay <- 2
+    requests <- 30
+  }
+
+  limit_bucket_trades <- slowly(tn_bucket_trades, rate_delay(delay))
+
+  if (verbose == TRUE) {
+    pb$message(paste0("\n", length(breaks), " API requests generated."))
+    pb$message(paste("Current limit is", requests, "requests per minute"))
+  }
+
+  res <- map_dfr(breaks, ~ {
+    if (verbose == TRUE) {
+      pb$tick()
+    }
+    limit_bucket_trades(
+      startTime = .x,
+      binSize = binSize,
+      reverse = "false",
+      count = 1000,
+      partial = partial,
+      symbol = symbol,
+      filter = filter,
+      use_auth = use_auth
     )
   }) %>%
     mutate(timestamp = as_datetime(.data$timestamp)) %>%

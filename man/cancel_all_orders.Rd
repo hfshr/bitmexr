@@ -4,7 +4,7 @@
 \alias{cancel_all_orders}
 \title{Canncel all orders}
 \usage{
-cancel_all_orders(symbol = NULL, filter = NULL, text = NULL, testnet = TRUE)
+cancel_all_orders(symbol = NULL, filter = NULL, text = NULL)
 }
 \arguments{
 \item{symbol}{string. Optional symbol. If provided, only cancels orders for that symbol.}
@@ -13,19 +13,14 @@ cancel_all_orders(symbol = NULL, filter = NULL, text = NULL, testnet = TRUE)
 e.g. '{"side": "Buy"}'.}
 
 \item{text}{string. Optional cancellation annotation. e.g. 'Spread Exceeded'.}
-
-\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
-Set to \code{FALSE} by default.}
 }
 \description{
 Cancel all orders that have been placed.
 }
 \examples{
 \dontrun{
-
-#delete all "Buy" orders
-cancel_all_orders()
-
+# cancel all "Buy" orders
+cancel_all_orders(filter = '{"side": "Buy"}')
 }
 
 }

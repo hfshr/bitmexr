@@ -73,17 +73,20 @@ exchange." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/getting-started.html">Intro</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -96,18 +99,30 @@ exchange." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/getting-started.html">Getting started</a>
+      <a href="../articles/authentication.html">Authentication</a>
+    </li>
+    <li>
+      <a href="../articles/placing-orders.html">Placing orders with bitmexr</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../news/index.html">Change log</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/hfshr/bitmexr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/hfshr/bitmexr">
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,7 +157,8 @@ exchange.</p>
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>startTime</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>endTime</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>endTime</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>use_auth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -187,6 +203,10 @@ Starting date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy
       <td><p>an optional character string.
 Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-mm-dd hh-mm-ss"</code>.</p></td>
     </tr>
+    <tr>
+      <th>use_auth</th>
+      <td><p>logical. Use <code>TRUE</code> to enable authentication with API key.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -209,22 +229,84 @@ Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-m
     <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_get'>https://www.bitmex.com/api/explorer/#!/Trade/Trade_get</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># Return 1000 most recent trades for symbol "XBTUSD".</span>
-<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>)
-
+<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt;              timestamp symbol side  size  price tickDirection
+#&gt; 1  2020-05-22 13:18:42 XBTUSD  Buy     4 9146.5      PlusTick
+#&gt; 2  2020-05-22 13:18:42 XBTUSD Sell     4 9146.0     MinusTick
+#&gt; 3  2020-05-22 13:18:42 XBTUSD  Buy     4 9146.5      PlusTick
+#&gt; 4  2020-05-22 13:18:42 XBTUSD Sell     4 9146.0     MinusTick
+#&gt; 5  2020-05-22 13:18:41 XBTUSD  Buy     4 9146.5      PlusTick
+#&gt; 6  2020-05-22 13:18:41 XBTUSD Sell     4 9146.0     MinusTick
+#&gt; 7  2020-05-22 13:18:39 XBTUSD  Buy     4 9146.5      PlusTick
+#&gt; 8  2020-05-22 13:18:39 XBTUSD Sell 30000 9146.0     MinusTick
+#&gt; 9  2020-05-22 13:18:35 XBTUSD  Buy     3 9146.5  ZeroPlusTick
+#&gt; 10 2020-05-22 13:18:34 XBTUSD  Buy   500 9146.5  ZeroPlusTick
+#&gt;                              trdMatchID grossValue homeNotional foreignNotional
+#&gt; 1  304836b7-0fbc-3b05-83f2-8dbc96cec8a8      43732   0.00043732               4
+#&gt; 2  952f72e5-aeb3-ab4d-71c7-918ca96a4963      43736   0.00043736               4
+#&gt; 3  3deddd40-8df3-1128-38eb-90236414aaac      43732   0.00043732               4
+#&gt; 4  cc8393dd-6c17-df0a-f3fd-75625ed41f38      43736   0.00043736               4
+#&gt; 5  1297795d-755b-60ef-0ebc-1a637eb1b2cc      43732   0.00043732               4
+#&gt; 6  29b4c73b-1bc0-8604-eb9b-af5c33305476      43736   0.00043736               4
+#&gt; 7  dc9ce154-9053-716a-15a8-3a68835bd59b      43732   0.00043732               4
+#&gt; 8  515134e9-34a8-062e-95de-03c4c27a312f  328020000   3.28020000           30000
+#&gt; 9  c0202508-f0c4-e154-fe33-e16477e92a20      32799   0.00032799               3
+#&gt; 10 c6e7c142-df97-443b-58af-8cb43605daee    5466500   0.05466500             500</div><div class='input'>
 <span class='co'># Use filter for very specific values: Return trade data executed at 12:15.</span>
 <span class='fu'>trades</span>(
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
-  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15'}"</span>
-)
-
+  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15'}"</span>,
+  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt;              timestamp symbol side  size price tickDirection
+#&gt; 1  2020-05-22 12:15:59 XBTUSD  Buy  6119  9166  ZeroPlusTick
+#&gt; 2  2020-05-22 12:15:59 XBTUSD  Buy 10481  9166  ZeroPlusTick
+#&gt; 3  2020-05-22 12:15:58 XBTUSD  Buy    37  9166  ZeroPlusTick
+#&gt; 4  2020-05-22 12:15:58 XBTUSD  Buy    23  9166  ZeroPlusTick
+#&gt; 5  2020-05-22 12:15:58 XBTUSD  Buy    40  9166  ZeroPlusTick
+#&gt; 6  2020-05-22 12:15:57 XBTUSD  Buy  3427  9166  ZeroPlusTick
+#&gt; 7  2020-05-22 12:15:57 XBTUSD  Buy    23  9166  ZeroPlusTick
+#&gt; 8  2020-05-22 12:15:57 XBTUSD  Buy   323  9166  ZeroPlusTick
+#&gt; 9  2020-05-22 12:15:57 XBTUSD  Buy    23  9166  ZeroPlusTick
+#&gt; 10 2020-05-22 12:15:57 XBTUSD  Buy   238  9166  ZeroPlusTick
+#&gt;                              trdMatchID grossValue homeNotional foreignNotional
+#&gt; 1  dea3de5f-de21-4f5e-6276-7b54edd3a60b   66758290    0.6675829            6119
+#&gt; 2  325e8f06-8c41-2744-9fdd-b2e7b0cd734e  114347710    1.1434771           10481
+#&gt; 3  1c269a62-d9ae-287c-4704-07a436f0e87c     403670    0.0040367              37
+#&gt; 4  e15abbee-810d-c092-4697-6bb7956dabbd     250930    0.0025093              23
+#&gt; 5  8f68fc34-4701-25be-e8ec-10ebd978d2d4     436400    0.0043640              40
+#&gt; 6  cc3b5021-bb8a-44df-dc8c-aee5da524f92   37388570    0.3738857            3427
+#&gt; 7  a946edab-f555-391f-f8ed-5d3f1b45c25e     250930    0.0025093              23
+#&gt; 8  d2646bc1-4108-cd8a-0176-30ab9428fc84    3523930    0.0352393             323
+#&gt; 9  e89fea41-1f6f-f6e6-9b5f-1440f5607d0a     250930    0.0025093              23
+#&gt; 10 aab507e3-297a-3021-b594-c11c1d18e26d    2596580    0.0259658             238</div><div class='input'>
 <span class='co'># Also possible to combine more than one filter.</span>
 <span class='fu'>trades</span>(
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
-  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15', 'size':10000}"</span>
-)
-<span class='co'># }</span></pre>
+  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15', 'size':10000}"</span>,
+  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt;              timestamp symbol side  size  price tickDirection
+#&gt; 1  2020-05-22 12:15:50 XBTUSD  Buy 10000 9166.0  ZeroPlusTick
+#&gt; 2  2020-05-22 12:15:49 XBTUSD Sell 10000 9165.5 ZeroMinusTick
+#&gt; 3  2020-05-22 12:15:49 XBTUSD  Buy 10000 9165.5  ZeroPlusTick
+#&gt; 4  2020-05-22 12:15:49 XBTUSD  Buy 10000 9165.0  ZeroPlusTick
+#&gt; 5  2020-05-22 12:15:49 XBTUSD  Buy 10000 9162.5  ZeroPlusTick
+#&gt; 6  2020-05-22 12:15:49 XBTUSD  Buy 10000 9161.0  ZeroPlusTick
+#&gt; 7  2020-05-22 12:15:49 XBTUSD  Buy 10000 9160.5  ZeroPlusTick
+#&gt; 8  2020-05-22 12:15:49 XBTUSD  Buy 10000 9160.0  ZeroPlusTick
+#&gt; 9  2020-05-22 12:15:45 XBTUSD  Buy 10000 9155.5  ZeroPlusTick
+#&gt; 10 2020-05-22 12:15:45 XBTUSD  Buy 10000 9155.5  ZeroPlusTick
+#&gt;                              trdMatchID grossValue homeNotional foreignNotional
+#&gt; 1  e9b32768-fb1b-c110-da91-eaa9cf376d5a  109100000       1.0910           10000
+#&gt; 2  f976fc35-286e-aa09-2d7d-2eb5518a5135  109100000       1.0910           10000
+#&gt; 3  170c0669-432a-43ed-428a-b93b3b4cb814  109100000       1.0910           10000
+#&gt; 4  7e533676-96c8-203c-cec9-cfeb779bd149  109110000       1.0911           10000
+#&gt; 5  ef7be992-8f4a-4db8-ba88-743a9aaa8ba1  109140000       1.0914           10000
+#&gt; 6  8a4b6722-fc9a-1162-7f6b-61dc417c1a2b  109160000       1.0916           10000
+#&gt; 7  39b40593-c102-5aa7-d0d3-d996c111684d  109160000       1.0916           10000
+#&gt; 8  41c733b3-5f1e-f16a-6aae-efd177855ac7  109170000       1.0917           10000
+#&gt; 9  010109f9-61a3-5996-9694-fc46bf9f2c32  109220000       1.0922           10000
+#&gt; 10 cd4b82b4-7ad6-4960-f176-c4f3384cb471  109220000       1.0922           10000</div><div class='input'># }
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

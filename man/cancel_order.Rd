@@ -4,12 +4,9 @@
 \alias{cancel_order}
 \title{Cancel order}
 \usage{
-cancel_order(testnet = TRUE, orderID = NULL, clOrdID = NULL, text = NULL)
+cancel_order(orderID = NULL, clOrdID = NULL, text = NULL)
 }
 \arguments{
-\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
-Set to \code{FALSE} by default.}
-
 \item{orderID}{string. Order ID.}
 
 \item{clOrdID}{string. Optional client ID set when placing an order.}
@@ -18,4 +15,11 @@ Set to \code{FALSE} by default.}
 }
 \description{
 Cancel an order that has been placed.
+}
+\examples{
+\dontrun{
+# Cancel an order
+cancel_order(clOrdID = "myorderid")
+}
+
 }

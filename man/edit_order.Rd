@@ -5,7 +5,6 @@
 \title{Edit an order}
 \usage{
 edit_order(
-  testnet = TRUE,
   orderID = NULL,
   origClOrdID = NULL,
   clOrdID = NULL,
@@ -18,9 +17,6 @@ edit_order(
 )
 }
 \arguments{
-\item{testnet}{logical. Use \code{TRUE} to query the BitMEX testnet platform.
-Set to \code{FALSE} by default.}
-
 \item{orderID}{string. Order ID.}
 
 \item{origClOrdID}{string. The original client order ID}

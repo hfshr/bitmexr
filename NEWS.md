@@ -1,4 +1,4 @@
-# bitmexr (development version)
+# bitmexr 0.3.0
 
 # bitmexr 0.2.3
 

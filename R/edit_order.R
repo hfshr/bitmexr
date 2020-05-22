@@ -12,7 +12,6 @@
 #'
 #' @export
 edit_order <- function(
-  testnet = TRUE,
   orderID = NULL,
   origClOrdID = NULL,
   clOrdID = NULL,
@@ -41,32 +40,82 @@ edit_order <- function(
 
   expires <- as.character(as.integer(now() + 10))
 
-  if (isTRUE(testnet)) {
-    url <- testnet_url
-    key <- Sys.getenv("bitmex_apikey_testnet")
-    secret <- Sys.getenv("bitmex_apisecret_testnet")
-  } else {
-    url <- live_url
-    key <- Sys.getenv("bitmex_apikey")
-    secret <- Sys.getenv("bitmex_apisecret")
-  }
-
-
   sig <- gen_signature(
-    secret = secret,
+    secret = Sys.getenv("bitmex_apisecret"),
     verb = "PUT",
     url = "/api/v1/order",
     data = json_body
   )
 
   res <- PUT(
-    paste0(url, "/order"),
+    paste0(live_url, "/order"),
     body = json_body,
     encode = "json",
     content_type_json(),
     add_headers(.headers = c(
       "api-expires" = expires,
-      "api-key" = key,
+      "api-key" = Sys.getenv("bitmex_apikey"),
+      "api-signature" = sig
+    ))
+  )
+
+  check_status(res)
+
+  result <- fromJSON(content(res, "text"))
+}
+
+
+#' Edit an order (testnet)
+#'
+#' Edit an order that has been placed with the testnet API.
+#'
+#' @inheritParams edit_order
+#'
+#' @export
+tn_edit_order <- function(
+  orderID = NULL,
+  origClOrdID = NULL,
+  clOrdID = NULL,
+  orderQty = NULL,
+  leavesQty = NULL,
+  price = NULL,
+  stopPx = NULL,
+  pegOffsetValue = NULL,
+  text = NULL
+) {
+  check_internet()
+
+  args <- list(
+    orderID = orderID,
+    origClOrdID = origClOrdID,
+    clOrdID = clOrdID,
+    orderQty = orderQty,
+    leavesQty = leavesQty,
+    price = price,
+    stopPx = stopPx,
+    pegOffsetValue = pegOffsetValue,
+    text = text
+  )
+
+  json_body <- toJSON(compact(args), auto_unbox = TRUE)
+
+  expires <- as.character(as.integer(now() + 10))
+
+  sig <- gen_signature(
+    secret = Sys.getenv("testnet_bitmex_apisecret"),
+    verb = "PUT",
+    url = "/api/v1/order",
+    data = json_body
+  )
+
+  res <- PUT(
+    paste0(testnet_url, "/order"),
+    body = json_body,
+    encode = "json",
+    content_type_json(),
+    add_headers(.headers = c(
+      "api-expires" = expires,
+      "api-key" = Sys.getenv("testnet_bitmex_apikey"),
       "api-signature" = sig
     ))
   )
