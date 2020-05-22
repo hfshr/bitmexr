@@ -16,3 +16,4 @@ dev.R
 ^codecov\.yml$
 ^CRAN-RELEASE$
 ^\.github$
+^revdep$
