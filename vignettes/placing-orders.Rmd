@@ -1,0 +1,110 @@
+---
+title: "Placing and managing orders with bitmexr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{placing-orders}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bitmexr)
+```
+
+`bitmexr` now supports placing, editing and cancelling orders on both the testnet API and live API provided by BitMEX. This vignette outlines how you can use `place_order()`, `edit_order()` and `cancel_order()` to manage your BitMEX trading directly from R! For more information about the API please visit (https://www.bitmex.com/app/apiOverview)
+
+The following examples will use the tn_* varients of the managing trades functions (`tn_place_order()`, `tn_edit_order()` and `tn_cancel_order()`) to access the testnet API. These function will work in exactly the same way when using the live API.
+
+# Placing orders
+
+Use the following to place an order on the exchange
+
+```{r eval=FALSE}
+tn_place_order(symbol = "XBTUSD", 
+               orderQty = 10, 
+               price = 5000)
+```
+
+If `price` is not specified, a market order will be used.
+
+```{r eval=FALSE}
+tn_place_order(symbol = "XBTUSD", 
+               orderQty = 10)
+```
+
+You can specific `side = Sell` or use a negative `orderQty` to initiate a sell order.
+
+```{r eval=FALSE}
+tn_place_order(symbol = "XBTUSD", 
+               orderQty = -10, 
+               price = 10000)
+```
+
+Use `?tn_place_order()` or `?place_order()` to see the full list of order options, or visit 
+https://www.bitmex.com/api/explorer/#/Order
+
+# Editing orders
+
+Once an order has been placed, it is possible to edit the order using either the `orderID` returned when using `place_order()` or the custom client order id specified using `clOrdID`.
+
+For example placing the following order:
+
+```{r eval=FALSE}
+tn_place_order(symbol = "XBTUSD", 
+               orderQty = 100, 
+               price = 5000, 
+               clOrdID = "mybigorder")
+```
+
+Could be edited using:
+
+```{r eval=FALSE}
+tn_edit_order(origClOrdID = "mybigorder", 
+              price = 4000)
+```
+
+# Cancel orders
+
+Cancelling order is very similar to editing order, simply use the orderID or clOrdID 
+
+```{r eval=FALSE}
+tn_cancel_order(clOrdID = "mybigorder")
+```
+
+It is also possible to cancel all orders. For example cancel all sell orders using:
+
+```{r eval=FALSE}
+tn_cancel_all_orders(filter = '{"side": "Sell"')
+```
+
+# Extra
+
+The `get_bitmex` and `post_bitmex` functions can be used to access additional API endpoints that do not have a dedicated wrapper.
+
+The `path` argument is the API endpoint and always starts with a "/" (e.g., "/chat").
+The `args` argument is a named list of valid parameter values to pass to the API endpoint. These are well documented on https://www.bitmex.com/api/explorer/ 
+
+For example, to access the user information for your testnet account you can use:
+
+```{r eval=FALSE}
+tn_get_bitmex(path = "/user", use_auth = TRUE)
+```
+
+As this is a private API endpoint, authentication was required.
+
+A POST example to increase the leverage on a position is:
+
+```{r eval=FALSE}
+tn_post_bitmex(path = "/position/leverage", 
+               args = list("symbol" = "XBTUSD", 
+                           "leverage" = 10))
+```
+
+Please use the https://www.bitmex.com/api/explorer/ to view all possible API endpoints.
