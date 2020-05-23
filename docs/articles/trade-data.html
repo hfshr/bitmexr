@@ -147,7 +147,7 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data</span>$<span class="no">timestamp</span>))
 <span class="co">#&gt; [1] "2020-01-01"</span></pre></body></html></div>
-<p>However, the maximum date returned is still “2020-01-01”. This is because the maximum number of rows returned per API calls is 1000, and there are greater than 1000 1-minute buckets spanning the desired 3 day sample. To solve this problem, the package provides map_* variates of the two core functions.</p>
+<p>However, the maximum date returned is still “2020-01-01”. This is because the maximum number of rows returned per API calls is 1000, and there are greater than 1000 1-minute buckets spanning the desired 3 day sample. To solve this problem, the package provides map_* variants of the two core functions.</p>
 </div>
 <div id="using-the-map_-variants" class="section level1">
 <h1 class="hasAnchor">
@@ -188,7 +188,7 @@ Current progress:  2019/05/03 12:05:08
 #&gt; 4 2019-05-03 12:00:13 XBTUSD  Buy  100 5700.5
 #&gt; 5 2019-05-03 12:00:13 XBTUSD Sell  900 5700.0
 #&gt; 6 2019-05-03 12:00:13 XBTUSD Sell 2000 5700.0</pre></body></html></div>
-<p>Without authentication, API requests are limited to 30 per minute. If you have enabled authentication by following you can use the <code>use_auth = TRUE</code> argument to access the higher rate limit of 60 requets per minute.</p>
+<p>Without authentication, API requests are limited to 30 per minute. If you have enabled authentication by following you can use the <code>use_auth = TRUE</code> argument to access the higher rate limit of 60 requests per minute.</p>
 <p><strong>Note:</strong> A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> is a better option for time intervals spanning multiple days.</p>
 </div>
 <div id="useful-extras" class="section level1">

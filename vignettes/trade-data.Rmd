@@ -71,7 +71,7 @@ max(as.Date(bucket_data$timestamp))
 ```
 
 However, the maximum date returned is still "2020-01-01". This is because the maximum number of rows returned per API calls is 1000, and there are greater than 1000 1-minute buckets spanning the desired 3 day sample.
-To solve this problem, the package provides map_* variates of the two core functions.
+To solve this problem, the package provides map_* variants of the two core functions.
 
 # Using the map_* variants
 
@@ -108,7 +108,7 @@ map_trades(
   head()
 ```
 
-Without authentication, API requests are limited to 30 per minute. If you have enabled authentication by following you can use the `use_auth = TRUE` argument to access the higher rate limit of 60 requets per minute.
+Without authentication, API requests are limited to 30 per minute. If you have enabled authentication by following you can use the `use_auth = TRUE` argument to access the higher rate limit of 60 requests per minute.
 
 **Note:** A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest.
 Using `map_bucket_trades()` is a better option for time intervals spanning multiple days.

@@ -9,6 +9,8 @@ status](https://travis-ci.org/hfshr/bitmexr.svg?branch=master)](https://travis-c
 coverage](https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=master)
 [![R build
 status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/bitmexr)](https://CRAN.R-project.org/package=bitmexr)
 <!-- badges: end -->
 
 # Overview
@@ -48,7 +50,7 @@ The package contains wrappers around the majority of API endpoints.
 
 Additional API endpoints that do not have a dedicated wrapper can be
 accessed using `get_bitmex()` for GET requests and `post_bitmex()` for
-post requests. For example use:
+POST requests. For example use:
 
 ``` r
 get_bitmex(path = "/chat", args = list(reverse = "false"))
@@ -64,7 +66,7 @@ example `tn_place_order()` will place an order on the testnet exchange.
 
 **Authentication**
 
-Accessing privite API endpoints requires an API key and secret.
+Accessing private API endpoints requires an API key and secret.
 `bitmexr` reads these from the ~/.Renviron file - see vignette
 [Authentication](https://hfshr.github.io/bitmexr/articles/authentication.html)
 for more information.

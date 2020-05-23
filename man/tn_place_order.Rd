@@ -59,7 +59,7 @@ instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouche
 \item{text}{string. Optional order annotation. e.g. 'Take profit'.}
 }
 \description{
-Place an order using the Bitmex tetsnet API. Requires testnet API key.
+Place an order using the Bitmex testnet API. Requires testnet API key.
 }
 \examples{
 \dontrun{

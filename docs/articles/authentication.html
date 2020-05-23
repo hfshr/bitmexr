@@ -110,7 +110,7 @@
 
     
     
-<p>To access private endpoints in the Bitmex API, authentication is needed. First, an API key and secret need to be generated for the account you want to use with <code>bitmexr</code>. For guidance see <a href="https://www.bitmex.com/app/restAPI#Authentication" class="uri">https://www.bitmex.com/app/restAPI#Authentication</a></p>
+<p>To access private endpoints in the BitMEX API, authentication is needed. First, an API key and secret need to be generated for the account you want to use with <code>bitmexr</code>. For guidance see <a href="https://www.bitmex.com/app/restAPI#Authentication" class="uri">https://www.bitmex.com/app/restAPI#Authentication</a></p>
 <p>When you have an API key, edit your .Renviron file and include both the key and secret.</p>
 <p>Open .Renviron:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span>(<span class="st">"~/.Renviron"</span>)</pre></body></html></div>
@@ -120,7 +120,7 @@ testnet_bitmex_apisecret = "your testnet api sectret"</code></pre>
 <p>For a live API key use:</p>
 <pre><code>bitmex_apikey = "your live api key"
 bitmex_apisecret = "your live api sectret"</code></pre>
-<p>Functions in <code>bitmexr</code> requiring authentication will use relevent key/secret when creating the encrypted signature to send to private API endpoints. You can use the testnet API to ensure the functions work as you’d expect prior to using the live API.</p>
+<p>Functions in <code>bitmexr</code> requiring authentication will use relevant key/secret when creating the encrypted signature to send to private API endpoints. You can use the testnet API to ensure the functions work as you’d expect prior to using the live API.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

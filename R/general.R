@@ -60,7 +60,7 @@ post_bitmex <- function(
 #' Use `tn_post_bitmex()` to send POST requests to the testnet API. All POST requests require authentication.
 #'
 #' @param path string. End point for the api.
-#' @param args A named list containing valid paramteters for the request.
+#' @param args A named list containing valid parameters for the request.
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'

@@ -9,7 +9,7 @@ tn_post_bitmex(path, args = NULL)
 \arguments{
 \item{path}{string. End point for the api.}
 
-\item{args}{A named list containing valid paramteters for the request.}
+\item{args}{A named list containing valid parameters for the request.}
 }
 \description{
 Use \code{tn_post_bitmex()} to send POST requests to the testnet API. All POST requests require authentication.

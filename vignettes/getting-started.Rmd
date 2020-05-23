@@ -42,4 +42,4 @@ Please see the vignette [Placing and managing order with bitmexr](placing-orders
 
 # Tips
 
-It is recommended to have a throughough understanding of the bitmex API documentation prior to using the package. Please take some time to read both https://www.bitmex.com/app/apiOverview and https://www.bitmex.com/api/explorer/. 
+It is recommended to have a throughout understanding of the BitMEX API documentation prior to using the package. Please take some time to read both https://www.bitmex.com/app/apiOverview and https://www.bitmex.com/api/explorer/. 

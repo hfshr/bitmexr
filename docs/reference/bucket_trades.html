@@ -249,16 +249,38 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades()</a></c
     <p>urlhttps://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 
 <span class='co'># Return most recent data for symbol `"ETHUSD"` for 1 hour buckets</span>
 
 <span class='fu'>bucket_trades</span>(
   <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()
-<span class='co'># }</span></pre>
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>,
+  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
+)</div><div class='output co'>#&gt;              timestamp symbol   open   high    low  close trades  volume   vwap
+#&gt; 1  2020-05-23 09:00:00 ETHUSD 208.55 208.55 206.85 207.85   3117 3408723 207.51
+#&gt; 2  2020-05-23 08:00:00 ETHUSD 208.45 209.05 207.50 208.55   2359 2714767 208.33
+#&gt; 3  2020-05-23 07:00:00 ETHUSD 209.15 209.20 207.60 208.45   2130 2457056 208.17
+#&gt; 4  2020-05-23 06:00:00 ETHUSD 209.05 209.20 208.00 209.15   2413 2811226 208.60
+#&gt; 5  2020-05-23 05:00:00 ETHUSD 210.15 210.65 208.70 209.05   2659 3261964 209.58
+#&gt; 6  2020-05-23 04:00:00 ETHUSD 210.40 211.25 209.55 210.15   2865 2922392 210.37
+#&gt; 7  2020-05-23 03:00:00 ETHUSD 209.30 211.50 209.30 210.40   4236 4854386 210.75
+#&gt; 8  2020-05-23 02:00:00 ETHUSD 209.50 209.70 208.85 209.30   1882 2434221 209.26
+#&gt; 9  2020-05-23 01:00:00 ETHUSD 207.60 210.00 207.60 209.50   4308 4874411 209.25
+#&gt; 10 2020-05-23 00:00:00 ETHUSD 208.60 208.65 206.20 207.60   2739 2313598 207.33
+#&gt;    lastSize     turnover homeNotional foreignNotional
+#&gt; 1      1731  70732087850     31378.33         6511132
+#&gt; 2        92  56556489455     25101.55         5229395
+#&gt; 3     20000  51146688010     22692.50         4723736
+#&gt; 4      1150  58640540700     26017.08         5427014
+#&gt; 5         5  68361273985     30254.42         6340475
+#&gt; 6       452  61476957880     27148.62         5711135
+#&gt; 7       623 102304773670     44970.84         9477493
+#&gt; 8      3000  50937542800     22509.46         4710244
+#&gt; 9      1498 101992958110     44942.75         9403961
+#&gt; 10      100  47966823410     21206.86         4396746</div><div class='input'>
+# }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

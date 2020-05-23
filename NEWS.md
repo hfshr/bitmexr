@@ -1,9 +1,9 @@
 # bitmexr 0.3.0
 
-Bitmexr 0.3.0 brings some signification changes to the package.
+bitmexr 0.3.0 brings some signification changes to the package.
 
 * Placing, editing and cancelling orders are now supported
-* The testnet API can be accesses by using the "tn_" prefix to any of the exisiting / new functions.
+* The testnet API can be accesses by using the "tn_" prefix to any of the existing / new functions.
 * New documentation on how to set up authentication, and place,edit, cancel orders.
 * General GET and POST function to access API endpoints that don't yet have a dedicated wrapper.
 

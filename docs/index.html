@@ -133,13 +133,13 @@
 <li>
 <code><a href="reference/place_order.html">place_order()</a></code>, <code><a href="reference/edit_order.html">edit_order()</a></code> and <code><a href="reference/cancel_order.html">cancel_order()</a></code> can be used to manage trades on the exchange.</li>
 </ul>
-<p>Additional API endpoints that do not have a dedicated wrapper can be accessed using <code><a href="reference/get_bitmex.html">get_bitmex()</a></code> for GET requests and <code><a href="reference/post_bitmex.html">post_bitmex()</a></code> for post requests. For example use:</p>
+<p>Additional API endpoints that do not have a dedicated wrapper can be accessed using <code><a href="reference/get_bitmex.html">get_bitmex()</a></code> for GET requests and <code><a href="reference/post_bitmex.html">post_bitmex()</a></code> for POST requests. For example use:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/get_bitmex.html">get_bitmex</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">"/chat"</span>, <span class="kw">args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"false"</span>))</pre></div>
 <p>to get the latest trollbox messages.</p>
 <p><strong>Testnet API</strong></p>
 <p>All functions in the package also work with the testnet API simply use the “tn_” prefix to access the testnet version of the function. For example <code><a href="reference/tn_place_order.html">tn_place_order()</a></code> will place an order on the testnet exchange.</p>
 <p><strong>Authentication</strong></p>
-<p>Accessing privite API endpoints requires an API key and secret. <code>bitmexr</code> reads these from the ~/.Renviron file - see vignette <a href="docs/articles/authentication.html">“Authentication”</a> for more information.</p>
+<p>Accessing private API endpoints requires an API key and secret. <code>bitmexr</code> reads these from the ~/.Renviron file - see vignette <a href="https://hfshr.github.io/bitmexr/articles/authentication.html">Authentication</a> for more information.</p>
 </div>
 <div id="disclaimer" class="section level1">
 <h1 class="hasAnchor">
@@ -197,6 +197,7 @@
 <li><a href="https://travis-ci.org/hfshr/bitmexr"><img src="https://travis-ci.org/hfshr/bitmexr.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://codecov.io/gh/hfshr/bitmexr?branch=master"><img src="https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/hfshr/bitmexr/actions"><img src="https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=bitmexr"><img src="https://www.r-pkg.org/badges/version/bitmexr" alt="CRAN status"></a></li>
 </ul>
 </div>
 </div>

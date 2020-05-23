@@ -101,7 +101,7 @@ place_order <- function(
 
 #' Place an order (testnet)
 #'
-#' Place an order using the Bitmex tetsnet API. Requires testnet API key.
+#' Place an order using the Bitmex testnet API. Requires testnet API key.
 #'
 #' @inheritParams place_order
 #'
