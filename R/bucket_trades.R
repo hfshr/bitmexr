@@ -42,7 +42,6 @@
 #'   symbol = "ETHUSD",
 #'   count = 10
 #' )
-#'
 #' }
 #' @export
 bucket_trades <- function(
@@ -195,7 +194,6 @@ bucket_trades <- function(
 #'   symbol = "ETHUSD",
 #'   count = 10
 #' )
-#'
 #' }
 #' @export
 tn_bucket_trades <- function(

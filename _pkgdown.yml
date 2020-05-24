@@ -1,5 +1,12 @@
 url: https://hfshr.github.io/bitmexr/
 
+authors:
+  Harry Fisher:
+    href: https://hfshr.netlify.app/
+
+development:
+  mode: auto
+
 reference:
 
 - title: Individual trade data

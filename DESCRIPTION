@@ -7,8 +7,8 @@ Authors@R:
            family = "Fisher",
            role = c("cre", "aut", "cph"),
            email = "harryfisher21@gmail.com")
-Description: Tools to obtain historic trade data from
-    cryptocurrency exchange BitMEX <https://www.bitmex.com/>.
+Description: Tools to access the API for cryptocurrency exchange
+    BitMEX <https://www.bitmex.com/> from R. 
 License: MIT + file LICENSE
 URL: https://github.com/hfshr/bitmexr,
     https://hfshr.github.io/bitmexr
@@ -16,6 +16,7 @@ BugReports: https://github.com/hfshr/bitmexr/issues
 Imports: 
     attempt,
     curl,
+    digest,
     dplyr,
     httr,
     jsonlite,
@@ -24,9 +25,8 @@ Imports:
     progress,
     purrr,
     rlang,
-    utils,
-    digest,
-    stringr
+    stringr,
+    utils
 Suggests: 
     covr,
     ggplot2,

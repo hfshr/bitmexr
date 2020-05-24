@@ -97,7 +97,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="placing-orders_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Placing and managing orders with bitmexr</h1>
@@ -112,7 +112,7 @@
     
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bitmexr</span>)</pre></body></html></div>
 <p><code>bitmexr</code> now supports placing, editing and cancelling orders on both the testnet API and live API provided by BitMEX. This vignette outlines how you can use <code><a href="../reference/place_order.html">place_order()</a></code>, <code><a href="../reference/edit_order.html">edit_order()</a></code> and <code><a href="../reference/cancel_order.html">cancel_order()</a></code> to manage your BitMEX trading directly from R! For more information about the API please visit (<a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a>)</p>
-<p>The following examples will use the tn_* varients of the managing trades functions (<code><a href="../reference/tn_place_order.html">tn_place_order()</a></code>, <code><a href="../reference/tn_edit_order.html">tn_edit_order()</a></code> and <code><a href="../reference/tn_cancel_order.html">tn_cancel_order()</a></code>) to access the testnet API. These function will work in exactly the same way when using the live API.</p>
+<p>The following examples will use the tn_* varients of the managing trades functions (<code><a href="../reference/tn_place_order.html">tn_place_order()</a></code>, <code><a href="../reference/tn_edit_order.html">tn_edit_order()</a></code> and <code><a href="../reference/tn_cancel_order.html">tn_cancel_order()</a></code>) to access the testnet API. These functions will work in exactly the same way when using the live API (without the tn_ prefix).</p>
 <div id="placing-orders" class="section level1">
 <h1 class="hasAnchor">
 <a href="#placing-orders" class="anchor"></a>Placing orders</h1>
@@ -177,7 +177,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Harry Fisher.</p>
+  <p>Developed by <a href="https://hfshr.netlify.app/">Harry Fisher</a>.</p>
 </div>
 
 <div class="pkgdown">

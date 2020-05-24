@@ -2,7 +2,7 @@
 % Please edit documentation in R/delete_orders.R
 \name{cancel_all_orders}
 \alias{cancel_all_orders}
-\title{Canncel all orders}
+\title{Cancel all orders}
 \usage{
 cancel_all_orders(symbol = NULL, filter = NULL, text = NULL)
 }
@@ -14,8 +14,13 @@ e.g. '{"side": "Buy"}'.}
 
 \item{text}{string. Optional cancellation annotation. e.g. 'Spread Exceeded'.}
 }
+\value{
+Returns a \code{data.frame} with information about the orders that were cancelled.
+See https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll for more information.
+}
 \description{
-Cancel all orders that have been placed.
+Cancel all orders that have been placed for a specific symbol,
+or use a filter to select specific orders.
 }
 \examples{
 \dontrun{

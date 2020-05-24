@@ -27,6 +27,9 @@
 #' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
 #' @param text string. Optional order annotation. e.g. 'Take profit'.
 #'
+#' @return A tibble containing information about the trade that has been placed.
+#' See https://www.bitmex.com/api/explorer/#!/Order/Order_new for more details.
+#'
 #'
 #' @examples
 #' \dontrun{
@@ -94,7 +97,12 @@ place_order <- function(
 
   check_status(res)
 
-  result <- fromJSON(content(res, "text"))
+  result <- fromJSON(content(res, "text")) %>%
+    map(function(x) {
+      ifelse(is.null(x), NA, x)
+    }) %>%
+    as_tibble() %>%
+    mutate_all(~ ifelse(. == "", NA, .))
 
   return(result)
 }
@@ -104,6 +112,9 @@ place_order <- function(
 #' Place an order using the Bitmex testnet API. Requires testnet API key.
 #'
 #' @inheritParams place_order
+#'
+#' @return Returns a `tibble` containing information about the trade that has been placed.
+#' See https://testnet.bitmex.com/api/explorer/#!/Order/Order_new for more details.
 #'
 #' @examples
 #' \dontrun{
@@ -170,7 +181,12 @@ tn_place_order <- function(
 
   check_status(res)
 
-  result <- fromJSON(content(res, "text"))
+  result <- fromJSON(content(res, "text")) %>%
+    map(function(x) {
+      ifelse(is.null(x), NA, x)
+    }) %>%
+    as_tibble() %>%
+    mutate_all(~ ifelse(. == "", NA, .))
 
   return(result)
 }

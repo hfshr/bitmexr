@@ -20,7 +20,7 @@ library(bitmexr)
 
 `bitmexr` now supports placing, editing and cancelling orders on both the testnet API and live API provided by BitMEX. This vignette outlines how you can use `place_order()`, `edit_order()` and `cancel_order()` to manage your BitMEX trading directly from R! For more information about the API please visit (https://www.bitmex.com/app/apiOverview)
 
-The following examples will use the tn_* varients of the managing trades functions (`tn_place_order()`, `tn_edit_order()` and `tn_cancel_order()`) to access the testnet API. These function will work in exactly the same way when using the live API.
+The following examples will use the tn_* varients of the managing trades functions (`tn_place_order()`, `tn_edit_order()` and `tn_cancel_order()`) to access the testnet API. These functions will work in exactly the same way when using the live API (without the tn_ prefix).
 
 # Placing orders
 

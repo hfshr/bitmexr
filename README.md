@@ -43,8 +43,8 @@ The package contains wrappers around the majority of API endpoints.
   - `trades()` and `map_trades()` return individual trade data for a
     specified symbol/time period
   - `bucket_trades()` and `map_bucket_trades()` return bucketed trade
-    data (open, high, low, close) for either 1 minute, 5 minute, 1 hour
-    or 1 day time frames for a specified symbol.
+    data (open, high, low, close) for either 1-minute, 5-minute, 1-hour
+    or 1-day time frames for a specified symbol.
   - `place_order()`, `edit_order()` and `cancel_order()` can be used to
     manage trades on the exchange.
 
@@ -60,14 +60,15 @@ to get the latest trollbox messages.
 
 **Testnet API**
 
-All functions in the package also work with the testnet API simply use
+All functions in the package also work with the testnet API. Simply use
 the “tn\_” prefix to access the testnet version of the function. For
 example `tn_place_order()` will place an order on the testnet exchange.
 
 **Authentication**
 
-Accessing private API endpoints requires an API key and secret.
-`bitmexr` reads these from the ~/.Renviron file - see vignette
+Accessing private API endpoints, such as those to manage trades,
+requires an API key and secret. `bitmexr` reads these from your
+\~/.Renviron file - see vignette
 [Authentication](https://hfshr.github.io/bitmexr/articles/authentication.html)
 for more information.
 

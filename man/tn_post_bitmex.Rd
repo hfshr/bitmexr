@@ -9,7 +9,10 @@ tn_post_bitmex(path, args = NULL)
 \arguments{
 \item{path}{string. End point for the api.}
 
-\item{args}{A named list containing valid parameters for the request.}
+\item{args}{A named list containing valid parameters for the given API endpoint.}
+}
+\value{
+a \code{data.frame} containing the response from the request.
 }
 \description{
 Use \code{tn_post_bitmex()} to send POST requests to the testnet API. All POST requests require authentication.
@@ -18,8 +21,10 @@ Use \code{tn_post_bitmex()} to send POST requests to the testnet API. All POST r
 \dontrun{
 # edit leverage on a position
 
-tn_post_bitmex(path = "/position/leverage",
-               args = list("symbol" = "XBTUSD", "leverage" = 10))
+tn_post_bitmex(
+  path = "/position/leverage",
+  args = list("symbol" = "XBTUSD", "leverage" = 10)
+)
 }
 
 }

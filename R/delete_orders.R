@@ -6,6 +6,9 @@
 #' @param text string. Optional cancellation annotation. e.g. 'Spread Exceeded'.
 #' @param clOrdID string. Optional client ID set when placing an order.
 #'
+#' @return Returns a `data.frame` with details about the order that was cancelled.
+#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancel for more information.
+#'
 #' @examples
 #' \dontrun{
 #' # Cancel an order
@@ -64,6 +67,9 @@ cancel_order <- function(
 #' @param text string. Optional cancellation annotation. e.g. 'Spread Exceeded'.
 #' @param clOrdID string. Optional client ID set when placing an order.
 #'
+#' @return Returns a `data.frame` with details about the order that was cancelled.
+#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancel for more information.
+#'
 #' @examples
 #' \dontrun{
 #' # Cancel an order
@@ -114,14 +120,18 @@ tn_cancel_order <- function(
   return(result)
 }
 
-#' Canncel all orders
+#' Cancel all orders
 #'
-#' Cancel all orders that have been placed.
+#' Cancel all orders that have been placed for a specific symbol,
+#' or use a filter to select specific orders.
 #'
 #' @inheritParams cancel_order
 #' @param symbol string. Optional symbol. If provided, only cancels orders for that symbol.
 #' @param filter string. Optional filter for cancellation. Use to only cancel some orders,
 #' e.g. '{"side": "Buy"}'.
+#'
+#' @return Returns a `data.frame` with information about the orders that were cancelled.
+#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll for more information.
 #'
 #' @examples
 #' \dontrun{
@@ -178,12 +188,16 @@ cancel_all_orders <- function(
 }
 
 
-#' Canncel all orders (testnet)
+#' Cancel all orders (testnet)
 #'
-#' Cancel all orders that have been placed using testnet API.
+#' Cancel all orders that have been placed using testnet API for a specific symbol,
+#' or use a filter to select specific orders.
 #'
 #' @inheritParams cancel_order
 #' @inheritParams cancel_all_orders
+#'
+#' @return Returns a `data.frame` with information about the orders that were cancelled.
+#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll for more information.
 #'
 #' @examples
 #' \dontrun{

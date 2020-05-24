@@ -97,7 +97,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="getting-started_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting started</h1>
@@ -110,7 +110,7 @@
 
     
     
-<p>This vignette gives a brief overview of the main functions within the <code>bitmexr</code> package. To access the testnet API, use the <code>tn_</code> prefix to any of the functions in the package (e.g., <code><a href="../reference/trades.html">bitmexr::trades()</a></code> accesses trade data from the live API whereas <code><a href="../reference/tn_trades.html">bitmexr::tn_trades()</a></code> accesses trade data from the testnet API). This is useful is you want to test out placing/managing orders in a risk free environment.</p>
+<p>This vignette gives a brief overview of the main functions within the <code>bitmexr</code> package. The package supports both the testnet and live API endpoints, simply use the <code>tn_</code> prefix to any of the functions in the package (e.g., <code><a href="../reference/trades.html">bitmexr::trades()</a></code> accesses trade data from the live API whereas <code><a href="../reference/tn_trades.html">bitmexr::tn_trades()</a></code> accesses trade data from the testnet API). This is useful is you want to test out placing/managing orders in a risk free environment. I would encourage reviewing BitMEX’s documentation regarding the API</p>
 <div id="trade-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#trade-data" class="anchor"></a>Trade data</h1>
@@ -119,7 +119,7 @@
 <li>
 <code><a href="../reference/trades.html">trades()</a></code>: to get individual trades that have been executed.</li>
 <li>
-<code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> to get bucketed trade data in 1m, 5m, 1hour or 1day buckets</li>
+<code><a href="../reference/bucket_trades.html">bucket_trades()</a></code>: to get bucketed trade data in 1m, 5m, 1hour or 1day buckets</li>
 </ul>
 <p><code><a href="../reference/bucket_trades.html">bucket_trades()</a></code>is typically more useful when wanting data over an extended period of time due to the sheer volume of trades that are executed on the exchange each day. These functions also have map_* variants to help overcome the 1000 row per request limit.</p>
 <p>Please see the <a href="trade-data.html">Trade data</a> vignette for more details on the functions.</p>
@@ -157,7 +157,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Harry Fisher.</p>
+  <p>Developed by <a href="https://hfshr.netlify.app/">Harry Fisher</a>.</p>
 </div>
 
 <div class="pkgdown">

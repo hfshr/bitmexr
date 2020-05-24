@@ -1,0 +1,13 @@
+pandoc: 2.9.2.1
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  authentication: authentication.html
+  getting-started: getting-started.html
+  placing-orders: placing-orders.html
+  trade-data: trade-data.html
+last_built: 2020-05-24T07:50Z
+urls:
+  reference: https://hfshr.github.io/bitmexr//reference
+  article: https://hfshr.github.io/bitmexr//articles
+

@@ -40,6 +40,23 @@ Optional offset from the peg price for 'Pegged' orders.}
 
 \item{text}{string. Optional amend annotation. e.g. 'Adjust skew'.}
 }
+\value{
+A \code{data.frame} with information about the amended order. See
+https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.
+}
 \description{
 Edit an order that has been placed with the testnet API.
+}
+\examples{
+\dontrun{
+
+# place an order
+
+tn_place_order(symbol = "XBTUSD", price = 5000, orderQty = 100, clOrdID = "myorderid")
+
+# edit the order
+
+tn_edit_order(origClOrID = "myorderid", orderQty = 200)
+}
+
 }

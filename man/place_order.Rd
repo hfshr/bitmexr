@@ -58,6 +58,10 @@ instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouche
 
 \item{text}{string. Optional order annotation. e.g. 'Take profit'.}
 }
+\value{
+A tibble containing information about the trade that has been placed.
+See https://www.bitmex.com/api/explorer/#!/Order/Order_new for more details.
+}
 \description{
 Place an order using the Bitmex API. Requires API key.
 }

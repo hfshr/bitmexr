@@ -67,6 +67,5 @@ tn_bucket_trades(
   symbol = "ETHUSD",
   count = 10
 )
-
 }
 }

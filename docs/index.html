@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="R Client for BitMEX">
-<meta property="og:description" content="Tools to obtain historic trade data from
-    cryptocurrency exchange BitMEX &lt;https://www.bitmex.com/&gt;.">
+<meta property="og:description" content="Tools to access the API for cryptocurrency exchange
+    BitMEX &lt;https://www.bitmex.com/&gt; from R. ">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -129,7 +129,7 @@
 <li>
 <code><a href="reference/trades.html">trades()</a></code> and <code><a href="reference/map_trades.html">map_trades()</a></code> return individual trade data for a specified symbol/time period</li>
 <li>
-<code><a href="reference/bucket_trades.html">bucket_trades()</a></code> and <code><a href="reference/map_bucket_trades.html">map_bucket_trades()</a></code> return bucketed trade data (open, high, low, close) for either 1 minute, 5 minute, 1 hour or 1 day time frames for a specified symbol.</li>
+<code><a href="reference/bucket_trades.html">bucket_trades()</a></code> and <code><a href="reference/map_bucket_trades.html">map_bucket_trades()</a></code> return bucketed trade data (open, high, low, close) for either 1-minute, 5-minute, 1-hour or 1-day time frames for a specified symbol.</li>
 <li>
 <code><a href="reference/place_order.html">place_order()</a></code>, <code><a href="reference/edit_order.html">edit_order()</a></code> and <code><a href="reference/cancel_order.html">cancel_order()</a></code> can be used to manage trades on the exchange.</li>
 </ul>
@@ -137,9 +137,9 @@
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/get_bitmex.html">get_bitmex</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">"/chat"</span>, <span class="kw">args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"false"</span>))</pre></div>
 <p>to get the latest trollbox messages.</p>
 <p><strong>Testnet API</strong></p>
-<p>All functions in the package also work with the testnet API simply use the “tn_” prefix to access the testnet version of the function. For example <code><a href="reference/tn_place_order.html">tn_place_order()</a></code> will place an order on the testnet exchange.</p>
+<p>All functions in the package also work with the testnet API. Simply use the “tn_” prefix to access the testnet version of the function. For example <code><a href="reference/tn_place_order.html">tn_place_order()</a></code> will place an order on the testnet exchange.</p>
 <p><strong>Authentication</strong></p>
-<p>Accessing private API endpoints requires an API key and secret. <code>bitmexr</code> reads these from the ~/.Renviron file - see vignette <a href="https://hfshr.github.io/bitmexr/articles/authentication.html">Authentication</a> for more information.</p>
+<p>Accessing private API endpoints, such as those to manage trades, requires an API key and secret. <code>bitmexr</code> reads these from your ~/.Renviron file - see vignette <a href="https://hfshr.github.io/bitmexr/articles/authentication.html">Authentication</a> for more information.</p>
 </div>
 <div id="disclaimer" class="section level1">
 <h1 class="hasAnchor">
@@ -187,7 +187,8 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Harry Fisher <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
+<li>
+<a href="https://hfshr.netlify.app/">Harry Fisher</a> <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
 </ul>
 </div>
 
@@ -205,7 +206,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Harry Fisher.</p>
+  <p>Developed by <a href="https://hfshr.netlify.app/">Harry Fisher</a>.</p>
 </div>
 
 <div class="pkgdown">

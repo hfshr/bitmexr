@@ -208,7 +208,22 @@ Optional offset from the peg price for 'Pegged' orders.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A <code>data.frame</code> with information about the amended order. See
+https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+
+<span class='co'># place an order</span>
+
+<span class='fu'><a href='place_order.html'>place_order</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>price</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>orderQty</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>clOrdID</span> <span class='kw'>=</span> <span class='st'>"myorderid"</span>)
+
+<span class='co'># edit the order</span>
+
+<span class='fu'>edit_order</span>(<span class='kw'>origClOrID</span> <span class='kw'>=</span> <span class='st'>"myorderid"</span>, <span class='kw'>orderQty</span> <span class='kw'>=</span> <span class='fl'>200</span>)
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -220,7 +235,7 @@ Optional offset from the peg price for 'Pegged' orders.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Harry Fisher.</p>
+  <p>Developed by <a href='https://hfshr.netlify.app/'>Harry Fisher</a>.</p>
 </div>
 
 <div class="pkgdown">

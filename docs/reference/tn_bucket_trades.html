@@ -228,7 +228,7 @@ Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-m
 consider using <code><a href='tn_map_bucket_trades.html'>tn_map_bucket_trades()</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><span class='co'># \donttest{</span>
 
 <span class='co'># Return most recent data for symbol `"ETHUSD"` for 1 hour buckets</span>
 
@@ -236,30 +236,8 @@ consider using <code><a href='tn_map_bucket_trades.html'>tn_map_bucket_trades()<
   <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div><div class='output co'>#&gt;              timestamp symbol   open   high    low  close trades volume   vwap
-#&gt; 1  2020-05-23 09:00:00 ETHUSD 209.70 209.45 206.95 207.05     44  11411 207.70
-#&gt; 2  2020-05-23 08:00:00 ETHUSD 208.05 209.80 208.05 209.70     19     80 208.94
-#&gt; 3  2020-05-23 07:00:00 ETHUSD 208.10 210.00 208.05 208.05     31   1779 208.27
-#&gt; 4  2020-05-23 06:00:00 ETHUSD 210.00 210.00 207.70 208.10     45  18122 209.83
-#&gt; 5  2020-05-23 05:00:00 ETHUSD 210.40 210.55 209.40 210.00     37   4804 209.84
-#&gt; 6  2020-05-23 04:00:00 ETHUSD 210.25 210.60 210.25 210.40     57   3588 210.34
-#&gt; 7  2020-05-23 03:00:00 ETHUSD 209.00 210.60 209.20 210.25     98   4166 209.97
-#&gt; 8  2020-05-23 02:00:00 ETHUSD 209.00 209.20 209.00 209.00     23     96 209.10
-#&gt; 9  2020-05-23 01:00:00 ETHUSD 207.35 209.20 206.70 209.00     52   3495 208.48
-#&gt; 10 2020-05-23 00:00:00 ETHUSD 208.65 208.65 206.00 207.35     42   1892 207.63
-#&gt;    lastSize  turnover homeNotional foreignNotional
-#&gt; 1         6 236995630  104.9388554      21794.8412
-#&gt; 2         1   1671485    0.7393601        154.4787
-#&gt; 3         5  37051230   16.4341925       3422.7561
-#&gt; 4         1 380245755  167.6439009      35175.9884
-#&gt; 5         4 100804175   44.5932418       9357.1730
-#&gt; 6         1  75468235   33.3230495       7009.0097
-#&gt; 7         6  87471095   38.6061763       8105.9249
-#&gt; 8         6   2007335    0.8878318        185.6433
-#&gt; 9        50  72860925   32.2017795       6713.2437
-#&gt; 10        3  39282615   17.3454632       3601.3668</div><div class='input'>
-# }
-</div></pre>
+)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -271,7 +249,7 @@ consider using <code><a href='tn_map_bucket_trades.html'>tn_map_bucket_trades()<
 
       <footer>
       <div class="copyright">
-  <p>Developed by Harry Fisher.</p>
+  <p>Developed by <a href='https://hfshr.netlify.app/'>Harry Fisher</a>.</p>
 </div>
 
 <div class="pkgdown">

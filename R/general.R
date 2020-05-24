@@ -3,12 +3,13 @@
 #' Use `post_bitmex()` to send POST requests. All POST requests require authentication.
 #'
 #' @param path string. End point for the api.
-#' @param args A named list containing the
+#' @param args A named list containing valid parameters for the given API endpoint.
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
-#' @examples
+#' @return a `data.frame` containing the response from the request.
 #'
+#' @examples
 #' \dontrun{
 #' # edit leverage on a position
 #'
@@ -59,17 +60,20 @@ post_bitmex <- function(
 #'
 #' Use `tn_post_bitmex()` to send POST requests to the testnet API. All POST requests require authentication.
 #'
-#' @param path string. End point for the api.
-#' @param args A named list containing valid parameters for the request.
+#' @inheritParams post_bitmex
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
+#'
+#' @return a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{
 #' # edit leverage on a position
 #'
-#' tn_post_bitmex(path = "/position/leverage",
-#'                args = list("symbol" = "XBTUSD", "leverage" = 10))
+#' tn_post_bitmex(
+#'   path = "/position/leverage",
+#'   args = list("symbol" = "XBTUSD", "leverage" = 10)
+#' )
 #' }
 #'
 #' @export
@@ -118,6 +122,8 @@ tn_post_bitmex <- function(
 #' if authentication has been set up
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
+#'
+#' @return a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{
@@ -178,9 +184,11 @@ get_bitmex <- function(
 #'
 #' @inheritParams post_bitmex
 #' @param use_auth logical. Use `TRUE` to access private endpoints
-#' if authentication has been set up
+#' if authentication has been set up.
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
+#'
+#' @return a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{

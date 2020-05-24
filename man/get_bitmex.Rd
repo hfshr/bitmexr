@@ -9,10 +9,13 @@ get_bitmex(path, args = NULL, use_auth = FALSE)
 \arguments{
 \item{path}{string. End point for the api.}
 
-\item{args}{A named list containing the}
+\item{args}{A named list containing valid parameters for the given API endpoint.}
 
 \item{use_auth}{logical. Use \code{TRUE} to access private endpoints
 if authentication has been set up}
+}
+\value{
+a \code{data.frame} containing the response from the request.
 }
 \description{
 Use \code{get_bitmex()} to send GET requests. For private endpoints, authentication is required.

@@ -9,13 +9,15 @@ post_bitmex(path, args = NULL)
 \arguments{
 \item{path}{string. End point for the api.}
 
-\item{args}{A named list containing the}
+\item{args}{A named list containing valid parameters for the given API endpoint.}
+}
+\value{
+a \code{data.frame} containing the response from the request.
 }
 \description{
 Use \code{post_bitmex()} to send POST requests. All POST requests require authentication.
 }
 \examples{
-
 \dontrun{
 # edit leverage on a position
 

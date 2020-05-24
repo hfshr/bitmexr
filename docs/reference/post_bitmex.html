@@ -161,24 +161,26 @@
     </tr>
     <tr>
       <th>args</th>
-      <td><p>A named list containing the</p></td>
+      <td><p>A named list containing valid parameters for the given API endpoint.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a <code>data.frame</code> containing the response from the request.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://www.bitmex.com/api/explorer/'>https://www.bitmex.com/api/explorer/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># edit leverage on a position</span>
 
 <span class='fu'>post_bitmex</span>(
   <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/position/leverage"</span>,
   <span class='kw'>args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"symbol"</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='st'>"leverage"</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 )
-}</div></pre>
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -190,7 +192,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Harry Fisher.</p>
+  <p>Developed by <a href='https://hfshr.netlify.app/'>Harry Fisher</a>.</p>
 </div>
 
 <div class="pkgdown">

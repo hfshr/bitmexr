@@ -10,6 +10,21 @@
 #' @param leavesQty string. Optional leaves quantity in units of the instrument (i.e. contracts).
 #' Useful for amending partially filled orders.
 #'
+#' @return A `data.frame` with information about the amended order. See
+#' https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' # place an order
+#'
+#' place_order(symbol = "XBTUSD", price = 5000, orderQty = 100, clOrdID = "myorderid")
+#'
+#' # edit the order
+#'
+#' edit_order(origClOrID = "myorderid", orderQty = 200)
+#' }
+#'
 #' @export
 edit_order <- function(
   orderID = NULL,
@@ -70,6 +85,21 @@ edit_order <- function(
 #' Edit an order that has been placed with the testnet API.
 #'
 #' @inheritParams edit_order
+#'
+#' @return A `data.frame` with information about the amended order. See
+#' https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' # place an order
+#'
+#' tn_place_order(symbol = "XBTUSD", price = 5000, orderQty = 100, clOrdID = "myorderid")
+#'
+#' # edit the order
+#'
+#' tn_edit_order(origClOrID = "myorderid", orderQty = 200)
+#' }
 #'
 #' @export
 tn_edit_order <- function(

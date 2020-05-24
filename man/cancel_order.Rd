@@ -13,6 +13,10 @@ cancel_order(orderID = NULL, clOrdID = NULL, text = NULL)
 
 \item{text}{string. Optional cancellation annotation. e.g. 'Spread Exceeded'.}
 }
+\value{
+Returns a \code{data.frame} with details about the order that was cancelled.
+See https://www.bitmex.com/api/explorer/#!/Order/Order_cancel for more information.
+}
 \description{
 Cancel an order that has been placed.
 }
