@@ -42,7 +42,7 @@ Optional offset from the peg price for 'Pegged' orders.}
 }
 \value{
 A \code{data.frame} with information about the amended order. See
-https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.
+\url{https://www.bitmex.com/api/explorer/#!/Order/Order_amend} for more information.
 }
 \description{
 Edit an order that has been placed.

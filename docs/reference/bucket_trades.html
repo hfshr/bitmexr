@@ -249,7 +249,7 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades()</a></c
     <p>urlhttps://www.bitmex.com/api/explorer/#!/Trade/Trade_getBucketed</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 
 <span class='co'># Return most recent data for symbol `"ETHUSD"` for 1 hour buckets</span>
 
@@ -257,8 +257,29 @@ consider using <code><a href='map_bucket_trades.html'>map_bucket_trades()</a></c
   <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)
-<span class='co'># }</span></pre>
+)</div><div class='output co'>#&gt;              timestamp symbol   open   high    low  close trades  volume   vwap
+#&gt; 1  2020-05-25 15:00:00 ETHUSD 204.05 204.80 202.55 202.60   3454 3154896 203.81
+#&gt; 2  2020-05-25 14:00:00 ETHUSD 203.20 204.50 202.45 204.05   3474 3195656 203.38
+#&gt; 3  2020-05-25 13:00:00 ETHUSD 202.60 203.95 202.60 203.20   3107 2856193 203.39
+#&gt; 4  2020-05-25 12:00:00 ETHUSD 202.05 202.65 201.50 202.60   2957 2124305 202.21
+#&gt; 5  2020-05-25 11:00:00 ETHUSD 202.45 203.90 201.95 202.05   3509 4268361 202.90
+#&gt; 6  2020-05-25 10:00:00 ETHUSD 203.10 205.25 201.20 202.45   6941 9943620 203.15
+#&gt; 7  2020-05-25 09:00:00 ETHUSD 204.25 204.70 203.10 203.10   2693 2192077 203.93
+#&gt; 8  2020-05-25 08:00:00 ETHUSD 203.00 204.50 202.70 204.25   3010 3063474 203.82
+#&gt; 9  2020-05-25 07:00:00 ETHUSD 202.20 204.15 201.45 203.00   3833 3535096 203.08
+#&gt; 10 2020-05-25 06:00:00 ETHUSD 203.00 203.15 201.75 202.20   1646 1734587 202.34
+#&gt;    lastSize     turnover homeNotional foreignNotional
+#&gt; 1       200  64299768995     27818.81         5669767
+#&gt; 2         2  64992436545     28041.43         5703047
+#&gt; 3        50  58092090715     25021.45         5089118
+#&gt; 4       500  42955368625     18537.40         3748437
+#&gt; 5       450  86602911555     37346.31         7577446
+#&gt; 6        35 201996260460     87336.22        17742255
+#&gt; 7       100  44702414345     19392.88         3954749
+#&gt; 8        25  62438583870     27032.02         5509602
+#&gt; 9        25  71790126805     31082.77         6312266
+#&gt; 10      250  35096397260     15237.50         3083056</div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

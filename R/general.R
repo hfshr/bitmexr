@@ -7,7 +7,7 @@
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
-#' @return a `data.frame` containing the response from the request.
+#' @return Returns a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{
@@ -64,7 +64,7 @@ post_bitmex <- function(
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
-#' @return a `data.frame` containing the response from the request.
+#' @return Returns a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{
@@ -123,7 +123,7 @@ tn_post_bitmex <- function(
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
-#' @return a `data.frame` containing the response from the request.
+#' @return Returns a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{
@@ -188,7 +188,7 @@ get_bitmex <- function(
 #'
 #' @references \url{https://www.bitmex.com/api/explorer/}
 #'
-#' @return a `data.frame` containing the response from the request.
+#' @return Returns a `data.frame` containing the response from the request.
 #'
 #' @examples
 #' \dontrun{

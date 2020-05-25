@@ -110,7 +110,7 @@
 
     
     
-<p>This vignette gives a brief overview of the main functions within the <code>bitmexr</code> package. The package supports both the testnet and live API endpoints, simply use the <code>tn_</code> prefix to any of the functions in the package (e.g., <code><a href="../reference/trades.html">bitmexr::trades()</a></code> accesses trade data from the live API whereas <code><a href="../reference/tn_trades.html">bitmexr::tn_trades()</a></code> accesses trade data from the testnet API). This is useful is you want to test out placing/managing orders in a risk free environment. I would encourage reviewing BitMEX’s documentation regarding the API</p>
+<p>This vignette gives a brief overview of the main functions within the <code>bitmexr</code> package. The package supports both the testnet and live API endpoints, simply use the <code>tn_</code> prefix to any of the functions in the package (e.g., <code><a href="../reference/trades.html">bitmexr::trades()</a></code> accesses trade data from the live API whereas <code><a href="../reference/tn_trades.html">bitmexr::tn_trades()</a></code> accesses trade data from the testnet API). This is useful is you want to test out placing/managing orders in a risk free environment.</p>
 <div id="trade-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#trade-data" class="anchor"></a>Trade data</h1>
@@ -119,10 +119,10 @@
 <li>
 <code><a href="../reference/trades.html">trades()</a></code>: to get individual trades that have been executed.</li>
 <li>
-<code><a href="../reference/bucket_trades.html">bucket_trades()</a></code>: to get bucketed trade data in 1m, 5m, 1hour or 1day buckets</li>
+<code><a href="../reference/bucket_trades.html">bucket_trades()</a></code>: to get bucketed trade data in 1-minute, 5-minute, 1-hour or 1-day buckets</li>
 </ul>
-<p><code><a href="../reference/bucket_trades.html">bucket_trades()</a></code>is typically more useful when wanting data over an extended period of time due to the sheer volume of trades that are executed on the exchange each day. These functions also have map_* variants to help overcome the 1000 row per request limit.</p>
-<p>Please see the <a href="trade-data.html">Trade data</a> vignette for more details on the functions.</p>
+<p><code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> is typically more useful when wanting data over an extended period of time due to the sheer volume of trades that are executed on the exchange each day. These functions also have map_* variants to help overcome the 1000 row per request limit.</p>
+<p>Please see the <a href="trade-data.html">Trade data</a> vignette for more details on these functions.</p>
 </div>
 <div id="placing-editing-and-cancelling-orders" class="section level1">
 <h1 class="hasAnchor">
@@ -139,10 +139,10 @@
 </ul>
 <p>Please see the vignette <a href="placing-orders.html">Placing and managing order with bitmexr</a> for more information.</p>
 </div>
-<div id="tips" class="section level1">
+<div id="further-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#tips" class="anchor"></a>Tips</h1>
-<p>It is recommended to have a throughout understanding of the BitMEX API documentation prior to using the package. Please take some time to read both <a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a> and <a href="https://www.bitmex.com/api/explorer/" class="uri">https://www.bitmex.com/api/explorer/</a>.</p>
+<a href="#further-information" class="anchor"></a>Further information</h1>
+<p>It is recommended to have a thorough understanding of the BitMEX API documentation prior to using the package. Please take some time to read both <a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a> and <a href="https://www.bitmex.com/api/explorer/" class="uri">https://www.bitmex.com/api/explorer/</a>.</p>
 </div>
   </div>
 

@@ -60,7 +60,7 @@ instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouche
 }
 \value{
 Returns a \code{tibble} containing information about the trade that has been placed.
-See https://testnet.bitmex.com/api/explorer/#!/Order/Order_new for more details.
+See \url{https://testnet.bitmex.com/api/explorer/#!/Order/Order_new} for more details.
 }
 \description{
 Place an order using the Bitmex testnet API. Requires testnet API key.

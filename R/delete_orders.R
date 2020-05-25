@@ -7,7 +7,7 @@
 #' @param clOrdID string. Optional client ID set when placing an order.
 #'
 #' @return Returns a `data.frame` with details about the order that was cancelled.
-#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancel for more information.
+#' See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_cancel} for more information.
 #'
 #' @examples
 #' \dontrun{
@@ -68,7 +68,7 @@ cancel_order <- function(
 #' @param clOrdID string. Optional client ID set when placing an order.
 #'
 #' @return Returns a `data.frame` with details about the order that was cancelled.
-#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancel for more information.
+#' See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_cancel} for more information.
 #'
 #' @examples
 #' \dontrun{
@@ -131,7 +131,7 @@ tn_cancel_order <- function(
 #' e.g. '{"side": "Buy"}'.
 #'
 #' @return Returns a `data.frame` with information about the orders that were cancelled.
-#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll for more information.
+#' See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll} for more information.
 #'
 #' @examples
 #' \dontrun{
@@ -197,7 +197,7 @@ cancel_all_orders <- function(
 #' @inheritParams cancel_all_orders
 #'
 #' @return Returns a `data.frame` with information about the orders that were cancelled.
-#' See https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll for more information.
+#' See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll} for more information.
 #'
 #' @examples
 #' \dontrun{

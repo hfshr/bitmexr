@@ -11,7 +11,7 @@
 #' Useful for amending partially filled orders.
 #'
 #' @return A `data.frame` with information about the amended order. See
-#' https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.
+#' \url{https://www.bitmex.com/api/explorer/#!/Order/Order_amend} for more information.
 #'
 #' @examples
 #' \dontrun{
@@ -87,7 +87,7 @@ edit_order <- function(
 #' @inheritParams edit_order
 #'
 #' @return A `data.frame` with information about the amended order. See
-#' https://www.bitmex.com/api/explorer/#!/Order/Order_amend for more information.
+#' \url{https://www.bitmex.com/api/explorer/#!/Order/Order_amend} for more information.
 #'
 #' @examples
 #' \dontrun{

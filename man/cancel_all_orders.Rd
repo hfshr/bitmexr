@@ -16,7 +16,7 @@ e.g. '{"side": "Buy"}'.}
 }
 \value{
 Returns a \code{data.frame} with information about the orders that were cancelled.
-See https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll for more information.
+See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll} for more information.
 }
 \description{
 Cancel all orders that have been placed for a specific symbol,

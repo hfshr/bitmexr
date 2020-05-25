@@ -15,7 +15,7 @@ get_bitmex(path, args = NULL, use_auth = FALSE)
 if authentication has been set up}
 }
 \value{
-a \code{data.frame} containing the response from the request.
+Returns a \code{data.frame} containing the response from the request.
 }
 \description{
 Use \code{get_bitmex()} to send GET requests. For private endpoints, authentication is required.

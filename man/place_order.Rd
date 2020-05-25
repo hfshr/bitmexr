@@ -60,7 +60,7 @@ instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouche
 }
 \value{
 A tibble containing information about the trade that has been placed.
-See https://www.bitmex.com/api/explorer/#!/Order/Order_new for more details.
+See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_new} for more details.
 }
 \description{
 Place an order using the Bitmex API. Requires API key.

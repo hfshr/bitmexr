@@ -16,8 +16,8 @@ status](https://www.r-pkg.org/badges/version/bitmexr)](https://CRAN.R-project.or
 # Overview
 
 The goal of `bitmexr` is to provide an API wrapper for cryptocurrency
-derivatives exchange BitMEX. `bitmexr` now provides support for all
-endpoints for both the testnet (www.testnet.bitmex.com) and the live
+derivatives exchange, BitMEX. `bitmexr` now provides support for all API
+endpoints for both the Testnet (www.testnet.bitmex.com) and the live
 exchange (www.bitmex.com). For more information about the API, check
 <https://www.bitmex.com/app/apiOverview>.
 
@@ -38,7 +38,8 @@ install.packages("bitmexr")
 
 # Package contents
 
-The package contains wrappers around the majority of API endpoints.
+The package contains dedicated wrappers for the majority of API
+endpoints.
 
   - `trades()` and `map_trades()` return individual trade data for a
     specified symbol/time period
@@ -60,9 +61,9 @@ to get the latest trollbox messages.
 
 **Testnet API**
 
-All functions in the package also work with the testnet API. Simply use
-the “tn\_” prefix to access the testnet version of the function. For
-example `tn_place_order()` will place an order on the testnet exchange.
+All functions in the package also work with BitMEX’s Testnet API. Simply
+use the “tn\_” prefix to access the Testnet version of the function. For
+example `tn_place_order()` will place an order on the Testnet exchange.
 
 **Authentication**
 

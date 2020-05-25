@@ -28,7 +28,7 @@
 #' @param text string. Optional order annotation. e.g. 'Take profit'.
 #'
 #' @return A tibble containing information about the trade that has been placed.
-#' See https://www.bitmex.com/api/explorer/#!/Order/Order_new for more details.
+#' See \url{https://www.bitmex.com/api/explorer/#!/Order/Order_new} for more details.
 #'
 #'
 #' @examples
@@ -114,7 +114,7 @@ place_order <- function(
 #' @inheritParams place_order
 #'
 #' @return Returns a `tibble` containing information about the trade that has been placed.
-#' See https://testnet.bitmex.com/api/explorer/#!/Order/Order_new for more details.
+#' See \url{https://testnet.bitmex.com/api/explorer/#!/Order/Order_new} for more details.
 #'
 #' @examples
 #' \dontrun{

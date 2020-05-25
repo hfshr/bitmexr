@@ -12,7 +12,7 @@ post_bitmex(path, args = NULL)
 \item{args}{A named list containing valid parameters for the given API endpoint.}
 }
 \value{
-a \code{data.frame} containing the response from the request.
+Returns a \code{data.frame} containing the response from the request.
 }
 \description{
 Use \code{post_bitmex()} to send POST requests. All POST requests require authentication.
