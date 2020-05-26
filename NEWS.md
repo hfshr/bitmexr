@@ -1,3 +1,5 @@
+# bitmexr (development version)
+
 # bitmexr 0.3.0
 
 bitmexr 0.3.0 brings some signification changes to the package.
