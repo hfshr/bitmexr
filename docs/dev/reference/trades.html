@@ -73,7 +73,7 @@ exchange." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -232,86 +232,24 @@ Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-m
     <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_get'>https://www.bitmex.com/api/explorer/#!/Trade/Trade_get</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><span class='co'># \donttest{</span>
 <span class='co'># Return 1000 most recent trades for symbol "XBTUSD".</span>
-<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt;              timestamp symbol side  size  price tickDirection
-#&gt; 1  2020-05-24 07:51:09 XBTUSD  Buy    23 9265.5  ZeroPlusTick
-#&gt; 2  2020-05-24 07:51:09 XBTUSD  Buy   390 9265.5      PlusTick
-#&gt; 3  2020-05-24 07:51:09 XBTUSD Sell 50000 9265.0     MinusTick
-#&gt; 4  2020-05-24 07:51:09 XBTUSD  Buy  5141 9265.5  ZeroPlusTick
-#&gt; 5  2020-05-24 07:51:09 XBTUSD  Buy  4500 9265.5  ZeroPlusTick
-#&gt; 6  2020-05-24 07:51:09 XBTUSD  Buy  1500 9265.5  ZeroPlusTick
-#&gt; 7  2020-05-24 07:51:09 XBTUSD  Buy   724 9265.5  ZeroPlusTick
-#&gt; 8  2020-05-24 07:51:09 XBTUSD  Buy    34 9265.5  ZeroPlusTick
-#&gt; 9  2020-05-24 07:51:09 XBTUSD  Buy  3742 9265.5  ZeroPlusTick
-#&gt; 10 2020-05-24 07:51:09 XBTUSD  Buy  1500 9265.5  ZeroPlusTick
-#&gt;                              trdMatchID grossValue homeNotional foreignNotional
-#&gt; 1  eaa6ffa3-b267-a3c6-7841-5d85fb613273     248239   0.00248239              23
-#&gt; 2  c33b5946-8806-6806-ea4a-5748eb664c9f    4209270   0.04209270             390
-#&gt; 3  1b7be8ba-2b1d-a774-4001-ee3103ec6c9c  539650000   5.39650000           50000
-#&gt; 4  ca5abf6e-4dd7-3360-ff6e-6463d2a4483a   55486813   0.55486813            5141
-#&gt; 5  2de5351d-2126-16e4-422f-7ffd19dbc0e9   48568500   0.48568500            4500
-#&gt; 6  50834691-35ee-056c-a012-00706dd3ef2c   16189500   0.16189500            1500
-#&gt; 7  c168479a-be96-d086-252c-57a2f712bbd1    7814132   0.07814132             724
-#&gt; 8  1a738118-7442-fd21-dd9b-984e503584cf     366962   0.00366962              34
-#&gt; 9  df3a789e-2880-2af1-ab0c-9ee3a3dad8c3   40387406   0.40387406            3742
-#&gt; 10 1a39c150-c717-3304-dfe7-79963776ffc9   16189500   0.16189500            1500</div><div class='input'>
+<span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+
 <span class='co'># Use filter for very specific values: Return trade data executed at 12:15.</span>
 <span class='fu'>trades</span>(
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15'}"</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div><div class='output co'>#&gt;              timestamp symbol side size  price tickDirection
-#&gt; 1  2020-05-23 12:15:59 XBTUSD Sell   10 9154.5 ZeroMinusTick
-#&gt; 2  2020-05-23 12:15:59 XBTUSD Sell 2630 9154.5 ZeroMinusTick
-#&gt; 3  2020-05-23 12:15:59 XBTUSD Sell  200 9154.5 ZeroMinusTick
-#&gt; 4  2020-05-23 12:15:59 XBTUSD Sell 2000 9154.5 ZeroMinusTick
-#&gt; 5  2020-05-23 12:15:59 XBTUSD Sell   10 9154.5 ZeroMinusTick
-#&gt; 6  2020-05-23 12:15:58 XBTUSD Sell   10 9154.5 ZeroMinusTick
-#&gt; 7  2020-05-23 12:15:56 XBTUSD Sell 7202 9154.5 ZeroMinusTick
-#&gt; 8  2020-05-23 12:15:56 XBTUSD Sell    1 9154.5 ZeroMinusTick
-#&gt; 9  2020-05-23 12:15:56 XBTUSD Sell    1 9154.5 ZeroMinusTick
-#&gt; 10 2020-05-23 12:15:56 XBTUSD Sell   89 9154.5 ZeroMinusTick
-#&gt;                              trdMatchID grossValue homeNotional foreignNotional
-#&gt; 1  8067cb36-7566-c620-fd1e-1ff034f933ff     109240   0.00109240              10
-#&gt; 2  aad5bb2c-6e4f-350e-0f21-f9bc8184249a   28730120   0.28730120            2630
-#&gt; 3  9e6edd23-e9fc-0780-31dd-1a87c6cae251    2184800   0.02184800             200
-#&gt; 4  5ab660f2-b7d0-76a5-4575-1fc6e3bc0d10   21848000   0.21848000            2000
-#&gt; 5  8ccbc9a7-e3f1-07e8-d7e0-84799f4f079a     109240   0.00109240              10
-#&gt; 6  9b31f1f2-1513-df7c-30c2-82303dd4c34b     109240   0.00109240              10
-#&gt; 7  ee2afcba-d2aa-9fb7-6ad9-b1290a1c2e11   78674648   0.78674648            7202
-#&gt; 8  d23255b1-b054-351b-f5a4-c65cd2a18f7c      10924   0.00010924               1
-#&gt; 9  9b384f67-b248-043a-2c73-eb45b7191dfe      10924   0.00010924               1
-#&gt; 10 10e48cda-59ad-a6cc-73c0-5ecb8cc5ffbc     972236   0.00972236              89</div><div class='input'>
+)
+
 <span class='co'># Also possible to combine more than one filter.</span>
 <span class='fu'>trades</span>(
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15', 'size':10000}"</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div><div class='output co'>#&gt;              timestamp symbol side  size  price tickDirection
-#&gt; 1  2020-05-23 12:15:51 XBTUSD Sell 10000 9154.5 ZeroMinusTick
-#&gt; 2  2020-05-23 12:15:35 XBTUSD Sell 10000 9154.5 ZeroMinusTick
-#&gt; 3  2020-05-22 12:15:50 XBTUSD  Buy 10000 9166.0  ZeroPlusTick
-#&gt; 4  2020-05-22 12:15:49 XBTUSD Sell 10000 9165.5 ZeroMinusTick
-#&gt; 5  2020-05-22 12:15:49 XBTUSD  Buy 10000 9165.5  ZeroPlusTick
-#&gt; 6  2020-05-22 12:15:49 XBTUSD  Buy 10000 9165.0  ZeroPlusTick
-#&gt; 7  2020-05-22 12:15:49 XBTUSD  Buy 10000 9162.5  ZeroPlusTick
-#&gt; 8  2020-05-22 12:15:49 XBTUSD  Buy 10000 9161.0  ZeroPlusTick
-#&gt; 9  2020-05-22 12:15:49 XBTUSD  Buy 10000 9160.5  ZeroPlusTick
-#&gt; 10 2020-05-22 12:15:49 XBTUSD  Buy 10000 9160.0  ZeroPlusTick
-#&gt;                              trdMatchID grossValue homeNotional foreignNotional
-#&gt; 1  bc71463a-e606-188a-1d2b-b744f568f56c  109240000       1.0924           10000
-#&gt; 2  6ce48959-dfed-1c37-6c8e-fe8c154b44d3  109240000       1.0924           10000
-#&gt; 3  e9b32768-fb1b-c110-da91-eaa9cf376d5a  109100000       1.0910           10000
-#&gt; 4  f976fc35-286e-aa09-2d7d-2eb5518a5135  109100000       1.0910           10000
-#&gt; 5  170c0669-432a-43ed-428a-b93b3b4cb814  109100000       1.0910           10000
-#&gt; 6  7e533676-96c8-203c-cec9-cfeb779bd149  109110000       1.0911           10000
-#&gt; 7  ef7be992-8f4a-4db8-ba88-743a9aaa8ba1  109140000       1.0914           10000
-#&gt; 8  8a4b6722-fc9a-1162-7f6b-61dc417c1a2b  109160000       1.0916           10000
-#&gt; 9  39b40593-c102-5aa7-d0d3-d996c111684d  109160000       1.0916           10000
-#&gt; 10 41c733b3-5f1e-f16a-6aae-efd177855ac7  109170000       1.0917           10000</div><div class='input'># }
-
-</div></pre>
+)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

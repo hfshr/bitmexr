@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -121,7 +121,9 @@ testnet_bitmex_apisecret = "your testnet api sectret"</code></pre>
 <p>For a live API key use:</p>
 <pre><code>bitmex_apikey = "your live api key"
 bitmex_apisecret = "your live api sectret"</code></pre>
+<p>Make sure to restart your R session after making changes to the .Renviron file!</p>
 <p>Functions in <code>bitmexr</code> requiring authentication will use relevant key/secret when creating the encrypted signature to send to private API endpoints. You can use the testnet API to ensure the functions work as you’d expect prior to using the live API.</p>
+<p>For more information about how the authentication process works see <a href="https://www.bitmex.com/app/apiKeysUsage" class="uri">https://www.bitmex.com/app/apiKeysUsage</a>.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

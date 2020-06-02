@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Canncel all orders — cancel_all_orders • bitmexr</title>
+<title>Cancel all orders — cancel_all_orders • bitmexr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Canncel all orders — cancel_all_orders" />
-<meta property="og:description" content="Cancel all orders that have been placed." />
+<meta property="og:title" content="Cancel all orders — cancel_all_orders" />
+<meta property="og:description" content="Cancel all orders that have been placed for a specific symbol,
+or use a filter to select specific orders." />
 
 
 <meta name="robots" content="noindex">
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -141,13 +142,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Canncel all orders</h1>
+    <h1>Cancel all orders</h1>
     <small class="dont-index">Source: <a href='https://github.com/hfshr/bitmexr/blob/master/R/delete_orders.R'><code>R/delete_orders.R</code></a></small>
     <div class="hidden name"><code>cancel_all_orders.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Cancel all orders that have been placed.</p>
+    <p>Cancel all orders that have been placed for a specific symbol,
+or use a filter to select specific orders.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cancel_all_orders</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -170,12 +172,16 @@ e.g. '"side": "Buy"'.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a <code>data.frame</code> with information about the orders that were cancelled.
+See <a href='https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll'>https://www.bitmex.com/api/explorer/#!/Order/Order_cancelAll</a> for more information.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># cancel all "Buy" orders</span>
 <span class='fu'>cancel_all_orders</span>(<span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>'{"side": "Buy"}'</span>)
-}</div></pre>
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

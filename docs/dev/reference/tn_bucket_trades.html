@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -228,7 +228,7 @@ Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-m
 consider using <code><a href='tn_map_bucket_trades.html'>tn_map_bucket_trades()</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><span class='co'># \donttest{</span>
 
 <span class='co'># Return most recent data for symbol `"ETHUSD"` for 1 hour buckets</span>
 
@@ -236,30 +236,8 @@ consider using <code><a href='tn_map_bucket_trades.html'>tn_map_bucket_trades()<
   <span class='kw'>binSize</span> <span class='kw'>=</span> <span class='st'>"1h"</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"ETHUSD"</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
-)</div><div class='output co'>#&gt;              timestamp symbol   open   high    low  close trades volume   vwap
-#&gt; 1  2020-05-24 07:00:00 ETHUSD 207.70 209.80 207.70 209.60     48  18733 209.13
-#&gt; 2  2020-05-24 06:00:00 ETHUSD 208.15 208.40 207.10 207.70     23    593 208.17
-#&gt; 3  2020-05-24 05:00:00 ETHUSD 207.80 208.15 206.75 208.15     38 120417 207.77
-#&gt; 4  2020-05-24 04:00:00 ETHUSD 206.75 207.80 206.75 207.80     16   2073 206.78
-#&gt; 5  2020-05-24 03:00:00 ETHUSD 206.75 207.60 206.75 206.75     39   3546 207.42
-#&gt; 6  2020-05-24 02:00:00 ETHUSD 206.45 207.00 206.45 206.75     38    685 206.81
-#&gt; 7  2020-05-24 01:00:00 ETHUSD 207.35 207.70 206.45 206.45     25  11943 206.46
-#&gt; 8  2020-05-24 00:00:00 ETHUSD 207.65 208.55 206.90 207.35     18    135 207.87
-#&gt; 9  2020-05-23 23:00:00 ETHUSD 207.20 208.60 207.20 207.65     35    312 207.79
-#&gt; 10 2020-05-23 22:00:00 ETHUSD 208.55 208.60 207.15 207.20     25    177 207.84
-#&gt;    lastSize   turnover homeNotional foreignNotional
-#&gt; 1         2  391762730   173.992965      36387.1398
-#&gt; 2         1   12344440     5.463913       1137.4194
-#&gt; 3         9 2501883055  1108.677813     230347.8860
-#&gt; 4         5   42864995    19.105215       3950.5299
-#&gt; 5         8   73550735    32.677876       6778.0079
-#&gt; 6         1   14166305     6.301813       1303.2613
-#&gt; 7         5  246570950   109.466968      22600.1627
-#&gt; 8         3    2806185     1.241405        258.0463
-#&gt; 9         3    6482770     2.879526        598.3111
-#&gt; 10        1    3678695     1.634335        339.6733</div><div class='input'>
-# }
-</div></pre>
+)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
