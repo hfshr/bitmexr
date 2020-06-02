@@ -1,5 +1,10 @@
 url: https://hfshr.github.io/bitmexr/
 
+template:
+  params:
+    ganalytics: UA-145834792-2
+
+
 authors:
   Harry Fisher:
     href: https://hfshr.netlify.app/
