@@ -17,7 +17,7 @@ A data.frame containing the symbol and date from which data is available
 Pass in a symbol from \code{\link[=available_symbols]{available_symbols()}} or no symbol to return dates for all available symbols
 }
 \examples{
-\donttest{
+\dontrun{
 valid_dates("XBTUSD")
 
 valid_dates(NULL)
