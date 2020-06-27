@@ -65,7 +65,7 @@ Obtaining the trade data for this day alone would take over an hour, and the use
 \code{\link[=map_bucket_trades]{map_bucket_trades()}} with a small 'binSize' (e.g., \code{"1m"}) is preferrable.
 }
 \examples{
-\donttest{
+\dontrun{
 
 # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 

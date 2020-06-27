@@ -76,7 +76,7 @@ Public API requests are limited to 30 per minute. Consequently, \code{map_bucket
 \code{purrr::slowly} to restrict how often the function is called.
 }
 \examples{
-\donttest{
+\dontrun{
 # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 
 map_bucket_trades(

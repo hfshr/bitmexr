@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:01:47.644Z",
+        "symbol": "EOSU20",
+        "side": "Buy",
+        "size": 1,
+        "price": 0.0003449,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "ca6b4150-33f1-6cfa-8a6f-91a35fd9bc33",
+        "grossValue": 34490,
+        "homeNotional": 1,
+        "foreignNotional": 0.0003449
+    }
+]

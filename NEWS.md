@@ -1,4 +1,7 @@
-# bitmexr (development version)
+# bitmexr 0.3.1
+
+* Fix test issues for cran
+* Minor documentation updates
 
 # bitmexr 0.3.0
 

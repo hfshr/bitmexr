@@ -242,7 +242,7 @@ Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-m
     <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_get'>https://www.bitmex.com/api/explorer/#!/Trade/Trade_get</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># \donttest{</span>
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Return 1000 most recent trades for symbol "XBTUSD".</span>
 <span class='fu'>trades</span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 
@@ -259,7 +259,7 @@ Ending date for results in the format <code>"yyyy-mm-dd"</code> or <code>"yyyy-m
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='st'>"{'timestamp.minute':'12:15', 'size':10000}"</span>,
   <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )
-<span class='co'># }</span></pre>
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

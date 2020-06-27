@@ -33,7 +33,7 @@
 #' }
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' # Return most recent data for symbol `"ETHUSD"` for 1 hour buckets
 #'
@@ -185,7 +185,7 @@ bucket_trades <- function(
 #' @inheritParams bucket_trades
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' # Return most recent data for symbol `"ETHUSD"` for 1 hour buckets
 #'

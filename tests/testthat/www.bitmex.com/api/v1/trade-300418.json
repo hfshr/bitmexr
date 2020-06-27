@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:26:11.019Z",
+        "symbol": "TRXU20",
+        "side": "Buy",
+        "size": 20000,
+        "price": 0.00000172,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "2f909114-0e0c-c170-fabf-c3da6f5d95a9",
+        "grossValue": 3440000,
+        "homeNotional": 20000,
+        "foreignNotional": 0.0344
+    }
+]

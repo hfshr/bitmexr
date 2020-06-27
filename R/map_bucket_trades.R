@@ -53,7 +53,7 @@
 #' }
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 #'
 #' map_bucket_trades(
@@ -199,7 +199,7 @@ map_bucket_trades <- function(
 #'
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 #'
 #' tn_map_bucket_trades(

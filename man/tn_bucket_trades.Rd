@@ -58,7 +58,7 @@ The API will only return 1000 rows per call. If the desired time frame requires 
 consider using \code{\link[=tn_map_bucket_trades]{tn_map_bucket_trades()}}.
 }
 \examples{
-\donttest{
+\dontrun{
 
 # Return most recent data for symbol `"ETHUSD"` for 1 hour buckets
 

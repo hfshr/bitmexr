@@ -83,8 +83,12 @@ as <- available_symbols()
 #' }
 #' @export
 valid_dates <- function(symbol = NULL) {
+
+  check_internet()
+
   if (is.null(symbol)) {
     limit_trades <- slowly(trades, rate_delay(1))
+
     dates <- map_dfr(available_symbols(), ~ limit_trades(.x, count = 1, reverse = "false")) %>%
       select(.data$symbol, .data$timestamp) %>%
       mutate(timestamp = as_datetime(.data$timestamp))

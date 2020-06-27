@@ -45,7 +45,7 @@ This is useful when the data you want to return exceeds the maximum 1000 row res
 but do not want to have to manually call \code{\link[=tn_bucket_trades]{tn_bucket_trades()}} repeatedly.
 }
 \examples{
-\donttest{
+\dontrun{
 # Get hourly bucketed trade data between 2020-01-01 and 2020-02-01
 
 tn_map_bucket_trades(

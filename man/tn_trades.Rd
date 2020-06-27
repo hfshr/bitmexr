@@ -47,7 +47,7 @@ Ending date for results in the format \code{"yyyy-mm-dd"} or \code{"yyyy-mm-dd h
 testnet exchange.
 }
 \examples{
-\donttest{
+\dontrun{
 # Return 1000 most recent trades for symbol "XBTUSD".
 tn_trades(symbol = "XBTUSD")
 

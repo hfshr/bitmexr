@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:16:16.211Z",
+        "symbol": "BCHU20",
+        "side": "Buy",
+        "size": 1,
+        "price": 0.02543,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "7c8f5d24-53f2-8c82-5893-ef5f0e5eab12",
+        "grossValue": 2543000,
+        "homeNotional": 1,
+        "foreignNotional": 0.02543
+    }
+]

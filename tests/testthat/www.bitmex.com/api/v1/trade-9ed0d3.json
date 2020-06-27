@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:00:27.441Z",
+        "symbol": "XBTZ20",
+        "side": "Buy",
+        "size": 100,
+        "price": 10090,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "8204a3ed-d5fb-b178-ccf1-a696ea9c2b6e",
+        "grossValue": 991100,
+        "homeNotional": 0.009911,
+        "foreignNotional": 100
+    }
+]

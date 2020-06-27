@@ -2,31 +2,35 @@
     "all": [
         "XBTUSD",
         "ETHUSD",
-        "XBTM20",
         "XRPUSD",
         "XBTU20",
-        "ETHM20",
-        "LTCM20",
-        "XRPM20",
-        "BCHM20",
-        "ADAM20",
-        "EOSM20",
-        "TRXM20"
+        "XBTZ20",
+        "ETHU20",
+        "LTCU20",
+        "XRPU20",
+        "BCHU20",
+        "ADAU20",
+        "EOSU20",
+        "TRXU20",
+        "ETHUSDU20",
+        "BCHUSD"
     ],
     "FFWCSX": [
         "XBTUSD",
         "ETHUSD",
-        "XRPUSD"
+        "XRPUSD",
+        "BCHUSD"
     ],
     "FFCCSX": [
-        "XBTM20",
         "XBTU20",
-        "ETHM20",
-        "LTCM20",
-        "XRPM20",
-        "BCHM20",
-        "ADAM20",
-        "EOSM20",
-        "TRXM20"
+        "XBTZ20",
+        "ETHU20",
+        "LTCU20",
+        "XRPU20",
+        "BCHU20",
+        "ADAU20",
+        "EOSU20",
+        "TRXU20",
+        "ETHUSDU20"
     ]
 }

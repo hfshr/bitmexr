@@ -41,7 +41,7 @@
 #' @references \url{https://www.bitmex.com/api/explorer/#!/Trade/Trade_get}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Return 1000 most recent trades for symbol "XBTUSD".
 #' trades(symbol = "XBTUSD", count = 10)
 #'
@@ -187,7 +187,7 @@ trades <- function(
 #' @references \url{https://testnet.bitmex.com/api/explorer/#!/Trade/Trade_get}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Return 1000 most recent trades for symbol "XBTUSD".
 #' tn_trades(symbol = "XBTUSD")
 #'

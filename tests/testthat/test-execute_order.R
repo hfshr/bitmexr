@@ -5,6 +5,7 @@ skip_if_no_auth <- function(var) {
 }
 
 test_that("execute_order works", {
+  skip_on_cran()
   skip_if_no_auth("bitmex_apikey")
   skip_if_no_auth("bitmex_apisecret")
 
@@ -12,6 +13,7 @@ test_that("execute_order works", {
 })
 
 test_that("testnet_execute_order works", {
+  skip_on_cran()
   skip_if_no_auth("testnet_bitmex_apikey")
   skip_if_no_auth("testnet_bitmex_apisecret")
 

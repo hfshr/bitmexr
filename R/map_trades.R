@@ -49,7 +49,7 @@
 #' }
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 #'
@@ -180,7 +180,7 @@ map_trades <- function(
 #' @inheritParams map_trades
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 #'

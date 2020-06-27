@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:01:05.243Z",
+        "symbol": "XRPU20",
+        "side": "Sell",
+        "size": 10000,
+        "price": 0.0000336,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "16ff3069-13d0-25b3-ff7d-8385d652c9d7",
+        "grossValue": 33600000,
+        "homeNotional": 10000,
+        "foreignNotional": 0.336
+    }
+]

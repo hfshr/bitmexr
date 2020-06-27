@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:21:09.189Z",
+        "symbol": "ETHU20",
+        "side": "Buy",
+        "size": 10,
+        "price": 0.02539,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "065ad03c-a2eb-6804-5907-f67088e262b7",
+        "grossValue": 25390000,
+        "homeNotional": 10,
+        "foreignNotional": 0.2539
+    }
+]

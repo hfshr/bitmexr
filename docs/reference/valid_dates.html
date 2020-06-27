@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -177,24 +177,11 @@ symbol to find start date for, or <code>NULL</code> for all available symbols</p
     <p>A data.frame containing the symbol and date from which data is available</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>valid_dates</span>(<span class='st'>"XBTUSD"</span>)</div><div class='output co'>#&gt;   symbol           timestamp
-#&gt; 1 XBTUSD 2015-09-25 12:34:25</div><div class='input'>
-<span class='fu'>valid_dates</span>(<span class='kw'>NULL</span>)</div><div class='output co'>#&gt;       symbol           timestamp
-#&gt; 1     XBTUSD 2015-09-25 12:34:25
-#&gt; 2     ETHUSD 2018-08-02 09:06:10
-#&gt; 3     XBTM20 2019-12-13 08:30:53
-#&gt; 4     XRPUSD 2020-02-05 04:00:53
-#&gt; 5     XBTU20 2020-03-13 08:31:06
-#&gt; 6     ETHM20 2020-03-13 08:34:28
-#&gt; 7     LTCM20 2020-03-13 08:34:03
-#&gt; 8     XRPM20 2020-03-13 08:32:10
-#&gt; 9     BCHM20 2020-03-13 08:38:10
-#&gt; 10    ADAM20 2020-03-13 08:38:03
-#&gt; 11    EOSM20 2020-03-13 08:53:06
-#&gt; 12    TRXM20 2020-03-13 08:32:38
-#&gt; 13 ETHUSDM20 2020-05-05 04:01:11</div><div class='input'># }
-</div></pre>
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>valid_dates</span>(<span class='st'>"XBTUSD"</span>)
+
+<span class='fu'>valid_dates</span>(<span class='kw'>NULL</span>)
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

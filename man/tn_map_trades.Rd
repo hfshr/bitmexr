@@ -37,7 +37,7 @@ request trade data between two time points.
 The function will stop when the \code{start_date} is greater than \code{end_date}.
 }
 \examples{
-\donttest{
+\dontrun{
 
 # Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00
 

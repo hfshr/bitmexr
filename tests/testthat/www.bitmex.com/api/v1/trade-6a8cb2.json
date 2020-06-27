@@ -1,0 +1,14 @@
+[
+    {
+        "timestamp": "2020-06-12T08:24:43.415Z",
+        "symbol": "LTCU20",
+        "side": "Buy",
+        "size": 1,
+        "price": 0.004685,
+        "tickDirection": "ZeroPlusTick",
+        "trdMatchID": "8764e1f8-416b-46d4-ec65-1afd357f68e7",
+        "grossValue": 468500,
+        "homeNotional": 1,
+        "foreignNotional": 0.004685
+    }
+]

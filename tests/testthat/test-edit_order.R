@@ -5,6 +5,8 @@ skip_if_no_auth <- function(var) {
 }
 
 test_that("test edit_order works", {
+  skip_on_cran()
+
   skip_if_no_auth("bitmex_apikey")
   skip_if_no_auth("bitmex_apisecret")
 
@@ -12,8 +14,9 @@ test_that("test edit_order works", {
 })
 
 test_that("test tn_edit_order works", {
+  skip_on_cran()
   skip_if_no_auth("testnet_bitmex_apikey")
   skip_if_no_auth("testnet_bitmex_apisecret")
 
-  expect_error(tn_edit_order(), "The API returned an error:  orderID is required")
+  expect_error(tn_edit_order(), "The API returned an error:  orderID or origClOrdID must be sent")
 })
