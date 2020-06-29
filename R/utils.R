@@ -55,7 +55,7 @@ trade_warning <- function(start, end) {
 #' @return A character vector of currently available symbols to be used as the `symbol` value in
 #' functions within the package.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' available_symbols()
 #' }
 #' @export

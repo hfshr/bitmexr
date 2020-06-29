@@ -1,6 +1,6 @@
 # Testing environments
 
-local MacOS Catalina (R 4.0.0)
+local MacOS Catalina (R 4.0.1)
 MacOS (release and devel, on GitHub Actions)
 Ubuntu 16.04 (release on GitHub Action)
 Rhub: Windows Server 2008 R2 SP1 (R-devel) 
