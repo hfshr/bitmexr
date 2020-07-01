@@ -14,7 +14,7 @@ functions within the package.
 Available symbols
 }
 \examples{
-\donttest{
+\dontrun{
 available_symbols()
 }
 }

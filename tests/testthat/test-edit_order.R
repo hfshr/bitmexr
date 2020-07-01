@@ -10,7 +10,7 @@ test_that("test edit_order works", {
   skip_if_no_auth("bitmex_apikey")
   skip_if_no_auth("bitmex_apisecret")
 
-  expect_error(edit_order(), "The API returned an error:  orderID is required")
+  expect_error(edit_order(), "The API returned an error:  orderID or origClOrdID must be sent.")
 })
 
 test_that("test tn_edit_order works", {
