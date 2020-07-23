@@ -1,6 +1,5 @@
 
 test_that("The map_trades() function works", {
-
   skip_on_cran()
 
   # capture_requests({
@@ -30,7 +29,6 @@ test_that("The map_trades() function works", {
 })
 
 test_that("The tn_map_trades() function works", {
-
   skip_on_cran()
 
   # capture_requests({
@@ -57,5 +55,4 @@ test_that("The tn_map_trades() function works", {
   expect_error(tn_map_trades(start_date = "not-a-valid-datetime-format", symbol = "XBTUSD"))
   expect_error(tn_map_trades(end_date = "not-a-valid-datetime-format", symbol = "XBTUSD"))
   Sys.sleep(3)
-
 })

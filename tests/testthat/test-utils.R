@@ -22,11 +22,11 @@ test_that("utils functions work", {
   #   expect_is(symbols, "character")
   # })
 
-res <- valid_dates()
-expect_is(res, "data.frame")
+  res <- valid_dates()
+  expect_is(res, "data.frame")
 
-symbols <- available_symbols()
-expect_is(symbols, "character")
+  symbols <- available_symbols()
+  expect_is(symbols, "character")
 
   expect_false(date_check("hello"))
 })

@@ -1,7 +1,6 @@
 
 
 test_that("The bucket_trades() function works", {
-
   skip_on_cran()
 
   # capture_requests({
@@ -46,7 +45,6 @@ test_that("The bucket_trades() function works", {
 })
 
 test_that("The tn_bucket_trades() function works", {
-
   skip_on_cran()
 
   # capture_requests({

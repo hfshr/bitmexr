@@ -1,6 +1,5 @@
 
 test_that("The trades() functions works", {
-
   skip_on_cran()
 
   # capture_requests({
@@ -33,12 +32,10 @@ test_that("The trades() functions works", {
   expect_error(trades(startTime = "not-a-valid-datetime-format"))
   expect_error(trades(endTime = "not-a-valid-datetime-format"))
   Sys.sleep(3)
-
 })
 
 
 test_that("The tn_trades() function works", {
-
   skip_on_cran()
 
   # capture_requests({

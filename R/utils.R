@@ -42,10 +42,9 @@ trade_warning <- function(start, end) {
         "\nAre you sure you want to continue?"
       )
     )
-
     stop_if(
       choice == 2,
-      msg = "Qutting function"
+      msg = "Quitting function"
     )
   }
 }
@@ -83,7 +82,6 @@ as <- available_symbols()
 #' }
 #' @export
 valid_dates <- function(symbol = NULL) {
-
   check_internet()
 
   if (is.null(symbol)) {
