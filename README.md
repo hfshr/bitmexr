@@ -3,8 +3,6 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/hfshr/bitmexr.svg?branch=master)](https://travis-ci.org/hfshr/bitmexr)
 [![Codecov test
 coverage](https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=master)
 [![R build
@@ -41,12 +39,12 @@ install.packages("bitmexr")
 The package contains dedicated wrappers for the majority of API
 endpoints.
 
-  - `trades()` and `map_trades()` return individual trade data for a
+-   `trades()` and `map_trades()` return individual trade data for a
     specified symbol/time period
-  - `bucket_trades()` and `map_bucket_trades()` return bucketed trade
+-   `bucket_trades()` and `map_bucket_trades()` return bucketed trade
     data (open, high, low, close) for either 1-minute, 5-minute, 1-hour
     or 1-day time frames for a specified symbol.
-  - `place_order()`, `edit_order()` and `cancel_order()` can be used to
+-   `place_order()`, `edit_order()` and `cancel_order()` can be used to
     manage trades on the exchange.
 
 Additional API endpoints that do not have a dedicated wrapper can be
