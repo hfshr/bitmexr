@@ -8,6 +8,13 @@
 
 <title>Trade data over an extended period — map_trades • bitmexr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -46,6 +53,7 @@ The function will stop when the start_date is greater than end_date.
 Given the large number of trades executed per day,
 a warning message with a choice to continue is presented when inputting a
 date range spanning more than one day." />
+<meta property="og:image" content="https://hfshr.github.io/bitmexr/logo.png" />
 
 
 <meta name="robots" content="noindex">
@@ -87,7 +95,7 @@ date range spanning more than one day." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -170,14 +178,14 @@ a warning message with a choice to continue is presented when inputting a
 date range spanning more than one day.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>map_trades</span>(
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>,
-  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2019-01-01 12:00:00"</span>,
-  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2019-01-01 12:15:00"</span>,
-  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>use_auth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>map_trades</span><span class='op'>(</span>
+  symbol <span class='op'>=</span> <span class='st'>"XBTUSD"</span>,
+  start_date <span class='op'>=</span> <span class='st'>"2019-01-01 12:00:00"</span>,
+  end_date <span class='op'>=</span> <span class='st'>"2019-01-01 12:15:00"</span>,
+  filter <span class='op'>=</span> <span class='cn'>NULL</span>,
+  use_auth <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -243,16 +251,18 @@ Obtaining the trade data for this day alone would take over an hour, and the use
     <p><a href='https://www.bitmex.com/api/explorer/#!/Trade/Trade_get'>https://www.bitmex.com/api/explorer/#!/Trade/Trade_get</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'># Get all trade data between 2019-05-03 12:00:00 and 2019-05-03 12:15:00</span>
 
-<span class='fu'>map_trades</span>(
-  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2019-05-03 12:00:00"</span>,
-  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>"2019-05-03 12:15:00"</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>
-)
-}</pre>
+<span class='fu'>map_trades</span><span class='op'>(</span>
+  start_date <span class='op'>=</span> <span class='st'>"2019-05-03 12:00:00"</span>,
+  end_date <span class='op'>=</span> <span class='st'>"2019-05-03 12:15:00"</span>,
+  symbol <span class='op'>=</span> <span class='st'>"XBTUSD"</span>
+<span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -268,7 +278,7 @@ Obtaining the trade data for this day alone would take over an hour, and the use
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

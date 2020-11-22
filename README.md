@@ -1,5 +1,5 @@
 
-# bitmexr: R Client for the BitMEX Exchange
+# bitmexr <a href='https://hfshr.github.io/bitmexr'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -9,9 +9,10 @@ coverage](https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg)](ht
 status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/bitmexr)](https://CRAN.R-project.org/package=bitmexr)
+[![](https://cranlogs.r-pkg.org/badges/bitmexr)](https://cran.r-project.org/package=bitmexr)
 <!-- badges: end -->
 
-# Overview
+## Overview
 
 The goal of `bitmexr` is to provide an API wrapper for cryptocurrency
 derivatives exchange, BitMEX. `bitmexr` now provides support for all API
@@ -19,7 +20,7 @@ endpoints for both the Testnet (www.testnet.bitmex.com) and the live
 exchange (www.bitmex.com). For more information about the API, check
 <https://www.bitmex.com/app/apiOverview>.
 
-# Installation
+## Installation
 
 The development version of `bitmexr` can be installed from github:
 
@@ -34,7 +35,7 @@ Or the released version from CRAN:
 install.packages("bitmexr")
 ```
 
-# Package contents
+## Package contents
 
 The package contains dedicated wrappers for the majority of API
 endpoints.
@@ -71,19 +72,34 @@ requires an API key and secret. `bitmexr` reads these from your
 [Authentication](https://hfshr.github.io/bitmexr/articles/authentication.html)
 for more information.
 
-# Disclaimer
+## Disclaimer
 
 This software is in no way affiliated, endorsed, or approved by the
 [BitMEX cryptocurrency exchange](https://www.bitmex.com) or any of its
 affiliates.
 
-# Contribution
+## Contribution
 
 If you spot any issues, or would like additional features added, please
 feel free to raise an issue, or submit a pull request.
 
-# Code of Conduct
+## Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://hfshr.github.io/bitmexr/CODE_OF_CONDUCT.html). By
 participating in this project you agree to abide by its terms.
+
+<!-- ```{r} -->
+<!-- library(hexSticker) -->
+<!-- sticker("/home/harry/Desktop/Bitcoin-Logo.png",  -->
+<!--         package="bitmexr",  -->
+<!--         p_size=20,  -->
+<!--         s_x=1,  -->
+<!--         s_y=0.75, -->
+<!--         s_width = 0.9, -->
+<!--         s_height = 0.9, -->
+<!--         h_fill = "#000000", -->
+<!--         h_color = "#f2a900", -->
+<!--         asp = 0.9, -->
+<!--         filename="inst/figures/hex.png") -->
+<!-- ``` -->

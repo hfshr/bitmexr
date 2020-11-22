@@ -17,3 +17,4 @@ dev.R
 ^CRAN-RELEASE$
 ^\.github$
 ^revdep$
+inst/figures/*.png

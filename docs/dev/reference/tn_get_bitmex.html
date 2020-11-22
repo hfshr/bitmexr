@@ -8,6 +8,13 @@
 
 <title>GET requests (testnet) — tn_get_bitmex • bitmexr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="GET requests (testnet) — tn_get_bitmex" />
 <meta property="og:description" content="Use tn_get_bitmex() to send GET requests to the testnet API. For private endpoints, authentication is required." />
+<meta property="og:image" content="https://hfshr.github.io/bitmexr/logo.png" />
 
 
 <meta name="robots" content="noindex">
@@ -82,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -160,7 +168,7 @@
     <p>Use <code>tn_get_bitmex()</code> to send GET requests to the testnet API. For private endpoints, authentication is required.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tn_get_bitmex</span>(<span class='no'>path</span>, <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_auth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>tn_get_bitmex</span><span class='op'>(</span><span class='va'>path</span>, args <span class='op'>=</span> <span class='cn'>NULL</span>, use_auth <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,14 +196,16 @@ if authentication has been set up.</p></td>
     <p><a href='https://www.bitmex.com/api/explorer/'>https://www.bitmex.com/api/explorer/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Access a public endpoint</span>
-<span class='no'>chat</span> <span class='kw'>&lt;-</span> <span class='fu'>tn_get_bitmex</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/chat"</span>, <span class='kw'>args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>channelID</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='st'>"true"</span>))
+<span class='va'>chat</span> <span class='op'>&lt;-</span> <span class='fu'>tn_get_bitmex</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"/chat"</span>, args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>channelID <span class='op'>=</span> <span class='fl'>1</span>, reverse <span class='op'>=</span> <span class='st'>"true"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># Access private endpoint using `use_auth` = `TRUE`.</span>
 
-<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'>tn_get_bitmex</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/execution"</span>, <span class='kw'>args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>), <span class='kw'>use_auth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</pre>
+<span class='va'>user</span> <span class='op'>&lt;-</span> <span class='fu'>tn_get_bitmex</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"/execution"</span>, args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>symbol <span class='op'>=</span> <span class='st'>"XBTUSD"</span><span class='op'>)</span>, use_auth <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +221,7 @@ if authentication has been set up.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
