@@ -8,6 +8,13 @@
 
 <title>Edit an order (testnet) — tn_edit_order • bitmexr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Edit an order (testnet) — tn_edit_order" />
 <meta property="og:description" content="Edit an order that has been placed with the testnet API." />
+<meta property="og:image" content="https://hfshr.github.io/bitmexr/logo.png" />
 
 
 
@@ -82,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -160,17 +168,17 @@
     <p>Edit an order that has been placed with the testnet API.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tn_edit_order</span>(
-  <span class='kw'>orderID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>origClOrdID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clOrdID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>orderQty</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>leavesQty</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>price</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stopPx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pegOffsetValue</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>tn_edit_order</span><span class='op'>(</span>
+  orderID <span class='op'>=</span> <span class='cn'>NULL</span>,
+  origClOrdID <span class='op'>=</span> <span class='cn'>NULL</span>,
+  clOrdID <span class='op'>=</span> <span class='cn'>NULL</span>,
+  orderQty <span class='op'>=</span> <span class='cn'>NULL</span>,
+  leavesQty <span class='op'>=</span> <span class='cn'>NULL</span>,
+  price <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stopPx <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pegOffsetValue <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -224,16 +232,18 @@ Optional offset from the peg price for 'Pegged' orders.</p></td>
 <a href='https://www.bitmex.com/api/explorer/#!/Order/Order_amend'>https://www.bitmex.com/api/explorer/#!/Order/Order_amend</a> for more information.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='co'># place an order</span>
 
-<span class='fu'><a href='tn_place_order.html'>tn_place_order</a></span>(<span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"XBTUSD"</span>, <span class='kw'>price</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>orderQty</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>clOrdID</span> <span class='kw'>=</span> <span class='st'>"myorderid"</span>)
+<span class='fu'><a href='tn_place_order.html'>tn_place_order</a></span><span class='op'>(</span>symbol <span class='op'>=</span> <span class='st'>"XBTUSD"</span>, price <span class='op'>=</span> <span class='fl'>5000</span>, orderQty <span class='op'>=</span> <span class='fl'>100</span>, clOrdID <span class='op'>=</span> <span class='st'>"myorderid"</span><span class='op'>)</span>
 
 <span class='co'># edit the order</span>
 
-<span class='fu'>tn_edit_order</span>(<span class='kw'>origClOrID</span> <span class='kw'>=</span> <span class='st'>"myorderid"</span>, <span class='kw'>orderQty</span> <span class='kw'>=</span> <span class='fl'>200</span>)
-}</pre>
+<span class='fu'>tn_edit_order</span><span class='op'>(</span>origClOrID <span class='op'>=</span> <span class='st'>"myorderid"</span>, orderQty <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -249,7 +259,7 @@ Optional offset from the peg price for 'Pegged' orders.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

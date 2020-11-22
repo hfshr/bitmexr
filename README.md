@@ -1,5 +1,5 @@
 
-# bitmexr <a href='https://hfshr.github.io/bitmexr'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# bitmexr - R Client for the bitmex exchange <a href='https://hfshr.github.io/bitmexr'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -41,7 +41,7 @@ The package contains dedicated wrappers for the majority of API
 endpoints.
 
 -   `trades()` and `map_trades()` return individual trade data for a
-    specified symbol/time period
+    specified symbol/time period.
 -   `bucket_trades()` and `map_bucket_trades()` return bucketed trade
     data (open, high, low, close) for either 1-minute, 5-minute, 1-hour
     or 1-day time frames for a specified symbol.

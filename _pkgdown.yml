@@ -10,7 +10,7 @@ authors:
     href: https://hfshr.netlify.app/
 
 development:
-  mode: auto
+  mode: release
 
 reference:
 

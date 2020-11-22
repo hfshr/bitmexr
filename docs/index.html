@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>R Client for BitMEX • bitmexr</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -16,6 +22,7 @@
     &lt;https://www.bitmex.com/&gt; including the ability to obtain historic
     trade data and place, edit and cancel orders. BitMEX's Testnet and
     live API are both supported.">
+<meta property="og:image" content="https://hfshr.github.io/bitmexr/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -40,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -108,63 +115,79 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-<div id="bitmexr-r-client-for-the-bitmex-exchange" class="section level1">
+<div id="bitmexr---r-client-for-the-bitmex-exchange-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bitmexr-r-client-for-the-bitmex-exchange" class="anchor"></a>bitmexr: R Client for the BitMEX Exchange</h1></div>
+<a href="#bitmexr---r-client-for-the-bitmex-exchange-" class="anchor"></a>bitmexr - R Client for the bitmex exchange <a href="https://hfshr.github.io/bitmexr"><img src="reference/figures/logo.png" align="right" height="139"></a>
+</h1></div>
 <!-- badges: start -->
 
-</div>
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
 <p>The goal of <code>bitmexr</code> is to provide an API wrapper for cryptocurrency derivatives exchange, BitMEX. <code>bitmexr</code> now provides support for all API endpoints for both the Testnet (www.testnet.bitmex.com) and the live exchange (www.bitmex.com). For more information about the API, check <a href="https://www.bitmex.com/app/apiOverview" class="uri">https://www.bitmex.com/app/apiOverview</a>.</p>
 </div>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
 <p>The development version of <code>bitmexr</code> can be installed from github:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"hfshr/bitmexr"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"hfshr/bitmexr"</span><span class="op">)</span></code></pre></div>
 <p>Or the released version from CRAN:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"bitmexr"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"bitmexr"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="package-contents" class="section level1">
-<h1 class="hasAnchor">
-<a href="#package-contents" class="anchor"></a>Package contents</h1>
+<div id="package-contents" class="section level2">
+<h2 class="hasAnchor">
+<a href="#package-contents" class="anchor"></a>Package contents</h2>
 <p>The package contains dedicated wrappers for the majority of API endpoints.</p>
 <ul>
 <li>
-<code><a href="reference/trades.html">trades()</a></code> and <code><a href="reference/map_trades.html">map_trades()</a></code> return individual trade data for a specified symbol/time period</li>
+<code><a href="reference/trades.html">trades()</a></code> and <code><a href="reference/map_trades.html">map_trades()</a></code> return individual trade data for a specified symbol/time period.</li>
 <li>
 <code><a href="reference/bucket_trades.html">bucket_trades()</a></code> and <code><a href="reference/map_bucket_trades.html">map_bucket_trades()</a></code> return bucketed trade data (open, high, low, close) for either 1-minute, 5-minute, 1-hour or 1-day time frames for a specified symbol.</li>
 <li>
 <code><a href="reference/place_order.html">place_order()</a></code>, <code><a href="reference/edit_order.html">edit_order()</a></code> and <code><a href="reference/cancel_order.html">cancel_order()</a></code> can be used to manage trades on the exchange.</li>
 </ul>
 <p>Additional API endpoints that do not have a dedicated wrapper can be accessed using <code><a href="reference/get_bitmex.html">get_bitmex()</a></code> for GET requests and <code><a href="reference/post_bitmex.html">post_bitmex()</a></code> for POST requests. For example use:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/get_bitmex.html">get_bitmex</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">"/chat"</span>, <span class="kw">args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"false"</span>))</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/get_bitmex.html">get_bitmex</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"/chat"</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>reverse <span class="op">=</span> <span class="st">"false"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>to get the latest trollbox messages.</p>
 <p><strong>Testnet API</strong></p>
 <p>All functions in the package also work with BitMEX’s Testnet API. Simply use the “tn_” prefix to access the Testnet version of the function. For example <code><a href="reference/tn_place_order.html">tn_place_order()</a></code> will place an order on the Testnet exchange.</p>
 <p><strong>Authentication</strong></p>
 <p>Accessing private API endpoints, such as those to manage trades, requires an API key and secret. <code>bitmexr</code> reads these from your ~/.Renviron file - see vignette <a href="https://hfshr.github.io/bitmexr/articles/authentication.html">Authentication</a> for more information.</p>
 </div>
-<div id="disclaimer" class="section level1">
-<h1 class="hasAnchor">
-<a href="#disclaimer" class="anchor"></a>Disclaimer</h1>
+<div id="disclaimer" class="section level2">
+<h2 class="hasAnchor">
+<a href="#disclaimer" class="anchor"></a>Disclaimer</h2>
 <p>This software is in no way affiliated, endorsed, or approved by the <a href="https://www.bitmex.com">BitMEX cryptocurrency exchange</a> or any of its affiliates.</p>
 </div>
-<div id="contribution" class="section level1">
-<h1 class="hasAnchor">
-<a href="#contribution" class="anchor"></a>Contribution</h1>
+<div id="contribution" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contribution" class="anchor"></a>Contribution</h2>
 <p>If you spot any issues, or would like additional features added, please feel free to raise an issue, or submit a pull request.</p>
 </div>
-<div id="code-of-conduct" class="section level1">
-<h1 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h1>
+<div id="code-of-conduct" class="section level2">
+<h2 class="hasAnchor">
+<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
 <p>Please note that this project is released with a <a href="https://hfshr.github.io/bitmexr/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<!-- ```{r} -->
+<!-- library(hexSticker) -->
+<!-- sticker("/home/harry/Desktop/Bitcoin-Logo.png",  -->
+<!--         package="bitmexr",  -->
+<!--         p_size=20,  -->
+<!--         s_x=1,  -->
+<!--         s_y=0.75, -->
+<!--         s_width = 0.9, -->
+<!--         s_height = 0.9, -->
+<!--         h_fill = "#000000", -->
+<!--         h_color = "#f2a900", -->
+<!--         asp = 0.9, -->
+<!--         filename="inst/figures/hex.png") -->
+<!-- ``` -->
 </div>
-
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -203,10 +226,10 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/hfshr/bitmexr"><img src="https://travis-ci.org/hfshr/bitmexr.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://codecov.io/gh/hfshr/bitmexr?branch=master"><img src="https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/hfshr/bitmexr/actions"><img src="https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://CRAN.R-project.org/package=bitmexr"><img src="https://www.r-pkg.org/badges/version/bitmexr" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=bitmexr"><img src="https://cranlogs.r-pkg.org/badges/bitmexr"></a></li>
 </ul>
 </div>
 </div>
@@ -218,7 +241,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trade data • bitmexr</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -13,6 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Trade data">
 <meta property="og:description" content="bitmexr">
+<meta property="og:image" content="https://hfshr.github.io/bitmexr/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -37,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bitmexr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -103,7 +110,8 @@
 
       
 
-      </header><script src="trade-data_files/header-attrs-2.2/header-attrs.js"></script><div class="row">
+      </header><script src="trade-data_files/header-attrs-2.5/header-attrs.js"></script><link href="trade-data_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="trade-data_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Trade data</h1>
@@ -116,84 +124,89 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bitmexr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyquant</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hfshr/bitmexr">bitmexr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/business-science/tidyquant">tidyquant</a></span><span class="op">)</span></code></pre></div>
 <p>The following examples demonstrate how <code>bitmexr</code> can be used to obtain trade data from BitMEX, and used with other packages such as <code>tidyqaunt</code> to explore and visualise the data.</p>
 <div id="core-functions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#core-functions" class="anchor"></a>Core functions</h1>
 <p>The core function used for obtaining trade data are <code><a href="../reference/trades.html">trades()</a></code> and <code><a href="../reference/bucket_trades.html">bucket_trades()</a></code>.</p>
 <p><code><a href="../reference/trades.html">trades()</a></code> collects data regarding individual trades that have been executed on the exchange.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># Get 1000 most recent trades on the exchange</span>
-<span class="no">trade_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/trades.html">trades</a></span>(
-  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>,
-  <span class="kw">reverse</span> <span class="kw">=</span> <span class="st">"true"</span>,
-  <span class="kw">count</span> <span class="kw">=</span> <span class="fl">1000</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get 1000 most recent trades on the exchange</span>
+<span class="va">trade_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trades.html">trades</a></span><span class="op">(</span>
+  symbol <span class="op">=</span> <span class="st">"XBTUSD"</span>,
+  reverse <span class="op">=</span> <span class="st">"true"</span>,
+  count <span class="op">=</span> <span class="fl">1000</span>
+<span class="op">)</span></code></pre></div>
 <p><code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> collects trade data which has been summarised into the follow time frames: 1-minute, 5-minute, 1-hour and 1-day. Given the large volume of trades performed daily on the exchange, this function is preferred over <code><a href="../reference/trades.html">trades()</a></code> if you want to obtain data spanning many days.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Daily OHLC data from 2017-01-01 to 2020-01-01</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Daily OHLC data from 2017-01-01 to 2020-01-01</span>
 
-<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(
-  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1d"</span>,
-  <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2018-01-01"</span>,
-  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-05-01"</span>,
-  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>
-)</pre></body></html></div>
+<span class="va">bucket_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span><span class="op">(</span>
+  binSize <span class="op">=</span> <span class="st">"1d"</span>,
+  startTime <span class="op">=</span> <span class="st">"2018-01-01"</span>,
+  endTime <span class="op">=</span> <span class="st">"2020-05-01"</span>,
+  symbol <span class="op">=</span> <span class="st">"XBTUSD"</span>
+<span class="op">)</span></code></pre></div>
 <p>For more fine grained data, you may want to specify a smaller time frame.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1-minute buckets from 2020-01-01 until 2020-01-03</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 1-minute buckets from 2020-01-01 until 2020-01-03</span>
 
-<span class="no">bucket_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span>(
-  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
-  <span class="kw">startTime</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
-  <span class="kw">endTime</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
-  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>
-)
+<span class="va">bucket_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bucket_trades.html">bucket_trades</a></span><span class="op">(</span>
+  binSize <span class="op">=</span> <span class="st">"1m"</span>,
+  startTime <span class="op">=</span> <span class="st">"2020-01-01"</span>,
+  endTime <span class="op">=</span> <span class="st">"2020-01-03"</span>,
+  symbol <span class="op">=</span> <span class="st">"XBTUSD"</span>
+<span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data</span>$<span class="no">timestamp</span>))
-<span class="co">#&gt; [1] "2020-01-01"</span></pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">bucket_data</span><span class="op">$</span><span class="va">timestamp</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "2020-01-01"</span></code></pre></div>
 <p>However, the maximum date returned is still “2020-01-01”. This is because the maximum number of rows returned per API calls is 1000, and there are greater than 1000 1-minute buckets spanning the desired 3 day sample. To solve this problem, the package provides map_* variants of the two core functions.</p>
 </div>
 <div id="using-the-map_-variants" class="section level1">
 <h1 class="hasAnchor">
 <a href="#using-the-map_-variants" class="anchor"></a>Using the map_* variants</h1>
 <p>Take our desired 3-day time period again. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> will create the necessary number of API requests to satisfy the desired sample time frame automatically.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">
-<span class="no">bucket_data_long</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/map_bucket_trades.html">map_bucket_trades</a></span>(
-  <span class="kw">binSize</span> <span class="kw">=</span> <span class="st">"1m"</span>,
-  <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2020-01-01"</span>,
-  <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2020-01-03"</span>,
-  <span class="kw">symbol</span> <span class="kw">=</span> <span class="st">"XBTUSD"</span>,
-  <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">bucket_data_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/map_bucket_trades.html">map_bucket_trades</a></span><span class="op">(</span>
+  binSize <span class="op">=</span> <span class="st">"1m"</span>,
+  start_date <span class="op">=</span> <span class="st">"2020-01-01"</span>,
+  end_date <span class="op">=</span> <span class="st">"2020-01-03"</span>,
+  symbol <span class="op">=</span> <span class="st">"XBTUSD"</span>,
+  verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="no">bucket_data_long</span>$<span class="no">timestamp</span>))
-<span class="co">#&gt; [1] "2020-01-03"</span></pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">bucket_data_long</span><span class="op">$</span><span class="va">timestamp</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "2020-01-03"</span></code></pre></div>
 <p>If verbose is <code>TRUE</code>, a progress bar is printed in the console to provide information regarding the expected duration for the function to complete. The maximum date in the sample is now equal to the end date in the function.</p>
 <p>The <code><a href="../reference/map_trades.html">map_trades()</a></code> function works in a similar way, however because the number of trades per day is not known in advance, it is not possible to estimate how long the function will take. Instead, if verbose is <code>TRUE</code>, this function prints the maximum timestamp from each API call to provide an indication of the current progress and how long is left. The function stops when the start_date is greater than the end_date.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">map_trades(
-  symbol = "XBTUSD",
-  start_date = "2019-05-03 12:00:00",
-  end_date = "2019-05-03 12:05:00",
-  verbose = TRUE
-) %&gt;%
-  select(1:5) %&gt;%
-  head()
-#&gt; Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:05:00 
-#&gt; Current limit is 30 requests per minute
-#&gt; 
-Current progress:  2019/05/03 12:01:11
-Current progress:  2019/05/03 12:01:44
-Current progress:  2019/05/03 12:03:15
-Current progress:  2019/05/03 12:05:08
-#&gt;             timestamp symbol side size  price
-#&gt; 1 2019-05-03 12:00:09 XBTUSD Sell   18 5700.0
-#&gt; 2 2019-05-03 12:00:13 XBTUSD Sell 1000 5700.0
-#&gt; 3 2019-05-03 12:00:13 XBTUSD Sell 5500 5700.0
-#&gt; 4 2019-05-03 12:00:13 XBTUSD  Buy  100 5700.5
-#&gt; 5 2019-05-03 12:00:13 XBTUSD Sell  900 5700.0
-#&gt; 6 2019-05-03 12:00:13 XBTUSD Sell 2000 5700.0</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_trades</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbol =</span> <span class="st">"XBTUSD"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="st">"2019-05-03 12:00:00"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="st">"2019-05-03 12:05:00"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Getting trade data between 2019/05/03 12:00:00 and 2019/05/03 12:05:00 </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Current limit is 30 requests per minute</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>Current progress<span class="sc">:</span>  <span class="dv">2019</span><span class="sc">/</span><span class="dv">05</span><span class="sc">/</span><span class="dv">03</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">01</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>Current progress<span class="sc">:</span>  <span class="dv">2019</span><span class="sc">/</span><span class="dv">05</span><span class="sc">/</span><span class="dv">03</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">01</span><span class="sc">:</span><span class="dv">44</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>Current progress<span class="sc">:</span>  <span class="dv">2019</span><span class="sc">/</span><span class="dv">05</span><span class="sc">/</span><span class="dv">03</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">03</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>Current progress<span class="sc">:</span>  <span class="dv">2019</span><span class="sc">/</span><span class="dv">05</span><span class="sc">/</span><span class="dv">03</span> <span class="dv">12</span><span class="sc">:</span><span class="dv">05</span><span class="sc">:</span><span class="dv">08</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             timestamp symbol side size  price</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2019-05-03 12:00:09 XBTUSD Sell   18 5700.0</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2019-05-03 12:00:13 XBTUSD Sell 1000 5700.0</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2019-05-03 12:00:13 XBTUSD Sell 5500 5700.0</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2019-05-03 12:00:13 XBTUSD  Buy  100 5700.5</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2019-05-03 12:00:13 XBTUSD Sell  900 5700.0</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2019-05-03 12:00:13 XBTUSD Sell 2000 5700.0</span></span></code></pre></div>
 <p>Without authentication, API requests are limited to 30 per minute. If you have enabled authentication by following you can use the <code>use_auth = TRUE</code> argument to access the higher rate limit of 60 requests per minute.</p>
 <p><strong>Note:</strong> A warning is given when time frames of greater than 1 day are passed into the function. Due to the large number of trades executed on the exchange each day, this function should only be used for specific time intervals of interest. Using <code><a href="../reference/map_bucket_trades.html">map_bucket_trades()</a></code> is a better option for time intervals spanning multiple days.</p>
 </div>
@@ -201,27 +214,30 @@ Current progress:  2019/05/03 12:05:08
 <h1 class="hasAnchor">
 <a href="#useful-extras" class="anchor"></a>Useful extras</h1>
 <p><code><a href="../reference/available_symbols.html">available_symbols()</a></code> returns a character vector of the currently valid symbols available to request.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="../reference/available_symbols.html">available_symbols</a></span>(), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">", "</span>)
-<span class="co">#&gt; [1] "XBTUSD, ETHUSD, XBTM20, XRPUSD, XBTU20, ETHM20, LTCM20, XRPM20, BCHM20, ADAM20, EOSM20, TRXM20"</span></pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="../reference/available_symbols.html">available_symbols</a></span><span class="op">(</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>
+<span class="co">#&gt; [1] "XBTUSD, ETHUSD, XBTM20, XRPUSD, XBTU20, ETHM20, LTCM20, XRPM20, BCHM20, ADAM20, EOSM20, TRXM20"</span></code></pre></div>
 <p><code><a href="../reference/valid_dates.html">valid_dates()</a></code> returns the date from which data is available through the API for a given symbol, or all symbols if no symbol is given</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/valid_dates.html">valid_dates</a></span>(<span class="st">"ETHUSD"</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/valid_dates.html">valid_dates</a></span><span class="op">(</span><span class="st">"ETHUSD"</span><span class="op">)</span>
 <span class="co">#&gt;   symbol           timestamp</span>
-<span class="co">#&gt; 1 ETHUSD 2018-08-02 09:06:10</span></pre></body></html></div>
+<span class="co">#&gt; 1 ETHUSD 2018-08-02 09:06:10</span></code></pre></div>
 <p>The core functions <code><a href="../reference/trades.html">trades()</a></code> and <code><a href="../reference/bucket_trades.html">bucket_trades()</a></code> also have a rate limiter built in that will initiate a 60 second pause to reset the limit if the the maximum number of requests per minute is approached while using the package.</p>
 </div>
 <div id="use-with-other-packages" class="section level1">
 <h1 class="hasAnchor">
 <a href="#use-with-other-packages" class="anchor"></a>Use with other packages</h1>
 <p>Once data has been obtained, it is possible to use packages such as the excellent <code>tidyquant</code> to explore/visualise the data further.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r">
-<span class="no">bucket_data_long</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">timestamp</span> <span class="kw">&gt;</span> <span class="st">"2020-01-01"</span> <span class="kw">&amp;</span> <span class="no">timestamp</span> <span class="kw">&lt;</span> <span class="st">"2020-01-03"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">timestamp</span> <span class="kw">=</span> <span class="fu">as_datetime</span>(<span class="no">timestamp</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">timestamp</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">close</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/geom_chart.html">geom_candlestick</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">open</span> <span class="kw">=</span> <span class="no">open</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="no">high</span>, <span class="kw">low</span> <span class="kw">=</span> <span class="no">low</span>, <span class="kw">close</span> <span class="kw">=</span> <span class="no">close</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/geom_ma.html">geom_ma</a></span>(<span class="kw">ma_fun</span> <span class="kw">=</span> <span class="no">SMA</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">200</span>) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span>(<span class="kw">date_breaks</span> <span class="kw">=</span> <span class="st">"12 hour"</span>, <span class="kw">date_labels</span> <span class="kw">=</span> <span class="st">"%H:%M"</span>) +
-  <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/theme_tq.html">theme_tq</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">bucket_data_long</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">timestamp</span> <span class="op">&gt;</span> <span class="st">"2020-01-01"</span> <span class="op">&amp;</span> <span class="va">timestamp</span> <span class="op">&lt;</span> <span class="st">"2020-01-03"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>timestamp <span class="op">=</span> <span class="fu">as_datetime</span><span class="op">(</span><span class="va">timestamp</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">timestamp</span>, y <span class="op">=</span> <span class="va">close</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/geom_chart.html">geom_candlestick</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>open <span class="op">=</span> <span class="va">open</span>, high <span class="op">=</span> <span class="va">high</span>, low <span class="op">=</span> <span class="va">low</span>, close <span class="op">=</span> <span class="va">close</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/geom_ma.html">geom_ma</a></span><span class="op">(</span>ma_fun <span class="op">=</span> <span class="va">SMA</span>, n <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">"12 hour"</span>, date_labels <span class="op">=</span> <span class="st">"%H:%M"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/theme_tq.html">theme_tq</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="trade-data_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 <p>See the <code>tidyquant</code> vignette for more details <a href="https://CRAN.R-project.org/package=tidyquant" class="uri">https://CRAN.R-project.org/package=tidyquant</a></p>
 </div>
@@ -242,7 +258,7 @@ Current progress:  2019/05/03 12:05:08
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

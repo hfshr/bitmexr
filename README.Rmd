@@ -43,7 +43,7 @@ install.packages("bitmexr")
 
 The package contains dedicated wrappers for the majority of API endpoints.
 
-- `trades()` and `map_trades()` return individual trade data for a specified symbol/time period
+- `trades()` and `map_trades()` return individual trade data for a specified symbol/time period.
 - `bucket_trades()` and `map_bucket_trades()` return bucketed trade data (open, high, low, close) for either 1-minute, 5-minute, 1-hour or 1-day time frames for a specified symbol.
 - `place_order()`, `edit_order()` and `cancel_order()` can be used to manage trades on the exchange.
 
