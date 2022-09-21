@@ -22,7 +22,7 @@ test_that("utils functions work", {
   #   expect_is(symbols, "character")
   # })
 
-  res <- valid_dates()
+  res <- valid_dates("XBTUSD")
   expect_is(res, "data.frame")
 
   symbols <- available_symbols()
