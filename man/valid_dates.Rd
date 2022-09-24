@@ -19,7 +19,5 @@ Pass in a symbol from \code{\link[=available_symbols]{available_symbols()}} or n
 \examples{
 \dontrun{
 valid_dates("XBTUSD")
-
-valid_dates(NULL)
 }
 }

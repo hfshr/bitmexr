@@ -77,12 +77,18 @@ as <- available_symbols()
 #' @examples
 #' \dontrun{
 #' valid_dates("XBTUSD")
-#'
-#' valid_dates(NULL)
 #' }
 #' @export
 valid_dates <- function(symbol = NULL) {
   check_internet()
+  stop_if_not(
+    .x = !is.null(symbol),
+    msg = paste0(
+      "Please provide a valid symbol, one of: ",
+      paste(available_symbols(), collapse = ", "),
+      "."
+    )
+  )
 
   dates <- trades(symbol, count = 1, reverse = "false") %>%
     select(.data$symbol, .data$timestamp) %>%
