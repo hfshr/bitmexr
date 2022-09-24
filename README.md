@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/hfshr/bitmexr/branch/master/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=master)
+coverage](https://codecov.io/gh/hfshr/bitmexr/branch/main/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=main)
 [![R build
 status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
 [![CRAN
@@ -40,12 +40,12 @@ install.packages("bitmexr")
 The package contains dedicated wrappers for the majority of API
 endpoints.
 
--   `trades()` and `map_trades()` return individual trade data for a
+  - `trades()` and `map_trades()` return individual trade data for a
     specified symbol/time period.
--   `bucket_trades()` and `map_bucket_trades()` return bucketed trade
+  - `bucket_trades()` and `map_bucket_trades()` return bucketed trade
     data (open, high, low, close) for either 1-minute, 5-minute, 1-hour
     or 1-day time frames for a specified symbol.
--   `place_order()`, `edit_order()` and `cancel_order()` can be used to
+  - `place_order()`, `edit_order()` and `cancel_order()` can be used to
     manage trades on the exchange.
 
 Additional API endpoints that do not have a dedicated wrapper can be
@@ -90,16 +90,29 @@ Conduct](https://hfshr.github.io/bitmexr/CODE_OF_CONDUCT.html). By
 participating in this project you agree to abide by its terms.
 
 <!-- ```{r} -->
+
 <!-- library(hexSticker) -->
+
 <!-- sticker("/home/harry/Desktop/Bitcoin-Logo.png",  -->
+
 <!--         package="bitmexr",  -->
+
 <!--         p_size=20,  -->
+
 <!--         s_x=1,  -->
+
 <!--         s_y=0.75, -->
+
 <!--         s_width = 0.9, -->
+
 <!--         s_height = 0.9, -->
+
 <!--         h_fill = "#000000", -->
+
 <!--         h_color = "#f2a900", -->
+
 <!--         asp = 0.9, -->
+
 <!--         filename="inst/figures/hex.png") -->
+
 <!-- ``` -->
