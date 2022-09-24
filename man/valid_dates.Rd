@@ -8,7 +8,7 @@ valid_dates(symbol = NULL)
 }
 \arguments{
 \item{symbol}{character string of the instrument
-symbol to find start date for, or \code{NULL} for all available symbols}
+symbol to find start date for.}
 }
 \value{
 A data.frame containing the symbol and date from which data is available
@@ -19,7 +19,5 @@ Pass in a symbol from \code{\link[=available_symbols]{available_symbols()}} or n
 \examples{
 \dontrun{
 valid_dates("XBTUSD")
-
-valid_dates(NULL)
 }
 }

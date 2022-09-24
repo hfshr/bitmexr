@@ -1,7 +1,7 @@
 Type: Package
 Package: bitmexr
 Title: R Client for BitMEX
-Version: 0.3.1.9000
+Version: 0.3.2
 Authors@R: 
     person(given = "Harry",
            family = "Fisher",
@@ -12,9 +12,8 @@ Description: A client for cryptocurrency exchange BitMEX
     trade data and place, edit and cancel orders. BitMEX's Testnet and
     live API are both supported.
 License: MIT + file LICENSE
-URL: https://github.com/hfshr/bitmexr,
-    https://hfshr.github.io/bitmexr
-BugReports: https://github.com/hfshr/bitmexr/issues
+URL: https://github.com/hfshr/bitmexr/, https://hfshr.github.io/bitmexr/
+BugReports: https://github.com/hfshr/bitmexr/issues/
 Imports: 
     attempt,
     curl,
@@ -42,4 +41,4 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.1
