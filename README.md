@@ -3,10 +3,8 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/bitmexr)](https://CRAN.R-project.org/package=bitmexr)
+[![R build status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/bitmexr)](https://CRAN.R-project.org/package=bitmexr)
 [![](https://cranlogs.r-pkg.org/badges/bitmexr)](https://cran.r-project.org/package=bitmexr)
 <!-- badges: end -->
 
