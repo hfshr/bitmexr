@@ -1,3 +1,8 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Updated links in README.md to include trailing slashes.
+
 # Testing environments
 
 MacOS (release and devel, on GitHub Actions)

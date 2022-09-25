@@ -1,10 +1,8 @@
 
-# bitmexr - R Client for the bitmex exchange <a href='https://hfshr.github.io/bitmexr'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# bitmexr - R Client for the bitmex exchange <a href='https://hfshr.github.io/bitmexr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
-[![Codecov test
-coverage](https://codecov.io/gh/hfshr/bitmexr/branch/main/graph/badge.svg)](https://codecov.io/gh/hfshr/bitmexr?branch=main)
 [![R build
 status](https://github.com/hfshr/bitmexr/workflows/R-CMD-check/badge.svg)](https://github.com/hfshr/bitmexr/actions)
 [![CRAN
@@ -88,31 +86,3 @@ feel free to raise an issue, or submit a pull request.
 Please note that this project is released with a [Contributor Code of
 Conduct](https://hfshr.github.io/bitmexr/CODE_OF_CONDUCT.html). By
 participating in this project you agree to abide by its terms.
-
-<!-- ```{r} -->
-
-<!-- library(hexSticker) -->
-
-<!-- sticker("/home/harry/Desktop/Bitcoin-Logo.png",  -->
-
-<!--         package="bitmexr",  -->
-
-<!--         p_size=20,  -->
-
-<!--         s_x=1,  -->
-
-<!--         s_y=0.75, -->
-
-<!--         s_width = 0.9, -->
-
-<!--         s_height = 0.9, -->
-
-<!--         h_fill = "#000000", -->
-
-<!--         h_color = "#f2a900", -->
-
-<!--         asp = 0.9, -->
-
-<!--         filename="inst/figures/hex.png") -->
-
-<!-- ``` -->
