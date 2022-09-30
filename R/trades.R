@@ -131,7 +131,7 @@ trades <- function(
   if (isTRUE(use_auth)) {
     prep_url <- modify_url(paste0(live_url, "/trade"), query = compact(args))
 
-    expires <- as.character(as.integer(now() + 10))
+    expires <- format(as.integer(now() + 10))
 
     sig <- gen_signature(
       secret = Sys.getenv("bitmex_apisecret"),
@@ -275,7 +275,7 @@ tn_trades <- function(
   if (isTRUE(use_auth)) {
     prep_url <- modify_url(paste0(testnet_url, "/trade"), query = compact(args))
 
-    expires <- as.character(as.integer(now() + 10))
+    expires <- format(as.integer(now() + 10))
 
     sig <- gen_signature(
       secret = Sys.getenv("testnet_bitmex_apisecret"),

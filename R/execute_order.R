@@ -74,7 +74,7 @@ place_order <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("bitmex_apisecret"),
@@ -158,7 +158,7 @@ tn_place_order <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format.libraryIQR()(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("testnet_bitmex_apisecret"),

@@ -31,7 +31,7 @@ cancel_order <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("bitmex_apisecret"),
@@ -92,7 +92,7 @@ tn_cancel_order <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("testnet_bitmex_apisecret"),
@@ -155,7 +155,7 @@ cancel_all_orders <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("bitmex_apisecret"),
@@ -221,7 +221,7 @@ tn_cancel_all_orders <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("testnet_bitmex_apisecret"),

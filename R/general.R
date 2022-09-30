@@ -28,7 +28,7 @@ post_bitmex <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("bitmex_apisecret"),
@@ -85,7 +85,7 @@ tn_post_bitmex <- function(
 
   json_body <- toJSON(compact(args), auto_unbox = TRUE)
 
-  expires <- as.character(as.integer(now() + 10))
+  expires <- format(as.integer(now() + 10))
 
   sig <- gen_signature(
     secret = Sys.getenv("testnet_bitmex_apisecret"),
@@ -148,7 +148,7 @@ get_bitmex <- function(
   if (isTRUE(use_auth)) {
     prep_url <- modify_url(paste0(live_url, path), query = compact(args))
 
-    expires <- as.character(as.integer(now() + 10))
+    expires <- format(as.integer(now() + 10))
 
     sig <- gen_signature(
       secret = Sys.getenv("bitmex_apisecret"),
@@ -213,7 +213,7 @@ tn_get_bitmex <- function(
   if (isTRUE(use_auth)) {
     prep_url <- modify_url(paste0(testnet_url, path), query = compact(args))
 
-    expires <- as.character(as.integer(now() + 10))
+    expires <- format(as.integer(now() + 10))
 
     sig <- gen_signature(
       secret = Sys.getenv("testnet_bitmex_apisecret"),
