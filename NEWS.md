@@ -1,6 +1,8 @@
+# bitmexr (development version)
+
 # bitmexr 0.3.2
 
-* Redocument to pass ew CRAN checks
+* Redocument to pass new CRAN checks
 * `valid_dates()` now requires a valid symbol from `available_symbols()`.
 
 # bitmexr 0.3.1
