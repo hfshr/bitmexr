@@ -61,18 +61,18 @@
 #' }
 #'
 #' @export
-trades <- function(
-  symbol = "XBTUSD",
-  count = 1000,
-  reverse = "true",
-  filter = NULL,
-  columns = NULL,
-  start = NULL,
-  startTime = NULL,
-  endTime = NULL,
-  use_auth = FALSE
-) {
+trades <- function(symbol = "XBTUSD",
+                   count = 1000,
+                   reverse = "true",
+                   filter = NULL,
+                   columns = NULL,
+                   start = NULL,
+                   startTime = NULL,
+                   endTime = NULL,
+                   use_auth = FALSE) {
   check_internet()
+
+  as <- available_symbols()
 
   stop_if_not(
     symbol %in% as,
@@ -205,18 +205,18 @@ trades <- function(
 #' }
 #'
 #' @export
-tn_trades <- function(
-  symbol = "XBTUSD",
-  count = 1000,
-  reverse = "true",
-  filter = NULL,
-  columns = NULL,
-  start = NULL,
-  startTime = NULL,
-  endTime = NULL,
-  use_auth = FALSE
-) {
+tn_trades <- function(symbol = "XBTUSD",
+                      count = 1000,
+                      reverse = "true",
+                      filter = NULL,
+                      columns = NULL,
+                      start = NULL,
+                      startTime = NULL,
+                      endTime = NULL,
+                      use_auth = FALSE) {
   check_internet()
+
+  as <- available_symbols()
 
   stop_if_not(
     symbol %in% as,

@@ -44,20 +44,20 @@
 #' )
 #' }
 #' @export
-bucket_trades <- function(
-  binSize = "1m",
-  partial = "false",
-  symbol = "XBTUSD",
-  count = 1000,
-  reverse = "true",
-  filter = NULL,
-  columns = NULL,
-  start = NULL,
-  startTime = NULL,
-  endTime = NULL,
-  use_auth = FALSE
-) {
+bucket_trades <- function(binSize = "1m",
+                          partial = "false",
+                          symbol = "XBTUSD",
+                          count = 1000,
+                          reverse = "true",
+                          filter = NULL,
+                          columns = NULL,
+                          start = NULL,
+                          startTime = NULL,
+                          endTime = NULL,
+                          use_auth = FALSE) {
   check_internet()
+
+  as <- available_symbols()
 
   stop_if_not(
     symbol %in% as,
@@ -196,20 +196,20 @@ bucket_trades <- function(
 #' )
 #' }
 #' @export
-tn_bucket_trades <- function(
-  binSize = "1m",
-  partial = "false",
-  symbol = "XBTUSD",
-  count = 1000,
-  reverse = "true",
-  filter = NULL,
-  columns = NULL,
-  start = NULL,
-  startTime = NULL,
-  endTime = NULL,
-  use_auth = FALSE
-) {
+tn_bucket_trades <- function(binSize = "1m",
+                             partial = "false",
+                             symbol = "XBTUSD",
+                             count = 1000,
+                             reverse = "true",
+                             filter = NULL,
+                             columns = NULL,
+                             start = NULL,
+                             startTime = NULL,
+                             endTime = NULL,
+                             use_auth = FALSE) {
   check_internet()
+
+  as <- available_symbols()
 
   stop_if_not(
     symbol %in% as,

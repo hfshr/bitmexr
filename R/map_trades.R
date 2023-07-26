@@ -107,8 +107,6 @@ map_trades <- function(
 
   trade_warning(start = start_date, end = end_date)
 
-  check_internet()
-
   result <- tibble()
 
   if (isTRUE(use_auth)) {
@@ -237,8 +235,6 @@ tn_map_trades <- function(
   )
 
   trade_warning(start = start_date, end = end_date)
-
-  check_internet()
 
   result <- tibble()
 

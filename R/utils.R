@@ -64,9 +64,6 @@ available_symbols <- function() {
   jsonlite::fromJSON(content(GET("https://www.bitmex.com/api/bitcoincharts"), "text"))$all
 }
 
-# Used to check for valid symbols in functions
-as <- available_symbols()
-
 #' Start date of data availability for available symbols
 #'
 #' Pass in a symbol from [available_symbols()] or no symbol to return dates for all available symbols
