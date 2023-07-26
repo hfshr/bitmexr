@@ -1,4 +1,6 @@
-# bitmexr (development version)
+# bitmexr 0.3.3
+
+* Remove top level call to `available_symbols()` and instead use within functions that require it.
 
 # bitmexr 0.3.2
 
